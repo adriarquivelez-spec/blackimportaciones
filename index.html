@@ -1,62 +1,69 @@
-<!-- Tailwind CSS & FontAwesome -->
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-    tailwind.config = {
-        theme: {
-            extend: {
-                colors: {
-                    gold: {
-                        DEFAULT: 'var(--color-gold)',
-                        light: 'var(--color-gold-light)',
-                        dark: 'var(--color-gold-dark)',
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Black Perfumes</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            DEFAULT: 'var(--color-gold)',
+                            light: 'var(--color-gold-light)',
+                            dark: 'var(--color-gold-dark)',
+                        }
                     }
                 }
             }
         }
-    }
-</script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<style>
-    :root {
-        --color-gold: #D4AF37;
-        --color-gold-light: #F3E5AB;
-        --color-gold-dark: #AA8C2C;
-    }
-    .font-sans-custom { font-family: 'Plus Jakarta Sans', sans-serif; }
-    .font-serif-custom { font-family: 'Playfair Display', serif; }
-    ::-webkit-scrollbar { width: 8px; }
-    ::-webkit-scrollbar-track { background: #111; }
-    ::-webkit-scrollbar-thumb { background: #D4AF37; border-radius: 4px; }
-</style>
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-gold: #D4AF37;
+            --color-gold-light: #F3E5AB;
+            --color-gold-dark: #AA8C2C;
+        }
+        .font-sans-custom { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .font-serif-custom { font-family: 'Playfair Display', serif; }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #111; }
+        ::-webkit-scrollbar-thumb { background: var(--color-gold); border-radius: 4px; }
+    </style>
+</head>
+<body class="bg-zinc-950 text-zinc-100 min-h-screen flex flex-col selection:bg-gold selection:text-zinc-950 font-sans-custom w-full">
 
-<div class="bg-zinc-950 text-zinc-100 min-h-screen flex flex-col selection:bg-gold selection:text-zinc-950 font-sans-custom w-full">
-
-    <!-- Navigation Bar -->
     <header class="sticky top-0 z-50 bg-zinc-950/90 backdrop-blur-md border-b border-gold/20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <div class="flex items-center space-x-3">
-                <div class="bg-gradient-to-tr from-gold-dark via-gold to-gold-light p-0.5 rounded-lg">
-                    <div class="bg-zinc-950 px-3 py-1.5 rounded-[7px]">
-                        <span id="brand-title" class="font-serif-custom font-bold text-xl tracking-wider text-gold">BLACK PERFUMES</span>
+        <div id="header-container" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-24 flex items-center justify-between transition-all duration-300">
+            <!-- Left Logo & Brand Name -->
+            <div id="header-left" class="flex items-center space-x-3 transition-all shrink-0">
+                <div class="bg-gradient-to-tr from-gold-dark via-gold to-gold-light p-0.5 rounded-full overflow-hidden flex items-center justify-center shadow-xl shadow-gold/20">
+                    <div class="bg-zinc-950 p-1 rounded-full flex items-center justify-center">
+                        <img id="brand-logo-img" src="" alt="Logo" class="h-12 w-12 sm:h-14 sm:w-14 object-cover rounded-full">
                     </div>
+                </div>
+                <div class="border border-gold/40 px-3.5 py-1.5 rounded-xl bg-zinc-900/50 shadow-inner">
+                    <span id="brand-title" class="font-serif-custom font-bold text-sm sm:text-lg tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-gold-light via-gold to-gold-dark uppercase block">Black Perfumes</span>
+                    <span class="text-[9px] uppercase tracking-widest text-zinc-400 font-semibold block">Importados Originales</span>
                 </div>
             </div>
 
-            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium tracking-wide">
-                <a href="#catalogo" class="text-zinc-300 hover:text-gold transition-colors">Catálogo</a>
-                <a href="#como-comprar" class="text-zinc-300 hover:text-gold transition-colors">¿Cómo Comprar?</a>
-                <a href="#contacto" class="text-zinc-300 hover:text-gold transition-colors">Contacto</a>
+            <!-- Requested Order: Catálogo, Garantía, Formas de pago, Envíos, Contacto, Revendedores -->
+            <nav id="header-nav" class="hidden lg:flex items-center justify-center gap-1.5 text-sm font-medium tracking-wide transition-all mx-4">
+                <a href="#catalogo" class="bg-gold text-zinc-950 px-4 py-2 rounded-full hover:bg-gold-light transition-all whitespace-nowrap font-bold shadow-sm shadow-gold/25">Catálogo</a>
+                <a href="#bloque-garantia" class="text-zinc-300 hover:text-gold hover:bg-zinc-900/80 px-4 py-2 rounded-full transition-all whitespace-nowrap">Garantía</a>
+                <a href="#bloque-pagos" class="text-zinc-300 hover:text-gold hover:bg-zinc-900/80 px-4 py-2 rounded-full transition-all whitespace-nowrap">Formas de pago</a>
+                <a href="#bloque-envios" class="text-zinc-300 hover:text-gold hover:bg-zinc-900/80 px-4 py-2 rounded-full transition-all whitespace-nowrap">Envíos</a>
+                <a href="#contacto" class="text-zinc-300 hover:text-gold hover:bg-zinc-900/80 px-4 py-2 rounded-full transition-all whitespace-nowrap">Contacto</a>
+                <a href="#bloque-revendedores" class="text-zinc-300 hover:text-gold hover:bg-zinc-900/80 px-4 py-2 rounded-full transition-all whitespace-nowrap">Revendedores</a>
             </nav>
 
-            <div class="flex items-center space-x-4">
-                <!-- Admin Toggle Button -->
-                <button onclick="toggleAdminPanel()" class="text-xs tracking-wider bg-zinc-900 border border-gold/40 hover:border-gold px-3 py-2 rounded-lg text-gold transition-all flex items-center gap-2 shadow-lg shadow-gold/5">
-                    <i class="fa-solid fa-sliders"></i> <span class="hidden sm:inline">Panel Admin</span>
-                </button>
-
-                <!-- Cart Button -->
-                <button onclick="toggleCart()" class="relative bg-gold hover:bg-gold-light text-zinc-950 px-4 py-2 rounded-lg font-semibold transition-all flex items-center gap-2 shadow-lg shadow-gold/20">
+            <div id="header-right" class="flex items-center space-x-4 transition-all shrink-0">
+                <button onclick="toggleCart()" class="relative bg-gold hover:bg-gold-light text-zinc-950 px-5 py-2.5 rounded-xl font-bold transition-all flex items-center gap-2.5 shadow-lg shadow-gold/20">
                     <i class="fa-solid fa-bag-shopping"></i>
                     <span class="hidden sm:inline">Carrito</span>
                     <span id="cart-counter" class="absolute -top-2 -right-2 bg-zinc-100 text-zinc-950 text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center border border-gold">0</span>
@@ -65,52 +72,66 @@
         </div>
     </header>
 
-    <section class="relative bg-zinc-900 border-b border-gold/20 py-16 md:py-24 overflow-hidden">
-        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(var(--color-gold)_1px,transparent_1px)] [background-size:16px_16px]"></div>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div id="hero-text-container" class="space-y-6 text-center md:text-left">
-                <span class="inline-block text-xs uppercase tracking-widest text-gold bg-gold/10 px-3 py-1 rounded-full border border-gold/30">Importación Directa</span>
-                <h1 id="hero-heading" class="font-serif-custom text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-zinc-100">
-                    Fragancias Exclusivas al <span class="text-gold italic">Mejor Precio</span>
+    <section class="relative bg-zinc-950 border-b border-gold/20 py-24 md:py-32 overflow-hidden flex flex-col items-center justify-center min-h-[60vh]">
+        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(var(--color-gold)_1px,transparent_1px)] [background-size:24px_24px]"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-zinc-950 via-transparent to-zinc-950"></div>
+        
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center space-y-8">
+            <div id="hero-text-container" class="space-y-6">
+                <h1 id="hero-heading" class="font-serif-custom text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-zinc-100 leading-tight drop-shadow-2xl">
+                    Perfumes originales, <br/>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-gold-light via-gold to-gold-dark italic">sin gastar de más</span>
                 </h1>
-                <p id="hero-subtext" class="text-zinc-400 text-lg max-w-xl">
-                    Stock real, atención personalizada y venta directa por WhatsApp sin intermediarios ni comisiones de tarjetas.
-                </p>
-                <div id="hero-buttons-container" class="flex flex-wrap gap-4 justify-center md:justify-start pt-2">
-                    <a id="hero-catalog-btn" href="#catalogo" class="bg-gold hover:bg-gold-light text-zinc-950 font-semibold px-8 py-3.5 rounded-xl shadow-lg shadow-gold/20 transition-all transform hover:-translate-y-0.5">
-                        Ver Catálogo Completo
-                    </a>
-                    <a id="hero-whatsapp-btn" href="https://wa.me/5491100000000?text=Hola,%20quiero%20consultar%20por%20el%20stock%20de%20perfumes" target="_blank" class="bg-zinc-900 border border-gold/40 hover:border-gold text-zinc-100 font-semibold px-6 py-3.5 rounded-xl transition-all flex items-center gap-2">
-                        <i class="fa-brands fa-whatsapp text-green-500 text-xl"></i> Hablar por WhatsApp
-                    </a>
-                </div>
-            </div>
-            <div class="relative flex justify-center">
-                <div class="w-full max-w-md h-80 sm:h-96 rounded-2xl overflow-hidden border border-gold/30 shadow-2xl relative group">
-                    <img src="https://placehold.co/600x600/18181b/D4AF37?text=Black+Perfumes" alt="Perfumes Destacados" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-                    <div class="absolute inset-0 bg-gradient-to-t from-zinc-950/80 via-transparent to-transparent flex items-end p-6">
-                        <div class="text-zinc-200">
-                            <p class="text-xs uppercase tracking-widest text-gold">Colección Premium</p>
-                            <p class="font-serif-custom text-xl font-bold">Lattafa, Armaf, Victoria's Secret y más</p>
-                        </div>
+                
+                <div id="hero-subtext" class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 text-zinc-300 text-base md:text-lg font-medium tracking-wide">
+                    <div class="flex items-center gap-2 bg-zinc-900/80 backdrop-blur-sm px-5 py-2.5 rounded-full border border-zinc-800 shadow-lg">
+                        <i class="fa-solid fa-users text-gold"></i>
+                        <span>+100 clientes</span>
+                    </div>
+                    <div class="hidden sm:block w-1.5 h-1.5 rounded-full bg-gold"></div>
+                    <div class="flex items-center gap-2 bg-zinc-900/80 backdrop-blur-sm px-5 py-2.5 rounded-full border border-zinc-800 shadow-lg">
+                        <i class="fa-solid fa-location-dot text-gold"></i>
+                        <span>Villa Urquiza, CABA</span>
                     </div>
                 </div>
+            </div>
+
+            <div id="hero-buttons-container" class="flex flex-col sm:flex-row gap-4 justify-center pt-8">
+                <a id="hero-catalog-btn" href="#catalogo" class="bg-gradient-to-r from-gold to-gold-dark hover:from-gold-light hover:to-gold text-zinc-950 font-bold px-10 py-4 rounded-full shadow-xl shadow-gold/25 transition-all transform hover:-translate-y-1 text-lg flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-book-open"></i> Ver Catálogo Completo
+                </a>
+                <a id="hero-whatsapp-btn" href="#" target="_blank" class="bg-zinc-900/80 backdrop-blur-md border border-zinc-700 hover:border-gold hover:bg-zinc-800 text-zinc-100 font-semibold px-10 py-4 rounded-full transition-all flex items-center justify-center gap-3 text-lg group">
+                    <i class="fa-brands fa-whatsapp text-green-500 text-2xl group-hover:scale-110 transition-transform"></i> Hablar por WhatsApp
+                </a>
             </div>
         </div>
     </section>
 
-    <main id="catalogo" class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 w-full">
+    <section class="bg-zinc-950 py-16 space-y-20 border-b border-zinc-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div id="info-blocks-container" class="space-y-24">
+                <!-- Rendered dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <main id="catalogo" class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 w-full scroll-mt-24">
+        <div class="text-center mb-10">
+            <span class="text-xs font-bold uppercase tracking-widest text-gold bg-gold/10 px-3.5 py-1.5 rounded-full border border-gold/20">Nuestra Tienda</span>
+            <h2 class="font-serif-custom text-3xl md:text-4xl font-bold text-zinc-100 mt-3">Catálogo de Fragancias</h2>
+        </div>
+
         <div class="flex flex-col md:flex-row justify-between items-center gap-6 mb-10 pb-6 border-b border-zinc-800">
             <div id="category-filters" class="flex flex-wrap gap-2 justify-center md:justify-start">
-                <button onclick="filterCategory('Todas')" class="cat-btn bg-gold text-zinc-950 px-5 py-2 rounded-xl text-sm font-semibold transition-all">Todas</button>
+                <!-- Dynamic categories -->
             </div>
 
             <div class="flex flex-wrap gap-3 w-full md:w-auto justify-end">
                 <div class="relative flex-grow sm:flex-grow-0">
-                    <input type="text" id="search-input" oninput="handleSearch()" placeholder="Buscar perfume o marca..." class="bg-zinc-900 border border-zinc-800 focus:border-gold text-zinc-100 px-4 py-2 pl-10 rounded-xl text-sm w-full sm:w-64 outline-none transition-all">
-                    <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-zinc-500 text-sm"></i>
+                    <input type="text" id="search-input" oninput="handleSearch()" placeholder="Buscar perfume o marca..." class="bg-zinc-900 border border-zinc-800 focus:border-gold text-zinc-100 px-4 py-2.5 pl-10 rounded-xl text-sm w-full sm:w-64 outline-none transition-all">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3.5 text-zinc-500 text-sm"></i>
                 </div>
-                <select id="sort-select" onchange="handleSort()" class="bg-zinc-900 border border-zinc-800 focus:border-gold text-zinc-100 px-4 py-2 rounded-xl text-sm outline-none transition-all cursor-pointer">
+                <select id="sort-select" onchange="handleSort()" class="bg-zinc-900 border border-zinc-800 focus:border-gold text-zinc-100 px-4 py-2.5 rounded-xl text-sm outline-none transition-all cursor-pointer">
                     <option value="relevancia">Ordenar por relevancia</option>
                     <option value="menor">Precio: menor a mayor</option>
                     <option value="mayor">Precio: mayor a menor</option>
@@ -119,41 +140,35 @@
         </div>
 
         <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            <!-- Dynamic products injected here -->
+            <!-- Dynamic products -->
         </div>
     </main>
 
-    <section id="como-comprar" class="bg-zinc-900/60 border-t border-zinc-800 py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
-            <div class="bg-zinc-950 p-6 rounded-2xl border border-zinc-800">
-                <div class="w-12 h-12 bg-gold/10 text-gold rounded-xl flex items-center justify-center mb-4 mx-auto md:mx-0 text-xl border border-gold/30">
-                    <i class="fa-solid fa-cart-shopping"></i>
-                </div>
-                <h3 class="font-serif-custom font-bold text-lg mb-2 text-zinc-100">1. Elegí tus productos</h3>
-                <p class="text-zinc-400 text-sm">Recorré el catálogo online, agregá tus fragancias favoritas al carrito sin cuentas obligatorias.</p>
+    <section id="contacto" class="bg-zinc-900/30 border-t border-zinc-800/80 py-20 scroll-mt-24">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <span class="text-xs font-bold uppercase tracking-widest text-gold bg-gold/10 px-3.5 py-1.5 rounded-full border border-gold/20">Atención Directa</span>
+            <h2 class="font-serif-custom text-3xl md:text-4xl font-bold text-zinc-100 mt-3 mb-8">Contacto y Redes Sociales</h2>
+            
+            <div id="social-icons-container" class="flex justify-center gap-6 mb-10">
+                <!-- Rendered by JS -->
             </div>
-            <div class="bg-zinc-950 p-6 rounded-2xl border border-zinc-800">
-                <div class="w-12 h-12 bg-gold/10 text-gold rounded-xl flex items-center justify-center mb-4 mx-auto md:mx-0 text-xl border border-gold/30">
-                    <i class="fa-brands fa-whatsapp"></i>
-                </div>
-                <h3 class="font-serif-custom font-bold text-lg mb-2 text-zinc-100">2. Confirmá por WhatsApp</h3>
-                <p class="text-zinc-400 text-sm">Al finalizar tu pedido, el sistema genera un mensaje directo para coordinar pago y envío con nosotros.</p>
-            </div>
-            <div class="bg-zinc-950 p-6 rounded-2xl border border-zinc-800">
-                <div class="w-12 h-12 bg-gold/10 text-gold rounded-xl flex items-center justify-center mb-4 mx-auto md:mx-0 text-xl border border-gold/30">
-                    <i class="fa-solid fa-truck-fast"></i>
-                </div>
-                <h3 class="font-serif-custom font-bold text-lg mb-2 text-zinc-100">3. Recibí en todo el país</h3>
-                <p class="text-zinc-400 text-sm">Realizamos despachos seguros y rápidos a cualquier punto del país de forma coordinada.</p>
-            </div>
+
+            <a id="footer-whatsapp-btn" href="#" target="_blank" class="inline-flex items-center justify-center gap-3 bg-green-500 hover:bg-green-600 text-white font-bold py-4 px-8 rounded-2xl shadow-xl shadow-green-500/20 transition-transform transform hover:-translate-y-1 text-lg w-full sm:w-auto">
+                <i class="fa-brands fa-whatsapp text-3xl"></i> Envianos mensaje por WhatsApp
+            </a>
         </div>
     </section>
 
-    <footer id="contacto" class="bg-zinc-950 border-t border-gold/20 py-8 text-center text-sm text-zinc-500">
+    <footer class="bg-zinc-950 border-t border-gold/20 py-8 text-center text-sm text-zinc-500 relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <p>&copy; <span id="footer-year">2026</span> Black Perfumes. Todos los derechos reservados.</p>
+            <p>&copy; <span id="footer-year">2026</span> <span id="footer-brand">Black Perfumes</span>. Todos los derechos reservados.</p>
             <p class="text-gold">Ventas Mayoristas y Minoristas por WhatsApp</p>
         </div>
+        
+        <!-- Protected Admin Trigger Button at the bottom right -->
+        <button onclick="openAdminAuth()" class="absolute bottom-4 right-4 text-[10px] tracking-widest uppercase text-zinc-600 hover:text-gold transition-colors flex items-center gap-1.5 p-2 bg-zinc-900/60 rounded-lg border border-zinc-800">
+            <i class="fa-solid fa-lock text-xs"></i> Admin
+        </button>
     </footer>
 
     <div id="cart-drawer" class="fixed inset-0 z-50 overflow-hidden hidden">
@@ -187,16 +202,72 @@
         </div>
     </div>
 
-    <!-- Admin Modal -->
+    <div id="ai-chat-drawer" class="fixed inset-0 z-50 overflow-hidden hidden">
+        <div class="absolute inset-0 bg-zinc-950/80 backdrop-blur-sm transition-opacity" onclick="toggleAIChat()"></div>
+        <div class="absolute inset-y-0 right-0 max-w-full flex pl-10">
+            <div class="w-screen max-w-md bg-zinc-900 border-l border-gold/30 flex flex-col shadow-2xl">
+                <div class="p-6 border-b border-zinc-800 flex items-center justify-between">
+                    <h2 class="font-serif-custom font-bold text-xl text-zinc-100 flex items-center gap-2">
+                        <i class="fa-solid fa-sparkles text-gold"></i> Asesor Virtual IA
+                    </h2>
+                    <button onclick="toggleAIChat()" class="text-zinc-400 hover:text-zinc-100 text-xl p-2">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+                <div id="chat-messages" class="flex-grow overflow-y-auto p-6 space-y-4">
+                    <div class="bg-zinc-800 text-zinc-200 p-4 rounded-2xl rounded-tl-sm text-sm border border-zinc-700/50 shadow-sm">
+                        ¡Hola! Soy tu asesor virtual inteligente conectado al catálogo de Black Perfumes. ¿Qué tipo de fragancia estás buscando hoy?
+                    </div>
+                </div>
+                <div class="p-4 border-t border-zinc-800 bg-zinc-950">
+                    <form onsubmit="handleAIChatSubmit(event)" class="flex gap-2">
+                        <input type="text" id="chat-input" placeholder="Ej: Busco un perfume dulce y duradero..." class="flex-grow bg-zinc-900 border border-zinc-800 rounded-xl px-4 py-3 text-sm focus:border-gold outline-none text-zinc-100 placeholder-zinc-500">
+                        <button type="submit" class="bg-gold hover:bg-gold-light text-zinc-950 px-4 py-3 rounded-xl transition-all shadow-md shadow-gold/10 flex items-center justify-center">
+                            <i class="fa-solid fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button onclick="toggleAIChat()" class="fixed bottom-6 right-24 z-40 bg-gold hover:bg-gold-light text-zinc-950 w-12 h-12 rounded-full flex items-center justify-center shadow-2xl shadow-gold/20 transition-transform transform hover:scale-110" title="Asistente Virtual IA">
+        <i class="fa-solid fa-comment-dots text-xl"></i>
+    </button>
+
+    <div id="admin-auth-modal" class="fixed inset-0 z-50 overflow-y-auto hidden">
+        <div class="fixed inset-0 bg-zinc-950/85 backdrop-blur-md transition-opacity" onclick="closeAdminAuth()"></div>
+        <div class="min-h-screen px-4 text-center flex items-center justify-center">
+            <div class="inline-block w-full max-w-md p-6 sm:p-8 my-8 text-left align-middle transition-all transform bg-zinc-900 border border-gold/40 rounded-3xl shadow-2xl relative">
+                <div class="flex justify-between items-center pb-4 border-b border-zinc-800 mb-6">
+                    <h3 class="font-serif-custom font-bold text-xl text-gold flex items-center gap-2"><i class="fa-solid fa-lock"></i> Acceso Administrador</h3>
+                    <button onclick="closeAdminAuth()" class="text-zinc-400 hover:text-zinc-100 bg-zinc-800 p-2 rounded-xl"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+                <form onsubmit="handleAdminLogin(event)" class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-medium text-zinc-400 mb-1">Contraseña de Administrador</label>
+                        <input type="password" id="admin-password-input" required placeholder="Ingresá la clave..." class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3 text-sm focus:border-gold outline-none text-zinc-100">
+                        <p id="auth-error-msg" class="text-red-400 text-xs mt-1 hidden">Contraseña incorrecta. (Clave por defecto: <span class="font-mono bg-zinc-800 px-1 rounded">admin123</span>)</p>
+                    </div>
+                    <div class="pt-2">
+                        <button type="submit" class="w-full bg-gold hover:bg-gold-light text-zinc-950 font-bold py-3.5 rounded-xl transition-all shadow-lg shadow-gold/20">
+                            Ingresar al Panel
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <div id="admin-modal" class="fixed inset-0 z-50 overflow-y-auto hidden">
         <div class="fixed inset-0 bg-zinc-950/85 backdrop-blur-md transition-opacity" onclick="toggleAdminPanel()"></div>
         <div class="min-h-screen px-4 text-center flex items-center justify-center">
-            <div class="inline-block w-full max-w-4xl p-6 sm:p-8 my-8 text-left align-middle transition-all transform bg-zinc-900 border border-gold/40 rounded-3xl shadow-2xl relative">
+            <div class="inline-block w-full max-w-5xl p-6 sm:p-8 my-8 text-left align-middle transition-all transform bg-zinc-900 border border-gold/40 rounded-3xl shadow-2xl relative">
                 
                 <div class="flex justify-between items-center pb-6 border-b border-zinc-800 mb-6">
                     <div>
-                        <h2 class="font-serif-custom font-bold text-2xl text-gold">Panel de Administración</h2>
-                        <p class="text-sm text-zinc-400">Modificá textos, tipografías y gestioná tu catálogo completo.</p>
+                        <h2 class="font-serif-custom font-bold text-2xl text-gold">Panel de Administración CMS</h2>
+                        <p class="text-sm text-zinc-400">Control total sobre productos, secciones, respaldo y diseño de la tienda.</p>
                     </div>
                     <button onclick="toggleAdminPanel()" class="text-zinc-400 hover:text-zinc-100 bg-zinc-800 p-2.5 rounded-xl transition-all">
                         <i class="fa-solid fa-xmark text-lg"></i>
@@ -204,80 +275,168 @@
                 </div>
 
                 <div class="flex flex-wrap gap-2 mb-6 border-b border-zinc-800 pb-4">
-                    <button onclick="switchAdminTab('productos')" id="tab-btn-productos" class="admin-tab-btn px-4 py-2 rounded-xl text-sm font-semibold bg-gold text-zinc-950 transition-all">Gestionar Productos</button>
-                    <button onclick="switchAdminTab('nuevo')" id="tab-btn-nuevo" class="admin-tab-btn px-4 py-2 rounded-xl text-sm font-semibold bg-zinc-800 text-zinc-300 hover:text-zinc-100 transition-all">Agregar Producto</button>
-                    <button onclick="switchAdminTab('textos')" id="tab-btn-textos" class="admin-tab-btn px-4 py-2 rounded-xl text-sm font-semibold bg-zinc-800 text-zinc-300 hover:text-zinc-100 transition-all">Textos y Estética</button>
-                    <button onclick="switchAdminTab('diseno')" id="tab-btn-diseno" class="admin-tab-btn px-4 py-2 rounded-xl text-sm font-semibold bg-zinc-800 text-zinc-300 hover:text-zinc-100 transition-all">Diseño Personalizado</button>
+                    <button onclick="switchAdminTab('productos')" id="tab-btn-productos" class="admin-tab-btn px-4 py-2 rounded-xl text-sm font-semibold bg-gold text-zinc-950 transition-all">Productos</button>
+                    <button onclick="switchAdminTab('nuevo')" id="tab-btn-nuevo" class="admin-tab-btn px-4 py-2 rounded-xl text-sm font-semibold bg-zinc-800 text-zinc-300 hover:text-zinc-100 transition-all">Nuevo Prod.</button>
+                    <button onclick="switchAdminTab('apariencia')" id="tab-btn-apariencia" class="admin-tab-btn px-4 py-2 rounded-xl text-sm font-semibold bg-zinc-800 text-zinc-300 hover:text-zinc-100 transition-all">Logo & Estilos</button>
+                    <button onclick="switchAdminTab('textos')" id="tab-btn-textos" class="admin-tab-btn px-4 py-2 rounded-xl text-sm font-semibold bg-zinc-800 text-zinc-300 hover:text-zinc-100 transition-all">Textos</button>
+                    <button onclick="switchAdminTab('bloques')" id="tab-btn-bloques" class="admin-tab-btn px-4 py-2 rounded-xl text-sm font-semibold bg-zinc-800 text-zinc-300 hover:text-zinc-100 transition-all">Secciones</button>
+                    <button onclick="switchAdminTab('respaldo')" id="tab-btn-respaldo" class="admin-tab-btn px-4 py-2 rounded-xl text-sm font-semibold bg-zinc-800 text-zinc-300 hover:text-zinc-100 transition-all"><i class="fa-solid fa-database"></i> Respaldo / Backup</button>
+                    <button onclick="switchAdminTab('redes')" id="tab-btn-redes" class="admin-tab-btn px-4 py-2 rounded-xl text-sm font-semibold bg-zinc-800 text-zinc-300 hover:text-zinc-100 transition-all">Redes</button>
                 </div>
 
-                <!-- Tab 1: Products Management (List with Edit & Delete) -->
+                <!-- Tab 1: Products -->
                 <div id="admin-tab-productos" class="admin-tab-content space-y-4 max-h-[60vh] overflow-y-auto pr-2">
                     <div class="flex justify-between items-center">
                         <h3 class="text-sm font-semibold uppercase tracking-wider text-zinc-400">Lista actual de productos</h3>
-                        <button onclick="resetDefaultData()" class="text-xs text-red-400 hover:underline"><i class="fa-solid fa-rotate-right"></i> Restaurar datos de fábrica</button>
+                        <button onclick="resetDefaultData()" class="text-xs text-red-400 hover:underline"><i class="fa-solid fa-rotate-right"></i> Restaurar fábrica</button>
                     </div>
-                    <div id="admin-product-list" class="space-y-3">
-                        <!-- Dynamic rows -->
-                    </div>
+                    <div id="admin-product-list" class="space-y-3"></div>
                 </div>
 
-                <!-- Tab 2: Add New Product Form -->
+                <!-- Tab 2: New Product -->
                 <div id="admin-tab-nuevo" class="admin-tab-content space-y-4 hidden">
                     <h3 class="text-sm font-semibold uppercase tracking-wider text-zinc-400">Crear nuevo producto</h3>
                     <form id="add-product-form" onsubmit="handleAddNewProduct(event)" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
                             <label class="block text-xs font-medium text-zinc-400 mb-1">Nombre del Perfume</label>
-                            <input type="text" id="new-name" required placeholder="Ej: Lattafa Eclaire" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-2.5 text-sm focus:border-gold outline-none">
+                            <input type="text" id="new-name" required class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-2.5 text-sm focus:border-gold outline-none text-zinc-100">
                         </div>
                         <div>
                             <label class="block text-xs font-medium text-zinc-400 mb-1">Categoría</label>
-                            <input type="text" id="new-category" required placeholder="Ej: Perfumes Árabes" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-2.5 text-sm focus:border-gold outline-none">
+                            <input type="text" id="new-category" required class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-2.5 text-sm focus:border-gold outline-none text-zinc-100">
                         </div>
                         <div>
                             <label class="block text-xs font-medium text-zinc-400 mb-1">Precio ($ ARS)</label>
-                            <input type="number" id="new-price" required placeholder="78000" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-2.5 text-sm focus:border-gold outline-none">
+                            <input type="number" id="new-price" required class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-2.5 text-sm focus:border-gold outline-none text-zinc-100">
                         </div>
                         <div>
-                            <label class="block text-xs font-medium text-zinc-400 mb-1">Subir Imagen (desde tu dispositivo)</label>
-                            <input type="file" id="new-image-file" accept="image/*" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-2 text-xs text-zinc-400 focus:border-gold outline-none file:mr-4 file:py-1 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-gold file:text-zinc-950 hover:file:bg-gold-light cursor-pointer">
+                            <label class="block text-xs font-medium text-zinc-400 mb-1">Subir Foto</label>
+                            <input type="file" id="new-image-file" accept="image/*" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-2 text-xs text-zinc-400 focus:border-gold outline-none file:mr-4 file:py-1 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-gold file:text-zinc-950 cursor-pointer">
                         </div>
-                        <div class="pt-4">
-                            <button onclick="saveSiteSettings()" class="w-full bg-gold hover:bg-gold-light text-zinc-950 font-bold py-3 rounded-xl transition-all">
-                                Guardar Cambios Generales
+                        <div class="sm:col-span-2">
+                            <label class="block text-xs font-medium text-zinc-400 mb-1">Notas Olfativas / Descripción</label>
+                            <input type="text" id="new-notes" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-2.5 text-sm focus:border-gold outline-none text-zinc-100">
+                        </div>
+                        <div class="sm:col-span-2 pt-2">
+                            <button type="submit" class="w-full bg-gold hover:bg-gold-light text-zinc-950 font-bold py-3 rounded-xl transition-all shadow-lg shadow-gold/20">
+                                Guardar y Publicar
                             </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Tab 3: Appearance & Logo -->
+                <div id="admin-tab-apariencia" class="admin-tab-content space-y-6 hidden">
+                    <h3 class="text-sm font-semibold uppercase tracking-wider text-zinc-400">Apariencia y Logo</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 bg-zinc-950/50 p-6 rounded-2xl border border-zinc-800">
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-xs font-medium text-zinc-400 mb-2">Subir Logo de tu Negocio</label>
+                                <input type="file" id="setting-logo-file" accept="image/*" onchange="handleLogoUpload(event)" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-2 text-xs text-zinc-400 focus:border-gold outline-none file:mr-4 file:py-1 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-zinc-800 file:text-white cursor-pointer">
+                                <div class="mt-3 flex items-center gap-4">
+                                    <img id="admin-logo-preview" src="" class="h-12 w-12 object-cover rounded-full hidden bg-zinc-900 p-1 border border-zinc-800">
+                                    <button type="button" onclick="removeLogo()" id="admin-logo-remove" class="text-red-400 text-xs hidden hover:underline"><i class="fa-solid fa-trash"></i> Quitar logo</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-xs font-medium text-zinc-400 mb-1">Color Principal (Dorado)</label>
+                                <div class="flex items-center gap-3">
+                                    <input type="color" id="setting-color" class="w-12 h-12 rounded cursor-pointer bg-zinc-950 border border-zinc-800 p-1">
+                                    <input type="text" id="setting-color-text" class="flex-grow bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-2.5 text-sm text-zinc-300 focus:border-gold outline-none uppercase" readonly>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button onclick="saveSiteSettings()" class="w-full bg-gold hover:bg-gold-light text-zinc-950 font-bold py-3 rounded-xl transition-all shadow-lg shadow-gold/20">Guardar Apariencia</button>
+                </div>
+
+                <!-- Tab 4: Main Texts -->
+                <div id="admin-tab-textos" class="admin-tab-content space-y-4 hidden">
+                    <h3 class="text-sm font-semibold uppercase tracking-wider text-zinc-400">Textos Principales</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-medium text-zinc-400 mb-1">Nombre de la Marca</label>
+                            <input type="text" id="setting-brand" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-2.5 text-sm text-zinc-100 focus:border-gold outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-zinc-400 mb-1">WhatsApp de Ventas (Ej: 5491100000000)</label>
+                            <input type="text" id="setting-whatsapp" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-2.5 text-sm text-zinc-100 focus:border-gold outline-none">
+                        </div>
+                        <div class="sm:col-span-2">
+                            <label class="block text-xs font-medium text-zinc-400 mb-1">Título Principal (Pantalla Inicio)</label>
+                            <input type="text" id="setting-hero-title" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-2.5 text-sm text-zinc-100 focus:border-gold outline-none">
+                        </div>
+                        <div class="sm:col-span-2">
+                            <label class="block text-xs font-medium text-zinc-400 mb-1">Subtítulo (Badges de clientes y ubicación)</label>
+                            <input type="text" id="setting-hero-sub" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-2.5 text-sm text-zinc-100 focus:border-gold outline-none">
+                        </div>
+                    </div>
+                    <button onclick="saveSiteSettings()" class="w-full bg-gold hover:bg-gold-light text-zinc-950 font-bold py-3 rounded-xl transition-all shadow-lg shadow-gold/20">Guardar Textos</button>
+                </div>
+
+                <!-- Tab 5: Sections & Grid Cards -->
+                <div id="admin-tab-bloques" class="admin-tab-content space-y-6 max-h-[65vh] overflow-y-auto pr-2 hidden">
+                    <div class="bg-zinc-950/50 p-6 rounded-2xl border border-zinc-800">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-sm font-semibold uppercase tracking-wider text-zinc-400">Secciones y Tarjetas Estilo Grilla</h3>
+                            <button type="button" onclick="addAdminSection()" class="text-xs bg-zinc-800 hover:bg-zinc-700 px-3 py-1.5 rounded-lg text-zinc-200"><i class="fa-solid fa-plus"></i> Añadir Sección</button>
+                        </div>
+                        <div id="admin-sections-list" class="space-y-6">
+                            <!-- Rendered by JS -->
                         </div>
                     </div>
 
-                <!-- Tab 4: Design Customization -->
-                <div id="admin-tab-diseno" class="admin-tab-content space-y-4 hidden">
-                    <h3 class="text-sm font-semibold uppercase tracking-wider text-zinc-400">Personalizar Colores y Botones</h3>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <button onclick="saveSiteSettings()" class="w-full bg-gold hover:bg-gold-light text-zinc-950 font-bold py-3 rounded-xl transition-all shadow-lg shadow-gold/20 sticky bottom-0">Guardar Todas las Secciones</button>
+                </div>
+
+                <!-- Tab 6: Backup / Respaldo (NEW) -->
+                <div id="admin-tab-respaldo" class="admin-tab-content space-y-6 hidden">
+                    <h3 class="text-sm font-semibold uppercase tracking-wider text-zinc-400"><i class="fa-solid fa-database text-gold"></i> Respaldo de Base de Datos (Backup)</h3>
+                    <p class="text-xs text-zinc-400 leading-relaxed">
+                        Exportá un archivo con todos tus productos cargados, textos e información personalizada. Si en un futuro necesitas actualizar el código de la web aquí, podrás volver a importarlo para recuperar absolutamente todo al instante y no perder nada.
+                    </p>
+                    <div class="bg-zinc-950 p-6 rounded-2xl border border-zinc-800 flex flex-col sm:flex-row gap-4 items-center justify-between">
                         <div>
-                            <label class="block text-xs font-medium text-zinc-400 mb-1">Color Principal de la Tienda</label>
-                            <div class="flex items-center gap-3">
-                                <input type="color" id="setting-color" class="w-12 h-12 rounded cursor-pointer bg-zinc-950 border border-zinc-800 p-1">
-                                <input type="text" id="setting-color-text" class="flex-grow bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-2.5 text-sm text-zinc-300 focus:border-gold outline-none uppercase" readonly>
-                            </div>
+                            <h4 class="font-bold text-zinc-100 text-sm">Exportar Respaldo Actual</h4>
+                            <p class="text-xs text-zinc-500">Descarga un archivo JSON con tu stock y configuraciones.</p>
+                        </div>
+                        <button onclick="exportBackupJSON()" class="bg-gold hover:bg-gold-light text-zinc-950 font-bold px-6 py-3 rounded-xl text-xs transition-all flex items-center gap-2 shadow-md">
+                            <i class="fa-solid fa-download"></i> Descargar Respaldo JSON
+                        </button>
+                    </div>
+
+                    <div class="bg-zinc-950 p-6 rounded-2xl border border-zinc-800 flex flex-col sm:flex-row gap-4 items-center justify-between">
+                        <div>
+                            <h4 class="font-bold text-zinc-100 text-sm">Importar Respaldo Guardado</h4>
+                            <p class="text-xs text-zinc-500">Sube tu archivo JSON previo para restaurar tus datos.</p>
+                        </div>
+                        <label class="bg-zinc-800 hover:bg-zinc-700 text-zinc-100 font-bold px-6 py-3 rounded-xl text-xs transition-all flex items-center gap-2 cursor-pointer border border-zinc-700">
+                            <i class="fa-solid fa-upload"></i> Seleccionar JSON <input type="file" id="import-backup-file" accept=".json" onchange="importBackupJSON(event)" class="hidden">
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Tab 7: Social Media -->
+                <div id="admin-tab-redes" class="admin-tab-content space-y-4 hidden">
+                    <h3 class="text-sm font-semibold uppercase tracking-wider text-zinc-400">Links de Redes Sociales</h3>
+                    <div class="space-y-4 max-w-lg">
+                        <div>
+                            <label class="flex items-center gap-2 text-xs font-medium text-zinc-400 mb-1"><i class="fa-brands fa-instagram text-pink-500 text-base"></i> Link de Instagram</label>
+                            <input type="url" id="setting-ig" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-2.5 text-sm text-zinc-100 focus:border-gold outline-none">
                         </div>
                         <div>
-                            <label class="block text-xs font-medium text-zinc-400 mb-1">Alineación del Título Principal</label>
-                            <select id="setting-align" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-2.5 text-sm text-zinc-300 focus:border-gold outline-none">
-                                <option value="left">Izquierda (Clásico)</option>
-                                <option value="center">Centrado</option>
-                            </select>
+                            <label class="flex items-center gap-2 text-xs font-medium text-zinc-400 mb-1"><i class="fa-brands fa-facebook text-blue-500 text-base"></i> Link de Facebook</label>
+                            <input type="url" id="setting-fb" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-2.5 text-sm text-zinc-100 focus:border-gold outline-none">
                         </div>
-                        <div class="sm:col-span-2">
-                            <label class="block text-xs font-medium text-zinc-400 mb-1">Orden de los Botones (Pantalla Inicial)</label>
-                            <select id="setting-btn-order" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-2.5 text-sm text-zinc-300 focus:border-gold outline-none">
-                                <option value="catalog-first">1° Ver Catálogo / 2° Hablar por WhatsApp</option>
-                                <option value="whatsapp-first">1° Hablar por WhatsApp / 2° Ver Catálogo</option>
-                            </select>
+                        <div>
+                            <label class="flex items-center gap-2 text-xs font-medium text-zinc-400 mb-1"><i class="fa-brands fa-tiktok text-white text-base"></i> Link de TikTok</label>
+                            <input type="url" id="setting-tk" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-2.5 text-sm text-zinc-100 focus:border-gold outline-none">
                         </div>
                     </div>
                     <div class="pt-4">
-                        <button onclick="saveSiteSettings()" class="w-full bg-gold hover:bg-gold-light text-zinc-950 font-bold py-3 rounded-xl transition-all shadow-lg shadow-gold/20">
-                            Guardar y Aplicar Diseño
-                        </button>
+                        <button onclick="saveSiteSettings()" class="w-full bg-gold hover:bg-gold-light text-zinc-950 font-bold py-3 rounded-xl transition-all shadow-lg shadow-gold/20">Guardar Redes</button>
                     </div>
                 </div>
 
@@ -285,7 +444,6 @@
         </div>
     </div>
 
-    <!-- Edit Product Modal -->
     <div id="edit-modal" class="fixed inset-0 z-50 overflow-y-auto hidden">
         <div class="fixed inset-0 bg-zinc-950/85 backdrop-blur-md transition-opacity" onclick="closeEditModal()"></div>
         <div class="min-h-screen px-4 text-center flex items-center justify-center">
@@ -298,27 +456,27 @@
                     <input type="hidden" id="edit-id">
                     <div>
                         <label class="block text-xs font-medium text-zinc-400 mb-1">Nombre</label>
-                        <input type="text" id="edit-name" required class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-2 text-sm focus:border-gold outline-none">
+                        <input type="text" id="edit-name" required class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-2 text-sm focus:border-gold outline-none text-zinc-100">
                     </div>
                     <div>
                         <label class="block text-xs font-medium text-zinc-400 mb-1">Categoría</label>
-                        <input type="text" id="edit-category" required class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-2 text-sm focus:border-gold outline-none">
+                        <input type="text" id="edit-category" required class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-2 text-sm focus:border-gold outline-none text-zinc-100">
                     </div>
                     <div>
                         <label class="block text-xs font-medium text-zinc-400 mb-1">Precio ($ ARS)</label>
-                        <input type="number" id="edit-price" required class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-2 text-sm focus:border-gold outline-none">
+                        <input type="number" id="edit-price" required class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-2 text-sm focus:border-gold outline-none text-zinc-100">
                     </div>
                     <div>
-                        <label class="block text-xs font-medium text-zinc-400 mb-1">Cambiar Imagen (Opcional)</label>
-                        <input type="file" id="edit-image-file" accept="image/*" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-2 text-xs text-zinc-400 focus:border-gold outline-none file:mr-4 file:py-1 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-gold file:text-zinc-950 hover:file:bg-gold-light cursor-pointer">
+                        <label class="block text-xs font-medium text-zinc-400 mb-1">Cambiar Foto (Opcional)</label>
+                        <input type="file" id="edit-image-file" accept="image/*" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-2 text-xs text-zinc-400 focus:border-gold outline-none file:mr-4 file:py-1 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-zinc-800 file:text-white cursor-pointer">
                     </div>
                     <div>
                         <label class="block text-xs font-medium text-zinc-400 mb-1">Notas Olfativas</label>
-                        <input type="text" id="edit-notes" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-2 text-sm focus:border-gold outline-none">
+                        <input type="text" id="edit-notes" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-2 text-sm focus:border-gold outline-none text-zinc-100">
                     </div>
                     <div class="pt-4">
-                        <button type="submit" class="w-full bg-gold hover:bg-gold-light text-zinc-950 font-bold py-3 rounded-xl transition-all">
-                            Guardar Cambios del Producto
+                        <button type="submit" class="w-full bg-gold hover:bg-gold-light text-zinc-950 font-bold py-3 rounded-xl transition-all shadow-lg shadow-gold/20">
+                            Guardar Cambios
                         </button>
                     </div>
                 </form>
@@ -326,447 +484,646 @@
         </div>
     </div>
 
-</div>
+    <script>
+        const defaultProducts = [
+            { id: 1, name: "Lattafa Eclaire", category: "Perfumes Árabes", price: 78000, notes: "Caramelo, leche, miel y vainilla", image: "https://placehold.co/400x400/18181b/D4AF37?text=Lattafa+Eclaire" },
+            { id: 2, name: "Armaf Club de Nuit Untold", category: "Perfumes Árabes", price: 87000, notes: "Azafrán, jazmín y ámbar gris", image: "https://placehold.co/400x400/18181b/D4AF37?text=Club+de+Nuit" },
+            { id: 3, name: "Victoria's Secret Velvet Petals", category: "Victoria's Secret", price: 42000, notes: "Flores exuberantes y almendras azucaradas", image: "https://placehold.co/400x400/18181b/D4AF37?text=Velvet+Petals" }
+        ];
 
-<script>
-    const defaultProducts = [
-        { id: 1, name: "Lattafa Eclaire", category: "Perfumes Árabes", price: 78000, notes: "Caramelo, leche, miel y vainilla", image: "https://placehold.co/400x400/18181b/D4AF37?text=Lattafa+Eclaire" },
-        { id: 2, name: "Armaf Club de Nuit Untold", category: "Perfumes Árabes", price: 87000, notes: "Azafrán, jazmín y ámbar gris", image: "https://placehold.co/400x400/18181b/D4AF37?text=Club+de+Nuit" },
-        { id: 3, name: "Victoria's Secret Velvet Petals", category: "Victoria's Secret", price: 42000, notes: "Flores exuberantes y almendras azucaradas", image: "https://placehold.co/400x400/18181b/D4AF37?text=Velvet+Petals" },
-        { id: 4, name: "Karseell Collagen Mask", category: "Cuidado Capilar", price: 35000, notes: "Reparación profunda con aceite de argán", image: "https://placehold.co/400x400/18181b/D4AF37?text=Karseell+Mask" }
-    ];
-
-    let defaultSettings = {
-        brandName: "BLACK PERFUMES",
-        whatsappNumber: "5491100000000",
-        heroTitle: "Fragancias Exclusivas al <span class='text-gold italic'>Mejor Precio</span>",
-        heroSub: "Stock real, atención personalizada y venta directa por WhatsApp sin intermediarios ni comisiones de tarjetas.",
-        primaryColor: "#D4AF37",
-        heroAlign: "left",
-        btnOrder: "catalog-first"
-    };
-
-    let products = JSON.parse(localStorage.getItem('bp_products')) || defaultProducts;
-    let settings = JSON.parse(localStorage.getItem('bp_settings')) || defaultSettings;
-    let cart = JSON.parse(localStorage.getItem('bp_cart')) || [];
-    let currentCategory = 'Todas';
-    let currentSearch = '';
-    let currentSort = 'relevancia';
-
-    window.onload = function() {
-        renderSite();
-    };
-
-    function renderSite() {
-        document.getElementById('brand-title').innerText = settings.brandName;
-        document.getElementById('hero-heading').innerHTML = settings.heroTitle;
-        document.getElementById('hero-subtext').innerText = settings.heroSub;
-        document.getElementById('hero-whatsapp-btn').href = `https://wa.me/${settings.whatsappNumber}?text=Hola,%20quiero%20consultar%20por%20el%20stock%20de%20perfumes`;
-
-        applyDesignSettings();
-
-        renderCategories();
-        renderCatalog();
-        updateCartUI();
-    }
-
-    function applyDesignSettings() {
-        const root = document.documentElement;
-        const color = settings.primaryColor || "#D4AF37";
-        
-        root.style.setProperty('--color-gold', color);
-        root.style.setProperty('--color-gold-light', color + 'CC');
-        root.style.setProperty('--color-gold-dark', color);
-
-        const heroTextContainer = document.getElementById('hero-text-container');
-        const heroButtonsContainer = document.getElementById('hero-buttons-container');
-        
-        if (heroTextContainer && heroButtonsContainer) {
-            if (settings.heroAlign === 'center') {
-                heroTextContainer.className = "space-y-6 text-center";
-                heroButtonsContainer.classList.remove('md:justify-start');
-                heroButtonsContainer.classList.add('justify-center');
-            } else {
-                heroTextContainer.className = "space-y-6 text-center md:text-left";
-                heroButtonsContainer.classList.add('md:justify-start');
-                heroButtonsContainer.classList.remove('justify-center');
-            }
-        }
-
-        const btnCatalog = document.getElementById('hero-catalog-btn');
-        const btnWhatsapp = document.getElementById('hero-whatsapp-btn');
-        if (btnCatalog && btnWhatsapp) {
-            if (settings.btnOrder === 'whatsapp-first') {
-                btnWhatsapp.style.order = "1";
-                btnCatalog.style.order = "2";
-            } else {
-                btnCatalog.style.order = "1";
-                btnWhatsapp.style.order = "2";
-            }
-        }
-    }
-
-    function renderCategories() {
-        const categoriesContainer = document.getElementById('category-filters');
-        const cats = ['Todas', ...new Set(products.map(p => p.category))];
-        
-        categoriesContainer.innerHTML = cats.map(cat => `
-            <button onclick="filterCategory('${cat}')" class="cat-btn px-5 py-2 rounded-xl text-sm font-semibold transition-all ${currentCategory === cat ? 'bg-gold text-zinc-950 shadow-lg shadow-gold/20' : 'bg-zinc-900 text-zinc-300 hover:bg-zinc-800 border border-zinc-800'}">
-                ${cat}
-            </button>
-        `).join('');
-    }
-
-    function filterCategory(cat) {
-        currentCategory = cat;
-        renderCategories();
-        renderCatalog();
-    }
-
-    function handleSearch() {
-        currentSearch = document.getElementById('search-input').value.toLowerCase();
-        renderCatalog();
-    }
-
-    function handleSort() {
-        currentSort = document.getElementById('sort-select').value;
-        renderCatalog();
-    }
-
-    function renderCatalog() {
-        const grid = document.getElementById('product-grid');
-        
-        let filtered = products.filter(p => {
-            const matchCat = currentCategory === 'Todas' || p.category === currentCategory;
-            const matchSearch = p.name.toLowerCase().includes(currentSearch) || p.notes.toLowerCase().includes(currentSearch);
-            return matchCat && matchSearch;
-        });
-
-        if (currentSort === 'menor') {
-            filtered.sort((a, b) => a.price - b.price);
-        } else if (currentSort === 'mayor') {
-            filtered.sort((a, b) => b.price - a.price);
-        }
-
-        if (filtered.length === 0) {
-            grid.innerHTML = `
-                <div class="col-span-full py-16 text-center text-zinc-500">
-                    <i class="fa-solid fa-box-open text-4xl mb-3 text-gold/50"></i>
-                    <p class="text-lg">No se encontraron perfumes con esos filtros.</p>
-                </div>
-            `;
-            return;
-        }
-
-        grid.innerHTML = filtered.map(p => `
-            <div class="bg-zinc-900 border border-zinc-800 hover:border-gold/50 rounded-2xl overflow-hidden shadow-xl transition-all flex flex-col group">
-                <div class="relative h-56 bg-zinc-950 overflow-hidden">
-                    <img src="${p.image}" alt="${p.name}" onerror="this.src='https://placehold.co/400x400/18181b/D4AF37?text=Perfume'" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                    <span class="absolute top-3 left-3 bg-zinc-950/80 backdrop-blur-md text-gold text-xs font-semibold px-3 py-1 rounded-full border border-gold/20">
-                        ${p.category}
-                    </span>
-                </div>
-                <div class="p-5 flex-grow flex flex-col justify-between">
-                    <div>
-                        <h3 class="font-serif-custom font-bold text-lg text-zinc-100 mb-1">${p.name}</h3>
-                        <p class="text-zinc-400 text-xs mb-4 line-clamp-2">${p.notes}</p>
-                    </div>
-                    <div class="pt-4 border-t border-zinc-800/80 flex items-center justify-between">
-                        <div>
-                            <span class="text-xs text-zinc-500 block">Precio unidad</span>
-                            <span class="text-lg font-bold text-gold">$${p.price.toLocaleString('es-AR')}</span>
-                        </div>
-                        <button onclick="addToCart(${p.id})" class="bg-gold hover:bg-gold-light text-zinc-950 px-4 py-2.5 rounded-xl font-semibold text-sm transition-all shadow-md shadow-gold/10 flex items-center gap-2">
-                            <i class="fa-solid fa-plus"></i> Agregar
-                        </button>
-                    </div>
-                </div>
-            </div>
-        `).join('');
-    }
-
-    function toggleCart() {
-        const drawer = document.getElementById('cart-drawer');
-        drawer.classList.toggle('hidden');
-    }
-
-    function addToCart(productId) {
-        const product = products.find(p => p.id === productId);
-        const existing = cart.find(item => item.id === productId);
-
-        if (existing) {
-            existing.qty += 1;
-        } else {
-            cart.push({ ...product, qty: 1 });
-        }
-
-        saveCart();
-        updateCartUI();
-        toggleCart();
-    }
-
-    function updateQty(productId, delta) {
-        const item = cart.find(i => i.id === productId);
-        if (item) {
-            item.qty += delta;
-            if (item.qty <= 0) {
-                cart = cart.filter(i => i.id !== productId);
-            }
-        }
-        saveCart();
-        updateCartUI();
-    }
-
-    function saveCart() {
-        localStorage.setItem('bp_cart', JSON.stringify(cart));
-    }
-
-    function updateCartUI() {
-        const totalItems = cart.reduce((sum, i) => sum + i.qty, 0);
-        document.getElementById('cart-counter').innerText = totalItems;
-
-        const container = document.getElementById('cart-items-container');
-        const totalPriceEl = document.getElementById('cart-total-price');
-
-        if (cart.length === 0) {
-            container.innerHTML = `
-                <div class="py-12 text-center text-zinc-500">
-                    <i class="fa-solid fa-basket-shopping text-3xl mb-2 text-zinc-700"></i>
-                    <p class="text-sm">Tu carrito está vacío.</p>
-                </div>
-            `;
-            totalPriceEl.innerText = "$0";
-            return;
-        }
-
-        let total = 0;
-        container.innerHTML = cart.map(item => {
-            const subtotal = item.price * item.qty;
-            total += subtotal;
-            return `
-                <div class="py-4 flex items-center justify-between gap-4">
-                    <div class="flex items-center space-x-3">
-                        <img src="${item.image}" class="w-14 h-14 object-cover rounded-xl border border-zinc-800" alt="">
-                        <div>
-                            <h4 class="font-serif-custom font-bold text-sm text-zinc-100">${item.name}</h4>
-                            <span class="text-xs text-gold font-semibold">$${item.price.toLocaleString('es-AR')} x u.</span>
-                        </div>
-                    </div>
-                    <div class="flex items-center space-x-3">
-                        <div class="flex items-center border border-zinc-700 rounded-lg bg-zinc-950">
-                            <button onclick="updateQty(${item.id}, -1)" class="px-2.5 py-1 text-zinc-400 hover:text-zinc-100">-</button>
-                            <span class="text-sm px-2 font-semibold">${item.qty}</span>
-                            <button onclick="updateQty(${item.id}, 1)" class="px-2.5 py-1 text-zinc-400 hover:text-zinc-100">+</button>
-                        </div>
-                    </div>
-                </div>
-            `;
-        }).join('');
-
-        totalPriceEl.innerText = `$${total.toLocaleString('es-AR')}`;
-    }
-
-    function checkoutWhatsApp() {
-        if (cart.length === 0) return;
-
-        let message = "Hola! Quiero realizar el siguiente pedido desde la web de Black Perfumes:\n\n";
-        let total = 0;
-
-        cart.forEach(item => {
-            const sub = item.price * item.qty;
-            total += sub;
-            message += `• ${item.qty}x ${item.name} ($${sub.toLocaleString('es-AR')})\n`;
-        });
-
-        message += `\n*Total Estimado: $${total.toLocaleString('es-AR')}*\n\n¿Me confirman stock y datos para coordinar el pago y envío?`;
-
-        const url = `https://wa.me/${settings.whatsappNumber}?text=${encodeURIComponent(message)}`;
-        window.open(url, '_blank');
-    }
-
-    function toggleAdminPanel() {
-        const modal = document.getElementById('admin-modal');
-        modal.classList.toggle('hidden');
-        if (!modal.classList.contains('hidden')) {
-            renderAdminProducts();
-            loadSettingsForm();
-        }
-    }
-
-    function switchAdminTab(tabName) {
-        document.querySelectorAll('.admin-tab-content').forEach(el => el.classList.add('hidden'));
-        document.querySelectorAll('.admin-tab-btn').forEach(el => {
-            el.classList.remove('bg-gold', 'text-zinc-950');
-            el.classList.add('bg-zinc-800', 'text-zinc-300');
-        });
-
-        document.getElementById(`admin-tab-${tabName}`).classList.remove('hidden');
-        const btn = document.getElementById(`tab-btn-${tabName}`);
-        btn.classList.remove('bg-zinc-800', 'text-zinc-300');
-        btn.classList.add('bg-gold', 'text-zinc-950');
-    }
-
-    function renderAdminProducts() {
-        const list = document.getElementById('admin-product-list');
-        list.innerHTML = products.map(p => `
-            <div class="bg-zinc-950 border border-zinc-800 p-4 rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-4">
-                <div class="flex items-center space-x-3 w-full sm:w-auto">
-                    <img src="${p.image}" class="w-12 h-12 object-cover rounded-xl" alt="">
-                    <div>
-                        <h4 class="font-serif-custom font-bold text-sm text-zinc-100">${p.name}</h4>
-                        <p class="text-xs text-gold">${p.category} — $${p.price.toLocaleString('es-AR')}</p>
-                    </div>
-                </div>
-                <div class="flex items-center space-x-2 w-full sm:w-auto justify-end">
-                    <button onclick="openEditModal(${p.id})" class="bg-gold/10 hover:bg-gold text-gold hover:text-zinc-950 px-3 py-1.5 rounded-xl text-xs font-semibold transition-all border border-gold/30">
-                        <i class="fa-solid fa-pen"></i> Editar
-                    </button>
-                    <button onclick="deleteProduct(${p.id})" class="bg-red-500/10 hover:bg-red-500 text-red-400 hover:text-zinc-950 px-3 py-1.5 rounded-xl text-xs font-semibold transition-all border border-red-500/30">
-                        <i class="fa-solid fa-trash"></i> Eliminar
-                    </button>
-                </div>
-            </div>
-        `).join('');
-    }
-
-    function handleAddNewProduct(e) {
-        e.preventDefault();
-        const fileInput = document.getElementById('new-image-file');
-        
-        if (fileInput.files && fileInput.files[0]) {
-            const reader = new FileReader();
-            reader.onload = function(uploadEvent) {
-                saveNewProductObject(uploadEvent.target.result);
-            };
-            reader.readAsDataURL(fileInput.files[0]);
-        } else {
-            saveNewProductObject('https://placehold.co/400x400/18181b/D4AF37?text=Perfume');
-        }
-    }
-
-    function saveNewProductObject(imageSrc) {
-        const newProd = {
-            id: Date.now(),
-            name: document.getElementById('new-name').value,
-            category: document.getElementById('new-category').value,
-            price: Number(document.getElementById('new-price').value),
-            image: imageSrc,
-            notes: document.getElementById('new-notes').value || 'Perfume importado original'
+        let defaultSettings = {
+            brandName: "Black Perfumes",
+            logoImage: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%23111' stroke='%23D4AF37' stroke-width='4'/><text x='50' y='57' font-family='serif' font-size='26' font-weight='bold' fill='%23D4AF37' text-anchor='middle'>BI</text></svg>",
+            whatsappNumber: "5491100000000",
+            heroTitle: "Perfumes originales, <br/><span class='text-transparent bg-clip-text bg-gradient-to-r from-gold-light via-gold to-gold-dark italic'>sin gastar de más</span>",
+            heroSub: "+100 clientes | Villa Urquiza, CABA",
+            primaryColor: "#D4AF37",
+            instagram: "https://instagram.com",
+            facebook: "https://facebook.com",
+            tiktok: "https://tiktok.com",
+            sections: [
+                {
+                    id: "garantia",
+                    title: "Garantía",
+                    subtitle: "Compra 100% Segura",
+                    cards: [
+                        { title: "Garantía oficial", text: "Productos originales, nuevos, sellados y con garantía.", emoji: "🛡️" },
+                        { title: "Importadores directos", text: "Somos importadores directos y tenemos stock real fotografiado por nosotros.", emoji: "📦" },
+                        { title: "Acompañamiento", text: "Ante cualquier problema con tu pedido, te acompañamos por WhatsApp hasta resolverlo.", emoji: "💬" }
+                    ]
+                },
+                {
+                    id: "pagos",
+                    title: "Formas de pago",
+                    subtitle: "Elegí la que más te convenga",
+                    cards: [
+                        { title: "Efectivo", text: "Dólares o pesos en efectivo al retirar o recibir.", emoji: "💵" },
+                        { title: "USDT", text: "Criptomonedas estables (USDT) de forma directa.", emoji: "🪙" },
+                        { title: "Transferencia", text: "Transferencia bancaria rápida y segura.", emoji: "🏦" }
+                    ]
+                },
+                {
+                    id: "envios",
+                    title: "Envíos",
+                    subtitle: "A todo el país",
+                    cards: [
+                        { title: "Envíos nacionales", text: "Envíos nacionales a todo el país por correo, a domicilio o a sucursal.", emoji: "🚚" },
+                        { title: "Despacho rápido", text: "Despacho rápido dentro de las 24hs hábiles de confirmado el pedido.", emoji: "⚡" },
+                        { title: "CABA y GBA", text: "Contamos con motomensajería de confianza para despachos dentro del AMBA, con precios económicos y entrega rápida.", emoji: "🛵" }
+                    ]
+                },
+                {
+                    id: "revendedores",
+                    title: "Revendedores",
+                    subtitle: "Trabajá con nosotros",
+                    cards: [
+                        { title: "¿Querés revender?", text: "¿Querés revender y acceder a mejores precios? Escribinos por WhatsApp y empecemos a trabajar juntos!", emoji: "💼" }
+                    ]
+                },
+                {
+                    id: "como-comprar",
+                    title: "¿Cómo comprar?",
+                    subtitle: "Simple, rápido y sin vueltas",
+                    cards: [
+                        { title: "1. Elegí tus productos", text: "Recorré el catálogo online, agregá tus productos al carrito sin necesidad de registrarte.", emoji: "🛍️" },
+                        { title: "2. Confirmá por WhatsApp", text: "Al finalizar tu pedido, el sistema genera un mensaje directo para coordinar pago y envío con nosotros.", emoji: "📱" },
+                        { title: "3. Recibí en todo el país", text: "Realizamos despachos seguros y rápidos a cualquier punto del país de forma coordinada. También podés retirar por nuestra oficina en Villa Urquiza, CABA sin costo!", emoji: "🎁" }
+                    ]
+                }
+            ]
         };
 
-        products.push(newProd);
-        localStorage.setItem('bp_products', JSON.stringify(products));
-        
-        document.getElementById('add-product-form').reset();
-        renderAdminProducts();
-        renderSite();
-        switchAdminTab('productos');
-    }
+        let settings = JSON.parse(localStorage.getItem('bp_settings_v5')) || defaultSettings;
+        let products = JSON.parse(localStorage.getItem('bp_products_v5')) || defaultProducts;
+        let cart = JSON.parse(localStorage.getItem('bp_cart_v5')) || [];
+        let chatHistory = [];
+        let currentCategory = 'Todas';
+        let currentSearch = '';
+        let currentSort = 'relevancia';
+        let tempSections = [];
+        let tempLogoBase64 = "";
 
-    function openEditModal(id) {
-        const p = products.find(prod => prod.id === id);
-        if (!p) return;
-
-        document.getElementById('edit-id').value = p.id;
-        document.getElementById('edit-name').value = p.name;
-        document.getElementById('edit-category').value = p.category;
-        document.getElementById('edit-price').value = p.price;
-        document.getElementById('edit-notes').value = p.notes;
-        document.getElementById('edit-image-file').value = '';
-
-        document.getElementById('edit-modal').classList.remove('hidden');
-    }
-
-    function closeEditModal() {
-        document.getElementById('edit-modal').classList.add('hidden');
-    }
-
-    function handleSaveEditedProduct(e) {
-        e.preventDefault();
-        const id = Number(document.getElementById('edit-id').value);
-        const p = products.find(prod => prod.id === id);
-        if (!p) return;
-
-        p.name = document.getElementById('edit-name').value;
-        p.category = document.getElementById('edit-category').value;
-        p.price = Number(document.getElementById('edit-price').value);
-        p.notes = document.getElementById('edit-notes').value;
-
-        const fileInput = document.getElementById('edit-image-file');
-        if (fileInput.files && fileInput.files[0]) {
-            const reader = new FileReader();
-            reader.onload = function(uploadEvent) {
-                p.image = uploadEvent.target.result;
-                finalizeEdit();
-            };
-            reader.readAsDataURL(fileInput.files[0]);
-        } else {
-            finalizeEdit();
-        }
-    }
-
-    function finalizeEdit() {
-        localStorage.setItem('bp_products', JSON.stringify(products));
-        closeEditModal();
-        renderAdminProducts();
-        renderSite();
-    }
-
-    function deleteProduct(id) {
-        if (confirm("¿Estás seguro de eliminar este producto?")) {
-            products = products.filter(p => p.id !== id);
-            localStorage.setItem('bp_products', JSON.stringify(products));
-            renderAdminProducts();
+        window.onload = function() {
             renderSite();
+        };
+
+        function applyDesignSettings() {
+            const root = document.documentElement;
+            if (settings.primaryColor) {
+                root.style.setProperty('--color-gold', settings.primaryColor);
+            }
         }
-    }
 
-    function loadSettingsForm() {
-        document.getElementById('setting-brand').value = settings.brandName || '';
-        document.getElementById('setting-whatsapp').value = settings.whatsappNumber || '';
-        document.getElementById('setting-hero-title').value = settings.heroTitle || '';
-        document.getElementById('setting-hero-sub').value = settings.heroSub || '';
+        function renderSite() {
+            applyDesignSettings();
+            renderHeader();
+            renderHero();
+            renderSections();
+            renderFooter();
+            renderCategories();
+            renderCatalog();
+            updateCartUI();
+        }
 
-        const colorInput = document.getElementById('setting-color');
-        const colorText = document.getElementById('setting-color-text');
-        const currentColor = settings.primaryColor || '#D4AF37';
-        
-        colorInput.value = currentColor;
-        colorText.value = currentColor;
-        
-        colorInput.addEventListener('input', (e) => {
-            colorText.value = e.target.value.toUpperCase();
+        function renderHeader() {
+            const logoImg = document.getElementById('brand-logo-img');
+            const logoText = document.getElementById('brand-title');
+            
+            const defaultLogoUrl = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%23111' stroke='%23D4AF37' stroke-width='4'/><text x='50' y='57' font-family='serif' font-size='26' font-weight='bold' fill='%23D4AF37' text-anchor='middle'>BI</text></svg>";
+            logoImg.src = settings.logoImage || defaultLogoUrl;
+            logoText.innerText = settings.brandName || "Black Perfumes";
+        }
+
+        function renderHero() {
+            document.getElementById('hero-heading').innerHTML = settings.heroTitle;
+            document.getElementById('hero-subtext').innerHTML = `
+                <div class="flex items-center gap-2 bg-zinc-900/80 backdrop-blur-sm px-5 py-2.5 rounded-full border border-zinc-800 shadow-lg">
+                    <i class="fa-solid fa-users text-gold"></i>
+                    <span>+100 clientes</span>
+                </div>
+                <div class="hidden sm:block w-1.5 h-1.5 rounded-full bg-gold"></div>
+                <div class="flex items-center gap-2 bg-zinc-900/80 backdrop-blur-sm px-5 py-2.5 rounded-full border border-zinc-800 shadow-lg">
+                    <i class="fa-solid fa-location-dot text-gold"></i>
+                    <span>Villa Urquiza, CABA</span>
+                </div>
+            `;
+            document.getElementById('hero-whatsapp-btn').href = `https://wa.me/${settings.whatsappNumber}?text=Hola,%20quiero%20consultar%20por%20el%20stock%20de%20perfumes`;
+            document.title = settings.brandName;
+        }
+
+        function renderSections() {
+            const container = document.getElementById('info-blocks-container');
+            if (!settings.sections || settings.sections.length === 0) {
+                container.innerHTML = '';
+                return;
+            }
+
+            container.innerHTML = settings.sections.map(sec => `
+                <div id="bloque-${sec.id}" class="scroll-mt-28 space-y-10">
+                    <div class="text-center space-y-3">
+                        ${sec.subtitle ? `<span class="text-xs font-bold uppercase tracking-widest text-gold bg-gold/10 px-4 py-1.5 rounded-full border border-gold/20 shadow-sm">${sec.subtitle}</span>` : ''}
+                        <h2 class="font-serif-custom text-3xl md:text-4xl font-bold text-zinc-100">${sec.title}</h2>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        ${sec.cards.map(card => `
+                            <div class="bg-zinc-900/60 border border-zinc-800/80 hover:border-gold/50 p-8 rounded-3xl transition-all shadow-xl flex flex-col items-center text-center group">
+                                <div class="w-16 h-16 bg-gold/10 rounded-2xl flex items-center justify-center text-3xl mb-6 border border-gold/20 group-hover:scale-110 transition-transform shadow-inner">
+                                    ${card.emoji || '✨'}
+                                </div>
+                                <h3 class="font-serif-custom font-bold text-xl text-zinc-100 mb-3">${card.title}</h3>
+                                <p class="text-zinc-400 text-sm leading-relaxed">${card.text}</p>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderCategories() {
+            const categoriesContainer = document.getElementById('category-filters');
+            if (!categoriesContainer) return;
+            
+            const categories = ['Todas', ...new Set(products.map(p => p.category))];
+            categoriesContainer.innerHTML = categories.map(cat => `
+                <button onclick="filterCategory('${cat}')" class="px-4 py-2 rounded-xl text-xs font-semibold transition-all ${currentCategory === cat ? 'bg-gold text-zinc-950 shadow-md shadow-gold/20 font-bold' : 'bg-zinc-900 text-zinc-300 hover:bg-zinc-800'}">
+                    ${cat}
+                </button>
+            `).join('');
+        }
+
+        function filterCategory(cat) {
+            currentCategory = cat;
+            renderCategories();
+            renderCatalog();
+        }
+
+        function handleSearch() {
+            currentSearch = document.getElementById('search-input').value.toLowerCase();
+            renderCatalog();
+        }
+
+        function handleSort() {
+            currentSort = document.getElementById('sort-select').value;
+            renderCatalog();
+        }
+
+        function renderCatalog() {
+            const grid = document.getElementById('product-grid');
+            if (!grid) return;
+
+            let filtered = products.filter(p => {
+                const matchesCat = currentCategory === 'Todas' || p.category === currentCategory;
+                const matchesSearch = p.name.toLowerCase().includes(currentSearch) || p.notes.toLowerCase().includes(currentSearch);
+                return matchesCat && matchesSearch;
+            });
+
+            if (currentSort === 'menor') filtered.sort((a, b) => a.price - b.price);
+            if (currentSort === 'mayor') filtered.sort((a, b) => b.price - a.price);
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `<div class="col-span-full py-16 text-center text-zinc-500"><i class="fa-solid fa-magnifying-glass text-3xl mb-3 text-zinc-700"></i><p>No se encontraron productos.</p></div>`;
+                return;
+            }
+
+            grid.innerHTML = filtered.map(p => `
+                <div class="bg-zinc-900 border border-zinc-800 rounded-3xl overflow-hidden shadow-xl hover:border-gold/40 transition-all flex flex-col group">
+                    <div class="h-64 bg-zinc-950 overflow-hidden relative p-4 flex items-center justify-center">
+                        <img src="${p.image}" alt="${p.name}" class="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-500">
+                        <span class="absolute top-3 left-3 bg-zinc-900/90 text-gold text-[10px] font-bold px-3 py-1 rounded-full border border-gold/20 uppercase tracking-wider">${p.category}</span>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow justify-between">
+                        <div>
+                            <h3 class="font-serif-custom font-bold text-lg text-zinc-100 mb-1">${p.name}</h3>
+                            <p class="text-xs text-zinc-400 line-clamp-2 mb-4">${p.notes}</p>
+                        </div>
+                        <div class="flex items-center justify-between pt-4 border-t border-zinc-800/80">
+                            <span class="font-bold text-gold text-lg">$${p.price.toLocaleString('es-AR')}</span>
+                            <button onclick="addToCart(${p.id})" class="bg-gold hover:bg-gold-light text-zinc-950 px-4 py-2.5 rounded-xl text-xs font-bold transition-all flex items-center gap-2 shadow-md shadow-gold/20">
+                                <i class="fa-solid fa-cart-plus"></i> Agregar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderFooter() {
+            const socialContainer = document.getElementById('social-icons-container');
+            if (socialContainer) {
+                let html = '';
+                if (settings.instagram) html += `<a href="${settings.instagram}" target="_blank" class="w-14 h-14 bg-pink-500/10 text-pink-500 hover:bg-pink-500 hover:text-white rounded-2xl flex items-center justify-center text-2xl transition-all border border-pink-500/20 shadow-lg"><i class="fa-brands fa-instagram"></i></a>`;
+                if (settings.facebook) html += `<a href="${settings.facebook}" target="_blank" class="w-14 h-14 bg-blue-500/10 text-blue-500 hover:bg-blue-500 hover:text-white rounded-2xl flex items-center justify-center text-2xl transition-all border border-blue-500/20 shadow-lg"><i class="fa-brands fa-facebook"></i></a>`;
+                if (settings.tiktok) html += `<a href="${settings.tiktok}" target="_blank" class="w-14 h-14 bg-zinc-800 text-white hover:bg-white hover:text-zinc-950 rounded-2xl flex items-center justify-center text-2xl transition-all border border-zinc-700 shadow-lg"><i class="fa-brands fa-tiktok"></i></a>`;
+                socialContainer.innerHTML = html;
+            }
+
+            const footerWaBtn = document.getElementById('footer-whatsapp-btn');
+            if (footerWaBtn) footerWaBtn.href = `https://wa.me/${settings.whatsappNumber}?text=Hola,%20quiero%20hacer%20una%20consulta`;
+            
+            const footerBrand = document.getElementById('footer-brand');
+            if (footerBrand) footerBrand.innerText = settings.brandName;
+        }
+
+        function toggleCart() { document.getElementById('cart-drawer').classList.toggle('hidden'); }
+
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            const existing = cart.find(item => item.id === productId);
+            if (existing) existing.qty += 1;
+            else cart.push({ ...product, qty: 1 });
+            saveCart(); updateCartUI(); toggleCart();
+        }
+
+        function updateQty(productId, delta) {
+            const item = cart.find(i => i.id === productId);
+            if (item) {
+                item.qty += delta;
+                if (item.qty <= 0) cart = cart.filter(i => i.id !== productId);
+            }
+            saveCart(); updateCartUI();
+        }
+
+        function saveCart() { localStorage.setItem('bp_cart_v5', JSON.stringify(cart)); }
+
+        function updateCartUI() {
+            const totalItems = cart.reduce((sum, i) => sum + i.qty, 0);
+            document.getElementById('cart-counter').innerText = totalItems;
+            const container = document.getElementById('cart-items-container');
+            const totalPriceEl = document.getElementById('cart-total-price');
+
+            if (cart.length === 0) {
+                container.innerHTML = `<div class="py-12 text-center text-zinc-500"><i class="fa-solid fa-basket-shopping text-3xl mb-2 text-zinc-700"></i><p class="text-sm">Tu carrito está vacío.</p></div>`;
+                totalPriceEl.innerText = "$0"; return;
+            }
+
+            let total = 0;
+            container.innerHTML = cart.map(item => {
+                const subtotal = item.price * item.qty;
+                total += subtotal;
+                return `
+                    <div class="py-4 flex items-center justify-between gap-4">
+                        <div class="flex items-center space-x-3">
+                            <img src="${item.image}" class="w-14 h-14 object-cover rounded-xl border border-zinc-800 bg-zinc-950" alt="">
+                            <div>
+                                <h4 class="font-serif-custom font-bold text-sm text-zinc-100">${item.name}</h4>
+                                <span class="text-xs text-gold font-semibold">$${item.price.toLocaleString('es-AR')} x u.</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <div class="flex items-center border border-zinc-700 rounded-lg bg-zinc-950">
+                                <button onclick="updateQty(${item.id}, -1)" class="px-2.5 py-1 text-zinc-400 hover:text-zinc-100">-</button>
+                                <span class="text-sm px-2 font-semibold">${item.qty}</span>
+                                <button onclick="updateQty(${item.id}, 1)" class="px-2.5 py-1 text-zinc-400 hover:text-zinc-100">+</button>
+                            </div>
+                        </div>
+                    </div>`;
+            }).join('');
+            totalPriceEl.innerText = `$${total.toLocaleString('es-AR')}`;
+        }
+
+        function checkoutWhatsApp() {
+            if (cart.length === 0) return;
+            let message = "Hola! Quiero realizar el siguiente pedido desde la web:\n\n";
+            let total = 0;
+            cart.forEach(item => {
+                const sub = item.price * item.qty;
+                total += sub;
+                message += `• ${item.qty}x ${item.name} ($${sub.toLocaleString('es-AR')})\n`;
+            });
+            message += `\n*Total Estimado: $${total.toLocaleString('es-AR')}*\n\n¿Me confirman para coordinar?`;
+            window.open(`https://wa.me/${settings.whatsappNumber}?text=${encodeURIComponent(message)}`, '_blank');
+        }
+
+        function toggleAIChat() {
+            const drawer = document.getElementById('ai-chat-drawer');
+            drawer.classList.toggle('hidden');
+            if (!drawer.classList.contains('hidden')) setTimeout(() => document.getElementById('chat-input').focus(), 100);
+        }
+
+        async function handleAIChatSubmit(e) {
+            e.preventDefault();
+            const inputEl = document.getElementById('chat-input');
+            const userText = inputEl.value.trim();
+            if (!userText) return;
+
+            appendChatMessage(userText, 'user');
+            inputEl.value = '';
+            
+            const catalogContext = products.map(p => `- ${p.name} (${p.category}): $${p.price.toLocaleString('es-AR')}. Notas: ${p.notes}`).join('\n');
+            chatHistory.push({ role: "user", parts: [{ text: userText }] });
+
+            const loadingId = 'loading-' + Date.now();
+            appendChatMessage('<i class="fa-solid fa-circle-notch fa-spin"></i> Analizando catálogo...', 'bot', loadingId);
+
+            try {
+                const apiKey = "";
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${apiKey}`;
+                const systemPrompt = `Eres un asesor de ventas experto de Black Perfumes. Responde en español de Argentina recomendando fragancias del catálogo actual:\n${catalogContext}`;
+                const payload = { contents: chatHistory, systemInstruction: { parts: [{ text: systemPrompt }] } };
+
+                let response = await fetch(apiUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+                const result = await response.json();
+                const botResponseText = result.candidates?.[0]?.content?.parts?.[0]?.text;
+
+                document.getElementById(loadingId)?.remove();
+                if (botResponseText) {
+                    appendChatMessage(botResponseText, 'bot');
+                    chatHistory.push({ role: "model", parts: [{ text: botResponseText }] });
+                } else {
+                    appendChatMessage("Lo siento, hubo un problema al procesar tu consulta.", 'bot');
+                }
+            } catch (error) {
+                document.getElementById(loadingId)?.remove();
+                appendChatMessage("Error de conexión con el asistente virtual.", 'bot');
+                chatHistory.pop();
+            }
+        }
+
+        function appendChatMessage(text, sender, id = '') {
+            const c = document.getElementById('chat-messages');
+            const d = document.createElement('div');
+            if (id) d.id = id;
+            if (sender === 'user') d.className = 'bg-gold text-zinc-950 p-4 rounded-2xl rounded-tr-sm text-sm font-medium ml-auto max-w-[85%] shadow-md';
+            else {
+                d.className = 'bg-zinc-800 text-zinc-200 p-4 rounded-2xl rounded-tl-sm text-sm mr-auto max-w-[90%] shadow-sm';
+                d.innerHTML = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
+                c.appendChild(d); c.scrollTop = c.scrollHeight; return;
+            }
+            d.innerText = text; c.appendChild(d); c.scrollTop = c.scrollHeight;
+        }
+
+        function openAdminAuth() {
+            document.getElementById('admin-password-input').value = '';
+            document.getElementById('auth-error-msg').classList.add('hidden');
+            document.getElementById('admin-auth-modal').classList.remove('hidden');
+        }
+        function closeAdminAuth() { document.getElementById('admin-auth-modal').classList.add('hidden'); }
+        function handleAdminLogin(e) {
+            e.preventDefault();
+            if (document.getElementById('admin-password-input').value === 'admin123') {
+                closeAdminAuth(); toggleAdminPanel();
+            } else document.getElementById('auth-error-msg').classList.remove('hidden');
+        }
+        function toggleAdminPanel() {
+            const modal = document.getElementById('admin-modal');
+            modal.classList.toggle('hidden');
+            if (!modal.classList.contains('hidden')) {
+                renderAdminProducts(); loadSettingsForm();
+            }
+        }
+        function switchAdminTab(tabName) {
+            document.querySelectorAll('.admin-tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.admin-tab-btn').forEach(el => {
+                el.classList.remove('bg-gold', 'text-zinc-950'); el.classList.add('bg-zinc-800', 'text-zinc-300');
+            });
+            document.getElementById(`admin-tab-${tabName}`).classList.remove('hidden');
+            const btn = document.getElementById(`tab-btn-${tabName}`);
+            btn.classList.remove('bg-zinc-800', 'text-zinc-300'); btn.classList.add('bg-gold', 'text-zinc-950');
+        }
+
+        function fileToBase64(file, callback) {
+            const reader = new FileReader();
+            reader.onload = (e) => callback(e.target.result);
+            reader.readAsDataURL(file);
+        }
+
+        function renderAdminProducts() {
+            const list = document.getElementById('admin-product-list');
+            list.innerHTML = products.map(p => `
+                <div class="bg-zinc-950 border border-zinc-800 p-4 rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <div class="flex items-center space-x-3 w-full sm:w-auto">
+                        <img src="${p.image}" class="w-12 h-12 object-contain rounded-xl bg-zinc-900" alt="">
+                        <div>
+                            <h4 class="font-serif-custom font-bold text-sm text-zinc-100">${p.name}</h4>
+                            <p class="text-xs text-gold">${p.category} — $${p.price.toLocaleString('es-AR')}</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-2 w-full sm:w-auto justify-end">
+                        <button onclick="openEditModal(${p.id})" class="bg-gold/10 hover:bg-gold text-gold hover:text-zinc-950 px-3 py-1.5 rounded-xl text-xs font-semibold transition-all">Editar</button>
+                        <button onclick="deleteProduct(${p.id})" class="bg-red-500/10 hover:bg-red-500 text-red-400 hover:text-zinc-950 px-3 py-1.5 rounded-xl text-xs font-semibold transition-all">Borrar</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function handleAddNewProduct(e) {
+            e.preventDefault();
+            const fileInput = document.getElementById('new-image-file');
+            const processSave = (imgSrc) => {
+                products.push({
+                    id: Date.now(),
+                    name: document.getElementById('new-name').value,
+                    category: document.getElementById('new-category').value,
+                    price: Number(document.getElementById('new-price').value),
+                    image: imgSrc,
+                    notes: document.getElementById('new-notes').value || ''
+                });
+                localStorage.setItem('bp_products_v5', JSON.stringify(products));
+                document.getElementById('add-product-form').reset();
+                renderAdminProducts(); renderSite(); switchAdminTab('productos');
+            };
+            if (fileInput.files[0]) fileToBase64(fileInput.files[0], processSave);
+            else processSave('https://placehold.co/400x400/18181b/D4AF37?text=Perfume');
+        }
+
+        function openEditModal(id) {
+            const p = products.find(prod => prod.id === id);
+            if (!p) return;
+            document.getElementById('edit-id').value = p.id;
+            document.getElementById('edit-name').value = p.name;
+            document.getElementById('edit-category').value = p.category;
+            document.getElementById('edit-price').value = p.price;
+            document.getElementById('edit-notes').value = p.notes || '';
+            document.getElementById('edit-image-file').value = '';
+            document.getElementById('edit-modal').classList.remove('hidden');
+        }
+
+        function closeEditModal() { document.getElementById('edit-modal').classList.add('hidden'); }
+
+        function handleSaveEditedProduct(e) {
+            e.preventDefault();
+            const p = products.find(prod => prod.id === Number(document.getElementById('edit-id').value));
+            if (!p) return;
+            p.name = document.getElementById('edit-name').value;
+            p.category = document.getElementById('edit-category').value;
+            p.price = Number(document.getElementById('edit-price').value);
+            p.notes = document.getElementById('edit-notes').value;
+
+            const fileInput = document.getElementById('edit-image-file');
+            if (fileInput.files[0]) {
+                fileToBase64(fileInput.files[0], (src) => { p.image = src; finalizeEdit(); });
+            } else finalizeEdit();
+        }
+        function finalizeEdit() {
+            localStorage.setItem('bp_products_v5', JSON.stringify(products));
+            closeEditModal(); renderAdminProducts(); renderSite();
+        }
+        function deleteProduct(id) {
+            if (confirm("¿Eliminar este producto?")) {
+                products = products.filter(p => p.id !== id);
+                localStorage.setItem('bp_products_v5', JSON.stringify(products));
+                renderAdminProducts(); renderSite();
+            }
+        }
+
+        function loadSettingsForm() {
+            document.getElementById('setting-brand').value = settings.brandName || '';
+            document.getElementById('setting-whatsapp').value = settings.whatsappNumber || '';
+            document.getElementById('setting-hero-title').value = settings.heroTitle || '';
+            document.getElementById('setting-hero-sub').value = settings.heroSub || '';
+
+            document.getElementById('setting-color').value = settings.primaryColor || '#D4AF37';
+            document.getElementById('setting-color-text').value = settings.primaryColor || '#D4AF37';
+            tempLogoBase64 = settings.logoImage || "";
+            updateLogoPreview();
+
+            document.getElementById('setting-ig').value = settings.instagram || '';
+            document.getElementById('setting-fb').value = settings.facebook || '';
+            document.getElementById('setting-tk').value = settings.tiktok || '';
+
+            tempSections = JSON.parse(JSON.stringify(settings.sections || []));
+            renderAdminSectionsList();
+        }
+
+        function handleLogoUpload(e) {
+            if (e.target.files[0]) {
+                fileToBase64(e.target.files[0], (src) => { tempLogoBase64 = src; updateLogoPreview(); });
+            }
+        }
+        function removeLogo() {
+            tempLogoBase64 = ""; document.getElementById('setting-logo-file').value = ""; updateLogoPreview();
+        }
+        function updateLogoPreview() {
+            const preview = document.getElementById('admin-logo-preview');
+            const removeBtn = document.getElementById('admin-logo-remove');
+            if (tempLogoBase64) { preview.src = tempLogoBase64; preview.classList.remove('hidden'); removeBtn.classList.remove('hidden'); } 
+            else { preview.classList.add('hidden'); removeBtn.classList.add('hidden'); }
+        }
+
+        function renderAdminSectionsList() {
+            const list = document.getElementById('admin-sections-list');
+            list.innerHTML = tempSections.map((sec, sIdx) => `
+                <div class="bg-zinc-900 p-5 rounded-2xl border border-zinc-800 space-y-4">
+                    <div class="flex justify-between items-center border-b border-zinc-800 pb-3">
+                        <span class="text-xs font-bold uppercase tracking-wider text-gold">Sección #${sIdx + 1} (${sec.id})</span>
+                        <div class="flex items-center gap-2">
+                            <button type="button" onclick="removeAdminSection(${sIdx})" class="text-red-400 text-xs hover:underline"><i class="fa-solid fa-trash"></i> Eliminar Sección</button>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                        <div><label class="text-[10px] text-zinc-400">ID (ej: garantia)</label><input type="text" value="${sec.id}" onchange="tempSections[${sIdx}].id = this.value" class="w-full bg-zinc-950 border border-zinc-800 rounded px-3 py-1.5 text-xs text-zinc-100 outline-none"></div>
+                        <div><label class="text-[10px] text-zinc-400">Título Principal</label><input type="text" value="${sec.title}" onchange="tempSections[${sIdx}].title = this.value" class="w-full bg-zinc-950 border border-zinc-800 rounded px-3 py-1.5 text-xs text-zinc-100 outline-none"></div>
+                        <div><label class="text-[10px] text-zinc-400">Badge Superior</label><input type="text" value="${sec.subtitle || ''}" onchange="tempSections[${sIdx}].subtitle = this.value" class="w-full bg-zinc-950 border border-zinc-800 rounded px-3 py-1.5 text-xs text-zinc-100 outline-none"></div>
+                    </div>
+                    <div class="space-y-3 pt-2">
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs font-medium text-zinc-400">Tarjetas de la Grilla</span>
+                            <button type="button" onclick="addAdminCard(${sIdx})" class="text-[10px] bg-zinc-800 px-2 py-1 rounded text-zinc-300 hover:bg-zinc-700">+ Añadir Tarjeta</button>
+                        </div>
+                        <div class="space-y-2">
+                            ${sec.cards.map((card, cIdx) => `
+                                <div class="bg-zinc-950 p-3 rounded-xl border border-zinc-800 grid grid-cols-1 sm:grid-cols-12 gap-2 items-center">
+                                    <div class="sm:col-span-3"><input type="text" value="${card.title}" placeholder="Título" onchange="tempSections[${sIdx}].cards[${cIdx}].title = this.value" class="w-full bg-zinc-900 border border-zinc-800 rounded px-2 py-1 text-xs text-zinc-100 outline-none"></div>
+                                    <div class="sm:col-span-6"><input type="text" value="${card.text}" placeholder="Descripción" onchange="tempSections[${sIdx}].cards[${cIdx}].text = this.value" class="w-full bg-zinc-900 border border-zinc-800 rounded px-2 py-1 text-xs text-zinc-100 outline-none"></div>
+                                    <div class="sm:col-span-2"><input type="text" value="${card.emoji || '✨'}" placeholder="Emoji" onchange="tempSections[${sIdx}].cards[${cIdx}].emoji = this.value" class="w-full bg-zinc-900 border border-zinc-800 rounded px-2 py-1 text-xs text-zinc-100 outline-none text-center"></div>
+                                    <div class="sm:col-span-1 text-right"><button type="button" onclick="removeAdminCard(${sIdx}, ${cIdx})" class="text-red-400 hover:text-red-300 text-xs"><i class="fa-solid fa-xmark"></i></button></div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function addAdminSection() {
+            tempSections.push({ id: "nueva-seccion", title: "Título de Sección", subtitle: "Badge", cards: [{ title: "Tarjeta 1", text: "Descripción...", emoji: "✨" }] });
+            renderAdminSectionsList();
+        }
+        function removeAdminSection(index) {
+            tempSections.splice(index, 1);
+            renderAdminSectionsList();
+        }
+        function addAdminCard(sIdx) {
+            tempSections[sIdx].cards.push({ title: "Nueva Tarjeta", text: "Descripción...", emoji: "⭐" });
+            renderAdminSectionsList();
+        }
+        function removeAdminCard(sIdx, cIdx) {
+            tempSections[sIdx].cards.splice(cIdx, 1);
+            renderAdminSectionsList();
+        }
+
+        function saveSiteSettings() {
+            settings.brandName = document.getElementById('setting-brand').value;
+            settings.whatsappNumber = document.getElementById('setting-whatsapp').value;
+            settings.heroTitle = document.getElementById('setting-hero-title').value;
+            settings.heroSub = document.getElementById('setting-hero-sub').value;
+            settings.primaryColor = document.getElementById('setting-color').value;
+            settings.logoImage = tempLogoBase64;
+            settings.instagram = document.getElementById('setting-ig').value;
+            settings.facebook = document.getElementById('setting-fb').value;
+            settings.tiktok = document.getElementById('setting-tk').value;
+            settings.sections = tempSections;
+
+            localStorage.setItem('bp_settings_v5', JSON.stringify(settings));
+            alert("¡Configuración guardada y aplicada con éxito!");
+            renderSite();
+            toggleAdminPanel();
+        }
+
+        document.getElementById('setting-color').addEventListener('input', (e) => {
+            document.getElementById('setting-color-text').value = e.target.value.toUpperCase();
         });
 
-        document.getElementById('setting-align').value = settings.heroAlign || 'left';
-        document.getElementById('setting-btn-order').value = settings.btnOrder || 'catalog-first';
-    }
-
-    function saveSiteSettings() {
-        settings.brandName = document.getElementById('setting-brand').value;
-        settings.whatsappNumber = document.getElementById('setting-whatsapp').value;
-        settings.heroTitle = document.getElementById('setting-hero-title').value;
-        settings.heroSub = document.getElementById('setting-hero-sub').value;
-
-        settings.primaryColor = document.getElementById('setting-color').value;
-        settings.heroAlign = document.getElementById('setting-align').value;
-        settings.btnOrder = document.getElementById('setting-btn-order').value;
-
-        localStorage.setItem('bp_settings', JSON.stringify(settings));
-        alert("¡Cambios guardados con éxito!");
-        renderSite();
-        toggleAdminPanel();
-    }
-
-    function resetDefaultData() {
-        if (confirm("¿Restaurar productos y ajustes originales de fábrica?")) {
-            localStorage.removeItem('bp_products');
-            localStorage.removeItem('bp_settings');
-            products = defaultProducts;
-            settings = defaultSettings;
-            renderSite();
-            renderAdminProducts();
-            loadSettingsForm();
+        function exportBackupJSON() {
+            const backupData = {
+                products: products,
+                settings: settings,
+                exportDate: new Date().toISOString()
+            };
+            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(backupData, null, 2));
+            const downloadAnchor = document.createElement('a');
+            downloadAnchor.setAttribute("href", dataStr);
+            downloadAnchor.setAttribute("download", "black_perfumes_respaldo.json");
+            document.body.appendChild(downloadAnchor);
+            downloadAnchor.click();
+            downloadAnchor.remove();
         }
-    }
-</script>
+
+        function importBackupJSON(e) {
+            const fileReader = new FileReader();
+            if (e.target.files[0]) {
+                fileReader.readAsText(e.target.files[0], "UTF-8");
+                fileReader.onload = (event) => {
+                    try {
+                        const parsed = JSON.parse(event.target.result);
+                        if (parsed.products && parsed.settings) {
+                            products = parsed.products;
+                            settings = parsed.settings;
+                            localStorage.setItem('bp_products_v5', JSON.stringify(products));
+                            localStorage.setItem('bp_settings_v5', JSON.stringify(settings));
+                            alert("¡Respaldo importado con éxito! Todos tus productos y configuraciones han sido restaurados.");
+                            renderSite();
+                            renderAdminProducts();
+                            loadSettingsForm();
+                        } else {
+                            alert("El archivo no tiene el formato de respaldo válido.");
+                        }
+                    } catch (err) {
+                        alert("Error al leer el archivo JSON.");
+                    }
+                };
+            }
+        }
+
+        function resetDefaultData() {
+            if (confirm("¿Restaurar todos los productos y configuraciones originales de fábrica?")) {
+                localStorage.removeItem('bp_products_v5');
+                localStorage.removeItem('bp_settings_v5');
+                products = defaultProducts;
+                settings = defaultSettings;
+                renderSite(); renderAdminProducts(); loadSettingsForm();
+            }
+        }
+    </script>
+</body>
+</html>
