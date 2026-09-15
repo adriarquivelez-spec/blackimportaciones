@@ -524,6 +524,20 @@
         import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
         import { getFirestore, doc, setDoc, getDoc, onSnapshot, collection, query } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
+        // ============================================================================
+        // CONFIGURACIÓN DE BASE DE DATOS (Para sincronizar en tiempo real en Netlify)
+        // ============================================================================
+        // Si subís la web a Netlify u otro hosting, poné acá las credenciales de tu proyecto de Firebase.
+        const miBaseDeDatos = {
+            apiKey: "TU_API_KEY",
+            authDomain: "TU_PROYECTO.firebaseapp.com",
+            projectId: "TU_PROYECTO",
+            storageBucket: "TU_PROYECTO.appspot.com",
+            messagingSenderId: "TU_SENDER_ID",
+            appId: "TU_APP_ID"
+        };
+        // ============================================================================
+
         const defaultProducts = [
             { id: 1, name: "Lattafa Eclaire", category: "Perfumes Árabes", price: 78000, notes: "Caramelo, leche, miel y vainilla", image: "https://placehold.co/400x400/18181b/D4AF37?text=Lattafa+Eclaire" },
             { id: 2, name: "Armaf Club de Nuit Untold", category: "Perfumes Árabes", price: 87000, notes: "Azafrán, jazmín y ámbar gris", image: "https://placehold.co/400x400/18181b/D4AF37?text=Club+de+Nuit" },
@@ -615,8 +629,18 @@
 
         async function initFirebaseAndRealtimeSync() {
             try {
-                if (typeof __firebase_config === 'undefined') return;
-                const firebaseConfig = JSON.parse(__firebase_config);
+                let firebaseConfig;
+                
+                // Sistema dual: usa el entorno actual o las claves manuales que pongas arriba para Netlify
+                if (typeof __firebase_config !== 'undefined') {
+                    firebaseConfig = JSON.parse(__firebase_config);
+                } else if (miBaseDeDatos.apiKey && miBaseDeDatos.apiKey !== "TU_API_KEY") {
+                    firebaseConfig = miBaseDeDatos;
+                } else {
+                    console.warn("Base de datos no vinculada. Guardando cambios solo de forma local (en este dispositivo).");
+                    return; // Sale de la función si no pusiste tus claves
+                }
+
                 const app = initializeApp(firebaseConfig);
                 db = getFirestore(app);
                 const auth = getAuth(app);
@@ -627,7 +651,7 @@
                     await signInAnonymously(auth);
                 }
 
-                appId = typeof __app_id !== 'undefined' ? __app_id : 'black-perfumes-default';
+                appId = typeof __app_id !== 'undefined' ? __app_id : 'black-perfumes-produccion';
                 
                 // 1. Real-time Firestore document listeners for products & settings (Cross-device instant updates)
                 const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'store_state');
