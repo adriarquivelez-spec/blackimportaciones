@@ -52,7 +52,7 @@
                 </div>
             </div>
 
-            <!-- Top Navigation: Catálogo, Garantía, Formas de pago, Envíos, Contacto, Revendedores -->
+            <!-- Top Navigation in exact requested order -->
             <nav id="header-nav" class="hidden lg:flex items-center justify-center gap-1.5 text-sm font-medium tracking-wide transition-all mx-4">
                 <a href="#catalogo" class="bg-gold text-zinc-950 px-4 py-2 rounded-full hover:bg-gold-light transition-all whitespace-nowrap font-bold shadow-sm shadow-gold/25">Catálogo</a>
                 <a href="#bloque-garantia" class="text-zinc-300 hover:text-gold hover:bg-zinc-900/80 px-4 py-2 rounded-full transition-all whitespace-nowrap">Garantía</a>
@@ -165,7 +165,7 @@
             <p class="text-gold">Ventas Mayoristas y Minoristas por WhatsApp</p>
         </div>
         
-        <!-- Protected Admin Trigger Button at the bottom LEFT -->
+        <!-- Protected Admin Trigger Button at bottom LEFT -->
         <button onclick="openAdminAuth()" class="absolute bottom-4 left-4 text-[10px] tracking-widest uppercase text-zinc-600 hover:text-gold transition-colors flex items-center gap-1.5 p-2 bg-zinc-900/60 rounded-lg border border-zinc-800">
             <i class="fa-solid fa-lock text-xs"></i> Admin
         </button>
@@ -404,7 +404,7 @@
                     <button onclick="saveSiteSettings()" class="w-full bg-gold hover:bg-gold-light text-zinc-950 font-bold py-3 rounded-xl transition-all shadow-lg shadow-gold/20 sticky bottom-0">Guardar Todas las Secciones</button>
                 </div>
 
-                <!-- Tab 6: Backup / Respaldo -->
+                <!-- Tab 6: Backup / Respaldo with flexible import handling -->
                 <div id="admin-tab-respaldo" class="admin-tab-content space-y-6 hidden">
                     <h3 class="text-sm font-semibold uppercase tracking-wider text-zinc-400"><i class="fa-solid fa-database text-gold"></i> Respaldo de Base de Datos (Backup)</h3>
                     <p class="text-xs text-zinc-400 leading-relaxed">
@@ -504,9 +504,11 @@
             { id: 3, name: "Victoria's Secret Velvet Petals", category: "Victoria's Secret", price: 42000, notes: "Flores exuberantes y almendras azucaradas", image: "https://placehold.co/400x400/18181b/D4AF37?text=Velvet+Petals" }
         ];
 
+        const defaultLogoSVG = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%23111' stroke='%23D4AF37' stroke-width='4'/><text x='50' y='57' font-family='serif' font-size='22' font-weight='bold' fill='%23D4AF37' text-anchor='middle'>BLACK</text></svg>";
+
         let defaultSettings = {
             brandName: "Black Perfumes",
-            logoImage: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%23111' stroke='%23D4AF37' stroke-width='4'/><text x='50' y='57' font-family='serif' font-size='26' font-weight='bold' fill='%23D4AF37' text-anchor='middle'>BI</text></svg>",
+            logoImage: defaultLogoSVG,
             whatsappNumber: "5491100000000",
             heroTitle: "Perfumes originales, <br/><span class='text-transparent bg-clip-text bg-gradient-to-r from-gold-light via-gold to-gold-dark italic'>sin gastar de más</span>",
             heroSub: "+100 clientes | Villa Urquiza, CABA",
@@ -566,9 +568,9 @@
             ]
         };
 
-        let settings = JSON.parse(localStorage.getItem('bp_settings_v6')) || defaultSettings;
-        let products = JSON.parse(localStorage.getItem('bp_products_v6')) || defaultProducts;
-        let cart = JSON.parse(localStorage.getItem('bp_cart_v6')) || [];
+        let settings = JSON.parse(localStorage.getItem('bp_settings_v7')) || defaultSettings;
+        let products = JSON.parse(localStorage.getItem('bp_products_v7')) || defaultProducts;
+        let cart = JSON.parse(localStorage.getItem('bp_cart_v7')) || [];
         let chatHistory = [];
         let currentCategory = 'Todas';
         let currentSearch = '';
@@ -582,13 +584,12 @@
         };
 
         function initVisitorCounter() {
-            // Simulated live visitors counter fluctuating naturally between 2 and 7
             let baseCount = Math.floor(Math.random() * 5) + 2;
             const counterEl = document.getElementById('live-visitors-count');
             if (counterEl) counterEl.innerText = baseCount;
             
             setInterval(() => {
-                const fluctuation = Math.floor(Math.random() * 3) - 1; // -1, 0, or 1
+                const fluctuation = Math.floor(Math.random() * 3) - 1;
                 baseCount = Math.max(1, baseCount + fluctuation);
                 const el = document.getElementById('live-visitors-count');
                 if (el) el.innerText = baseCount;
@@ -617,8 +618,7 @@
             const logoImg = document.getElementById('brand-logo-img');
             const logoText = document.getElementById('brand-title');
             
-            const defaultLogoUrl = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%23111' stroke='%23D4AF37' stroke-width='4'/><text x='50' y='57' font-family='serif' font-size='26' font-weight='bold' fill='%23D4AF37' text-anchor='middle'>BI</text></svg>";
-            logoImg.src = settings.logoImage || defaultLogoUrl;
+            logoImg.src = settings.logoImage || defaultLogoSVG;
             logoText.innerText = settings.brandName || "Black Perfumes";
         }
 
@@ -771,7 +771,7 @@
             saveCart(); updateCartUI();
         }
 
-        function saveCart() { localStorage.setItem('bp_cart_v6', JSON.stringify(cart)); }
+        function saveCart() { localStorage.setItem('bp_cart_v7', JSON.stringify(cart)); }
 
         function updateCartUI() {
             const totalItems = cart.reduce((sum, i) => sum + i.qty, 0);
@@ -946,7 +946,7 @@
                     image: imgSrc,
                     notes: document.getElementById('new-notes').value || ''
                 });
-                localStorage.setItem('bp_products_v6', JSON.stringify(products));
+                localStorage.setItem('bp_products_v7', JSON.stringify(products));
                 document.getElementById('add-product-form').reset();
                 renderAdminProducts(); renderSite(); switchAdminTab('productos');
             };
@@ -983,13 +983,13 @@
             } else finalizeEdit();
         }
         function finalizeEdit() {
-            localStorage.setItem('bp_products_v6', JSON.stringify(products));
+            localStorage.setItem('bp_products_v7', JSON.stringify(products));
             closeEditModal(); renderAdminProducts(); renderSite();
         }
         function deleteProduct(id) {
             if (confirm("¿Eliminar este producto?")) {
                 products = products.filter(p => p.id !== id);
-                localStorage.setItem('bp_products_v6', JSON.stringify(products));
+                localStorage.setItem('bp_products_v7', JSON.stringify(products));
                 renderAdminProducts(); renderSite();
             }
         }
@@ -1092,7 +1092,7 @@
             settings.tiktok = document.getElementById('setting-tk').value;
             settings.sections = tempSections;
 
-            localStorage.setItem('bp_settings_v6', JSON.stringify(settings));
+            localStorage.setItem('bp_settings_v7', JSON.stringify(settings));
             alert("¡Configuración guardada y aplicada con éxito!");
             renderSite();
             toggleAdminPanel();
@@ -1117,36 +1117,76 @@
             downloadAnchor.remove();
         }
 
+        // Extremely flexible and robust JSON import handler
         function importBackupJSON(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+
             const fileReader = new FileReader();
-            if (e.target.files[0]) {
-                fileReader.readAsText(e.target.files[0], "UTF-8");
-                fileReader.onload = (event) => {
-                    try {
-                        const parsed = JSON.parse(event.target.result);
-                        if (parsed.products && parsed.settings) {
+            fileReader.readAsText(file, "UTF-8");
+            
+            fileReader.onload = function(event) {
+                try {
+                    const rawContent = event.target.result;
+                    const parsed = JSON.parse(rawContent);
+
+                    // If the uploaded file is a raw array of products directly
+                    if (Array.isArray(parsed)) {
+                        products = parsed;
+                    } 
+                    // Standard wrapper object
+                    else if (typeof parsed === 'object' && parsed !== null) {
+                        if (Array.isArray(parsed.products)) {
                             products = parsed.products;
-                            settings = parsed.settings;
-                            localStorage.setItem('bp_products_v6', JSON.stringify(products));
-                            localStorage.setItem('bp_settings_v6', JSON.stringify(settings));
-                            alert("¡Respaldo importado con éxito! Todos tus productos y configuraciones han sido restaurados.");
-                            renderSite();
-                            renderAdminProducts();
-                            loadSettingsForm();
-                        } else {
-                            alert("El archivo no tiene el formato de respaldo válido.");
                         }
-                    } catch (err) {
-                        alert("Error al leer el archivo JSON.");
+                        if (typeof parsed.settings === 'object' && parsed.settings !== null) {
+                            // Merge settings safely, falling back to defaults for any missing keys
+                            settings = {
+                                brandName: parsed.settings.brandName || defaultSettings.brandName,
+                                logoImage: parsed.settings.logoImage || defaultSettings.logoImage,
+                                whatsappNumber: parsed.settings.whatsappNumber || defaultSettings.whatsappNumber,
+                                heroTitle: parsed.settings.heroTitle || defaultSettings.heroTitle,
+                                heroSub: parsed.settings.heroSub || defaultSettings.heroSub,
+                                primaryColor: parsed.settings.primaryColor || defaultSettings.primaryColor,
+                                instagram: parsed.settings.instagram !== undefined ? parsed.settings.instagram : defaultSettings.instagram,
+                                facebook: parsed.settings.facebook !== undefined ? parsed.settings.facebook : defaultSettings.facebook,
+                                tiktok: parsed.settings.tiktok !== undefined ? parsed.settings.tiktok : defaultSettings.tiktok,
+                                sections: Array.isArray(parsed.settings.sections) ? parsed.settings.sections : defaultSettings.sections
+                            };
+                        }
+                    } else {
+                        throw new Error("Estructura JSON no reconocida.");
                     }
-                };
-            }
+
+                    // Save safely into localStorage
+                    localStorage.setItem('bp_products_v7', JSON.stringify(products));
+                    localStorage.setItem('bp_settings_v7', JSON.stringify(settings));
+
+                    alert("¡Respaldo importado con éxito! Todos tus productos y configuraciones han sido restaurados.");
+                    
+                    // Refresh app states and UI immediately
+                    renderSite();
+                    renderAdminProducts();
+                    loadSettingsForm();
+
+                    // Clear file input
+                    e.target.value = '';
+
+                } catch (err) {
+                    console.error("Error parsing backup JSON:", err);
+                    alert("No se pudo leer el archivo JSON. Asegurate de que el archivo tenga formato JSON válido.");
+                }
+            };
+
+            fileReader.onerror = function() {
+                alert("Error al intentar leer el archivo desde el dispositivo.");
+            };
         }
 
         function resetDefaultData() {
             if (confirm("¿Restaurar todos los productos y configuraciones originales de fábrica?")) {
-                localStorage.removeItem('bp_products_v6');
-                localStorage.removeItem('bp_settings_v6');
+                localStorage.removeItem('bp_products_v7');
+                localStorage.removeItem('bp_settings_v7');
                 products = defaultProducts;
                 settings = defaultSettings;
                 renderSite(); renderAdminProducts(); loadSettingsForm();
