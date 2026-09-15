@@ -39,20 +39,20 @@
 
     <header class="sticky top-0 z-50 bg-zinc-950/90 backdrop-blur-md border-b border-gold/20">
         <div id="header-container" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-24 flex items-center justify-between transition-all duration-300">
-            <!-- Left Logo & Brand Name -->
-            <div id="header-left" class="flex items-center space-x-3 transition-all shrink-0">
+            <!-- Far Left Logo & Brand Name -->
+            <div id="header-left" class="flex items-center space-x-3.5 transition-all shrink-0">
                 <div class="bg-gradient-to-tr from-gold-dark via-gold to-gold-light p-0.5 rounded-full overflow-hidden flex items-center justify-center shadow-xl shadow-gold/20">
                     <div class="bg-zinc-950 p-1 rounded-full flex items-center justify-center">
-                        <img id="brand-logo-img" src="" alt="Logo" class="h-14 w-14 sm:h-16 sm:w-16 object-cover rounded-full">
+                        <img id="brand-logo-img" src="" alt="Logo" class="h-16 w-16 sm:h-20 sm:w-20 object-cover rounded-full">
                     </div>
                 </div>
-                <div class="border border-gold/40 px-4 py-2 rounded-xl bg-zinc-900/50 shadow-inner">
-                    <span id="brand-title" class="font-serif-custom font-bold text-base sm:text-xl tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-gold-light via-gold to-gold-dark uppercase block">Black Perfumes</span>
-                    <span class="text-[9px] uppercase tracking-widest text-zinc-400 font-semibold block">Importados Originales</span>
+                <div class="border border-gold/40 px-4 py-2.5 rounded-xl bg-zinc-900/50 shadow-inner">
+                    <span id="brand-title" class="font-serif-custom font-bold text-lg sm:text-2xl tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-gold-light via-gold to-gold-dark uppercase block leading-tight">Black Perfumes</span>
+                    <span class="text-[10px] uppercase tracking-widest text-zinc-400 font-semibold block">Importados Originales</span>
                 </div>
             </div>
 
-            <!-- Top Navigation in exact requested order -->
+            <!-- Navigation in requested order -->
             <nav id="header-nav" class="hidden lg:flex items-center justify-center gap-1.5 text-sm font-medium tracking-wide transition-all mx-4">
                 <a href="#catalogo" class="bg-gold text-zinc-950 px-4 py-2 rounded-full hover:bg-gold-light transition-all whitespace-nowrap font-bold shadow-sm shadow-gold/25">Catálogo</a>
                 <a href="#bloque-garantia" class="text-zinc-300 hover:text-gold hover:bg-zinc-900/80 px-4 py-2 rounded-full transition-all whitespace-nowrap">Garantía</a>
@@ -160,9 +160,9 @@
     </section>
 
     <footer class="bg-zinc-950 border-t border-gold/20 py-8 text-center text-sm text-zinc-500 relative">
-        <!-- Admin Trigger Button at bottom LEFT as requested -->
-        <button onclick="openAdminAuth()" class="absolute bottom-4 left-4 text-[10px] tracking-widest uppercase text-zinc-600 hover:text-gold transition-colors flex items-center gap-1.5 p-2 bg-zinc-900/60 rounded-lg border border-zinc-800 shadow-md z-30">
-            <i class="fa-solid fa-lock text-xs"></i> Admin
+        <!-- Admin Trigger Button at bottom RIGHT as requested -->
+        <button onclick="openAdminAuth()" class="absolute bottom-4 right-4 text-[10px] tracking-widest uppercase text-zinc-400 hover:text-gold transition-colors flex items-center gap-1.5 p-2.5 bg-zinc-900/80 rounded-xl border border-zinc-800 shadow-md z-30 font-bold">
+            <i class="fa-solid fa-lock text-xs text-gold"></i> Admin
         </button>
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
@@ -267,10 +267,10 @@
                 <div class="flex justify-between items-center pb-6 border-b border-zinc-800 mb-6">
                     <div>
                         <h2 class="font-serif-custom font-bold text-2xl text-gold">Panel de Administración CMS</h2>
-                        <p class="text-sm text-zinc-400">Control total y sincronización instantánea en tiempo real.</p>
+                        <p class="text-sm text-zinc-400">Control total y sincronización en la nube con Firebase.</p>
                     </div>
                     <div class="flex items-center gap-4">
-                        <!-- True Real-Time Firebase Visitor Counter Widget -->
+                        <!-- Real-Time Firebase Visitor Counter Widget -->
                         <div class="bg-zinc-950 border border-gold/30 px-4 py-2 rounded-xl flex items-center gap-3 shadow-inner">
                             <span class="relative flex h-3 w-3">
                               <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
@@ -521,10 +521,9 @@
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, doc, setDoc, getDoc, onSnapshot, collection, query } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, doc, setDoc, onSnapshot, collection, query } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-        // Configuración real de Firebase integrada
         const myFirebaseConfig = {
             apiKey: "AIzaSyA__ONWSqwzBqPkrDIbQWuzv_nQTRbJPcA",
             authDomain: "black-perfumes-bd.firebaseapp.com",
@@ -541,8 +540,8 @@
             { id: 3, name: "Victoria's Secret Velvet Petals", category: "Victoria's Secret", price: 42000, notes: "Flores exuberantes y almendras azucaradas", image: "https://placehold.co/400x400/18181b/D4AF37?text=Velvet+Petals" }
         ];
 
-        // Default business logo SVG matching your request
-        const defaultLogoSVG = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%23111' stroke='%23D4AF37' stroke-width='4'/><text x='50' y='57' font-family='serif' font-size='22' font-weight='bold' fill='%23D4AF37' text-anchor='middle'>BLACK</text></svg>";
+        // Logo SVG matching your business branding
+        const defaultLogoSVG = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%23111' stroke='%23D4AF37' stroke-width='4'/><path d='M15 50h70M50 15v70M28 28c15 15 29 15 44 0M28 72c15-15 29-15 44 0' fill='none' stroke='%23444' stroke-width='1'/><text x='50' y='46' font-family='sans-serif' font-size='15' font-weight='bold' fill='%23FFF' text-anchor='middle'>Black</text><text x='50' y='65' font-family='sans-serif' font-size='16' font-weight='bold' fill='%23D4AF37' text-anchor='middle'>Import</text></svg>";
 
         let defaultSettings = {
             brandName: "Black Perfumes",
@@ -606,9 +605,9 @@
             ]
         };
 
-        let settings = JSON.parse(localStorage.getItem('bp_settings_v7')) || defaultSettings;
-        let products = JSON.parse(localStorage.getItem('bp_products_v7')) || defaultProducts;
-        let cart = JSON.parse(localStorage.getItem('bp_cart_v7')) || [];
+        let settings = JSON.parse(localStorage.getItem('bp_settings_v8')) || defaultSettings;
+        let products = JSON.parse(localStorage.getItem('bp_products_v8')) || defaultProducts;
+        let cart = JSON.parse(localStorage.getItem('bp_cart_v8')) || [];
         let chatHistory = [];
         let currentCategory = 'Todas';
         let currentSearch = '';
@@ -617,87 +616,70 @@
         let tempLogoBase64 = "";
         let adminPassword = localStorage.getItem('bp_admin_pass') || 'admin123';
 
-        let db, appId;
+        let db = null;
+        let appId = "black-perfumes-bd";
 
         window.onload = async function() {
             renderSite();
-            await initFirebaseAndRealtimeSync();
+            await initFirebaseRealtime();
         };
 
-        async function initFirebaseAndRealtimeSync() {
+        async function initFirebaseRealtime() {
             try {
-                let finalConfig = null;
-                let authToken = null;
-
-                // 1. Verificamos si pusiste tus propias claves de Firebase
-                if (myFirebaseConfig.apiKey !== "TU_API_KEY") {
-                    finalConfig = myFirebaseConfig;
-                    appId = myFirebaseConfig.projectId; // Usa tu ID de proyecto como carpeta base
-                    console.info("Conectando a tu cuenta de Firebase...");
-                } 
-                // 2. Modo Vista Previa de este entorno (Gemini)
-                else if (typeof __firebase_config !== 'undefined' && typeof __app_id !== 'undefined') {
-                    finalConfig = JSON.parse(__firebase_config);
-                    appId = __app_id;
-                    if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
-                        authToken = __initial_auth_token;
-                    }
-                    console.info("Conectando al Firebase de prueba local...");
-                } 
-                // 3. Fallback a LocalStorage si lo subís a Netlify sin configurar claves
-                else {
-                    console.info("Ejecutando en entorno estático sin claves. Operando en modo LocalStorage.");
-                    return;
-                }
-
-                const app = initializeApp(finalConfig);
+                const app = initializeApp(myFirebaseConfig);
                 db = getFirestore(app);
                 const auth = getAuth(app);
+                
+                await signInAnonymously(auth);
+                console.info("Firebase conectado correctamente.");
 
-                if (authToken) {
-                    await signInWithCustomToken(auth, authToken);
-                } else {
-                    await signInAnonymously(auth); // Requiere habilitar Auth Anónimo en Firebase
-                }
+                const stateRef = doc(db, 'artifacts', appId, 'store_state', 'main');
                 
-                // 1. Real-time Firestore document listeners
-                const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'store_state');
-                
-                onSnapshot(docRef, (docSnap) => {
+                onSnapshot(stateRef, (docSnap) => {
                     if (docSnap.exists()) {
                         const cloudData = docSnap.data();
+                        let updated = false;
                         if (cloudData.products && Array.isArray(cloudData.products)) {
                             products = cloudData.products;
-                            localStorage.setItem('bp_products_v7', JSON.stringify(products));
+                            localStorage.setItem('bp_products_v8', JSON.stringify(products));
+                            updated = true;
                         }
                         if (cloudData.settings && typeof cloudData.settings === 'object') {
                             settings = cloudData.settings;
-                            localStorage.setItem('bp_settings_v7', JSON.stringify(settings));
+                            localStorage.setItem('bp_settings_v8', JSON.stringify(settings));
+                            updated = true;
                         }
-                        renderSite();
+                        if (updated) {
+                            renderSite();
+                            if (!document.getElementById('admin-modal').classList.contains('hidden')) {
+                                renderAdminProducts();
+                            }
+                        }
                     } else {
-                        setDoc(docRef, { products, settings }, { merge: true }).catch(() => {});
+                        setDoc(stateRef, { products, settings }, { merge: true }).catch(() => {});
                     }
-                }, (err) => {
-                    console.debug("Cloud sync error", err);
+                }, (error) => {
+                    console.error("Error en sincronización en tiempo real:", error);
                 });
 
-                // 2. Real-time active visitor tracking
-                let visitorSessionId = sessionStorage.getItem('bp_device_session');
-                if (!visitorSessionId) {
-                    visitorSessionId = 'device_' + Math.random().toString(36).substring(2) + Date.now();
-                    sessionStorage.setItem('bp_device_session', visitorSessionId);
+                // Real-time active visitors counter
+                let visitorId = sessionStorage.getItem('bp_visitor_id');
+                if (!visitorId) {
+                    visitorId = 'visitor_' + Math.random().toString(36).substring(2) + Date.now();
+                    sessionStorage.setItem('bp_visitor_id', visitorId);
                 }
 
-                const visitorRef = doc(db, 'artifacts', appId, 'public', 'data', 'active_visitors', visitorSessionId);
-                const sendHeartbeat = async () => {
-                    try { if(db) await setDoc(visitorRef, { lastSeen: Date.now() }); } catch (e) {}
+                const visitorRef = doc(db, 'artifacts', appId, 'active_visitors', visitorId);
+                const pingVisitor = async () => {
+                    try {
+                        if (db) await setDoc(visitorRef, { lastSeen: Date.now() });
+                    } catch (e) {}
                 };
 
-                await sendHeartbeat();
-                setInterval(sendHeartbeat, 15000);
+                await pingVisitor();
+                setInterval(pingVisitor, 15000);
 
-                const visitorsCol = collection(db, 'artifacts', appId, 'public', 'data', 'active_visitors');
+                const visitorsCol = collection(db, 'artifacts', appId, 'active_visitors');
                 onSnapshot(query(visitorsCol), (snapshot) => {
                     const now = Date.now();
                     let activeCount = 0;
@@ -712,21 +694,21 @@
                 }, (err) => {});
 
             } catch (e) {
-                console.debug("Firebase init error, fallback to local", e);
+                console.error("Fallo al inicializar Firebase:", e);
             }
         }
 
         async function saveCloudState() {
-            localStorage.setItem('bp_products_v7', JSON.stringify(products));
-            localStorage.setItem('bp_settings_v7', JSON.stringify(settings));
+            localStorage.setItem('bp_products_v8', JSON.stringify(products));
+            localStorage.setItem('bp_settings_v8', JSON.stringify(settings));
             
             try {
-                if (db && appId) {
-                    const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'store_state');
-                    await setDoc(docRef, { products, settings });
+                if (db) {
+                    const stateRef = doc(db, 'artifacts', appId, 'store_state', 'main');
+                    await setDoc(stateRef, { products, settings });
                 }
             } catch (e) {
-                console.debug("Cloud save disabled or error", e);
+                console.error("Error al guardar en la nube:", e);
             }
         }
 
@@ -905,7 +887,7 @@
             saveCart(); updateCartUI();
         }
 
-        function saveCart() { localStorage.setItem('bp_cart_v7', JSON.stringify(cart)); }
+        function saveCart() { localStorage.setItem('bp_cart_v8', JSON.stringify(cart)); }
 
         function updateCartUI() {
             const totalItems = cart.reduce((sum, i) => sum + i.qty, 0);
@@ -1319,7 +1301,7 @@
 
                     await saveCloudState();
 
-                    alert("¡Respaldo importado correctamente! Todos tus productos y configuraciones han sido sincronizados en tiempo real.");
+                    alert("¡Respaldo importado y sincronizado correctamente con la nube!");
                     
                     renderSite();
                     renderAdminProducts();
@@ -1328,7 +1310,7 @@
 
                 } catch (err) {
                     console.error("FAIL-SAFE IMPORT ERROR:", err);
-                    alert("No se pudo leer el archivo JSON. Error exacto en consola (F12). Verificá que sea un archivo de respaldo válido.");
+                    alert("No se pudo leer el archivo JSON. Asegurate de que el archivo tenga formato JSON válido.");
                     e.target.value = '';
                 }
             };
@@ -1357,7 +1339,7 @@
         window.toggleAdminPanel = toggleAdminPanel;
         window.switchAdminTab = switchAdminTab;
         window.handleAddNewProduct = handleAddNewProduct;
-        window.openEditModal = openEditModal;
+        window.openEditModal = openEditmodal => openEditModal(openEditmodal);
         window.closeEditModal = closeEditModal;
         window.handleSaveEditedProduct = handleSaveEditedProduct;
         window.deleteProduct = deleteProduct;
