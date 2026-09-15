@@ -39,7 +39,7 @@
 
     <header class="sticky top-0 z-50 bg-zinc-950/90 backdrop-blur-md border-b border-gold/20">
         <div id="header-container" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-24 flex items-center justify-between transition-all duration-300">
-            <!-- Far Left Logo & Brand Name -->
+            <!-- Far Left Logo & Elegant Brand Name -->
             <div id="header-left" class="flex items-center space-x-3.5 transition-all shrink-0">
                 <div class="bg-gradient-to-tr from-gold-dark via-gold to-gold-light p-0.5 rounded-full overflow-hidden flex items-center justify-center shadow-xl shadow-gold/20">
                     <div class="bg-zinc-950 p-1 rounded-full flex items-center justify-center">
@@ -52,7 +52,7 @@
                 </div>
             </div>
 
-            <!-- Navigation in requested order -->
+            <!-- Navigation in requested exact order -->
             <nav id="header-nav" class="hidden lg:flex items-center justify-center gap-1.5 text-sm font-medium tracking-wide transition-all mx-4">
                 <a href="#catalogo" class="bg-gold text-zinc-950 px-4 py-2 rounded-full hover:bg-gold-light transition-all whitespace-nowrap font-bold shadow-sm shadow-gold/25">Catálogo</a>
                 <a href="#bloque-garantia" class="text-zinc-300 hover:text-gold hover:bg-zinc-900/80 px-4 py-2 rounded-full transition-all whitespace-nowrap">Garantía</a>
@@ -160,7 +160,7 @@
     </section>
 
     <footer class="bg-zinc-950 border-t border-gold/20 py-8 text-center text-sm text-zinc-500 relative">
-        <!-- Admin Trigger Button at bottom RIGHT as requested -->
+        <!-- Admin Trigger Button at bottom RIGHT corner as requested -->
         <button onclick="openAdminAuth()" class="absolute bottom-4 right-4 text-[10px] tracking-widest uppercase text-zinc-400 hover:text-gold transition-colors flex items-center gap-1.5 p-2.5 bg-zinc-900/80 rounded-xl border border-zinc-800 shadow-md z-30 font-bold">
             <i class="fa-solid fa-lock text-xs text-gold"></i> Admin
         </button>
@@ -231,7 +231,7 @@
         </div>
     </div>
 
-    <button onclick="toggleAIChat()" class="fixed bottom-6 right-6 z-40 bg-gold hover:bg-gold-light text-zinc-950 w-12 h-12 rounded-full flex items-center justify-center shadow-2xl shadow-gold/20 transition-transform transform hover:scale-110" title="Asistente Virtual IA">
+    <button onclick="toggleAIChat()" class="fixed bottom-6 right-24 z-40 bg-gold hover:bg-gold-light text-zinc-950 w-12 h-12 rounded-full flex items-center justify-center shadow-2xl shadow-gold/20 transition-transform transform hover:scale-110" title="Asistente Virtual IA">
         <i class="fa-solid fa-comment-dots text-xl"></i>
     </button>
 
@@ -267,7 +267,7 @@
                 <div class="flex justify-between items-center pb-6 border-b border-zinc-800 mb-6">
                     <div>
                         <h2 class="font-serif-custom font-bold text-2xl text-gold">Panel de Administración CMS</h2>
-                        <p class="text-sm text-zinc-400">Control total y sincronización en la nube con Firebase.</p>
+                        <p class="text-sm text-zinc-400">Control total y sincronización en la nube con Firebase Firestore.</p>
                     </div>
                     <div class="flex items-center gap-4">
                         <!-- Real-Time Firebase Visitor Counter Widget -->
@@ -458,7 +458,7 @@
                 <div id="admin-tab-seguridad" class="admin-tab-content space-y-4 hidden">
                     <h3 class="text-sm font-semibold uppercase tracking-wider text-zinc-400"><i class="fa-solid fa-key text-gold"></i> Cambiar Contraseña de Administrador</h3>
                     <p class="text-xs text-zinc-400 leading-relaxed">
-                        Modificá la clave para proteger tu panel de administración. Por defecto es <span class="font-mono bg-zinc-800 px-1 rounded text-gold">admin123</span>.
+                        Modificá la clave para proteger tu panel de administración. Se sincronizará automáticamente en la nube con todos tus dispositivos.
                     </p>
                     <form onsubmit="handlePasswordChange(event)" class="space-y-4 max-w-md">
                         <div>
@@ -540,7 +540,7 @@
             { id: 3, name: "Victoria's Secret Velvet Petals", category: "Victoria's Secret", price: 42000, notes: "Flores exuberantes y almendras azucaradas", image: "https://placehold.co/400x400/18181b/D4AF37?text=Velvet+Petals" }
         ];
 
-        // Logo SVG matching your business branding
+        // Your custom business logo SVG matching your branding
         const defaultLogoSVG = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%23111' stroke='%23D4AF37' stroke-width='4'/><path d='M15 50h70M50 15v70M28 28c15 15 29 15 44 0M28 72c15-15 29-15 44 0' fill='none' stroke='%23444' stroke-width='1'/><text x='50' y='46' font-family='sans-serif' font-size='15' font-weight='bold' fill='%23FFF' text-anchor='middle'>Black</text><text x='50' y='65' font-family='sans-serif' font-size='16' font-weight='bold' fill='%23D4AF37' text-anchor='middle'>Import</text></svg>";
 
         let defaultSettings = {
@@ -553,6 +553,7 @@
             instagram: "https://instagram.com",
             facebook: "https://facebook.com",
             tiktok: "https://tiktok.com",
+            adminPassword: "admin123",
             sections: [
                 {
                     id: "garantia",
@@ -605,6 +606,7 @@
             ]
         };
 
+        // Fallback local state until cloud sync kicks in
         let settings = JSON.parse(localStorage.getItem('bp_settings_v8')) || defaultSettings;
         let products = JSON.parse(localStorage.getItem('bp_products_v8')) || defaultProducts;
         let cart = JSON.parse(localStorage.getItem('bp_cart_v8')) || [];
@@ -614,7 +616,6 @@
         let currentSort = 'relevancia';
         let tempSections = [];
         let tempLogoBase64 = "";
-        let adminPassword = localStorage.getItem('bp_admin_pass') || 'admin123';
 
         let db = null;
         let appId = "black-perfumes-bd";
@@ -631,7 +632,7 @@
                 const auth = getAuth(app);
                 
                 await signInAnonymously(auth);
-                console.info("Firebase conectado correctamente.");
+                console.info("Firebase conectado correctamente. Fuente de verdad cloud establecida.");
 
                 const stateRef = doc(db, 'artifacts', appId, 'store_state', 'main');
                 
@@ -645,7 +646,7 @@
                             updated = true;
                         }
                         if (cloudData.settings && typeof cloudData.settings === 'object') {
-                            settings = cloudData.settings;
+                            settings = { ...defaultSettings, ...cloudData.settings };
                             localStorage.setItem('bp_settings_v8', JSON.stringify(settings));
                             updated = true;
                         }
@@ -656,7 +657,7 @@
                             }
                         }
                     } else {
-                        setDoc(stateRef, { products, settings }, { merge: true }).catch(() => {});
+                        setDoc(stateRef, { products, settings }, { merge: true }).catch((err) => console.error("Error creating initial doc:", err));
                     }
                 }, (error) => {
                     console.error("Error en sincronización en tiempo real:", error);
@@ -705,7 +706,7 @@
             try {
                 if (db) {
                     const stateRef = doc(db, 'artifacts', appId, 'store_state', 'main');
-                    await setDoc(stateRef, { products, settings });
+                    await setDoc(stateRef, { products, settings }, { merge: true });
                 }
             } catch (e) {
                 console.error("Error al guardar en la nube:", e);
@@ -766,7 +767,7 @@
                 <div id="bloque-${sec.id}" class="scroll-mt-28 space-y-10">
                     <div class="text-center space-y-3">
                         ${sec.subtitle ? `<span class="text-xs font-bold uppercase tracking-widest text-gold bg-gold/10 px-4 py-1.5 rounded-full border border-gold/20 shadow-sm">${sec.subtitle}</span>` : ''}
-                        <h2 class="font-serif-custom text-3xl md:text-4xl font-bold text-zinc-100">${sec.title}</h2>
+                        <h2 class="font-serif-custom text-3xl md:text-4xl font-bold text-zinc-100 text-center">${sec.title}</h2>
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         ${sec.cards.map(card => `
@@ -774,8 +775,8 @@
                                 <div class="w-16 h-16 bg-gold/10 rounded-2xl flex items-center justify-center text-3xl mb-6 border border-gold/20 group-hover:scale-110 transition-transform shadow-inner">
                                     ${card.emoji || '✨'}
                                 </div>
-                                <h3 class="font-serif-custom font-bold text-xl text-zinc-100 mb-3">${card.title}</h3>
-                                <p class="text-zinc-400 text-sm leading-relaxed">${card.text}</p>
+                                <h3 class="font-serif-custom font-bold text-xl text-zinc-100 mb-3 text-center">${card.title}</h3>
+                                <p class="text-zinc-400 text-sm leading-relaxed text-center">${card.text}</p>
                             </div>
                         `).join('')}
                     </div>
@@ -1002,12 +1003,17 @@
             document.getElementById('admin-auth-modal').classList.remove('hidden');
         }
         function closeAdminAuth() { document.getElementById('admin-auth-modal').classList.add('hidden'); }
+        
         function handleAdminLogin(e) {
             e.preventDefault();
-            if (document.getElementById('admin-password-input').value === adminPassword) {
+            const currentPass = settings.adminPassword || 'admin123';
+            if (document.getElementById('admin-password-input').value === currentPass) {
                 closeAdminAuth(); toggleAdminPanel();
-            } else document.getElementById('auth-error-msg').classList.remove('hidden');
+            } else {
+                document.getElementById('auth-error-msg').classList.remove('hidden');
+            }
         }
+
         function toggleAdminPanel() {
             const modal = document.getElementById('admin-modal');
             modal.classList.toggle('hidden');
@@ -1015,6 +1021,7 @@
                 renderAdminProducts(); loadSettingsForm();
             }
         }
+
         function switchAdminTab(tabName) {
             document.querySelectorAll('.admin-tab-content').forEach(el => el.classList.add('hidden'));
             document.querySelectorAll('.admin-tab-btn').forEach(el => {
@@ -1202,7 +1209,7 @@
             settings.heroTitle = document.getElementById('setting-hero-title').value;
             settings.heroSub = document.getElementById('setting-hero-sub').value;
             settings.primaryColor = document.getElementById('setting-color').value;
-            settings.logoImage = tempLogoBase64 || defaultLogoSVG;
+            settings.logoImage = tempLogoBase64 || settings.logoImage || defaultLogoSVG;
             settings.instagram = document.getElementById('setting-ig').value;
             settings.facebook = document.getElementById('setting-fb').value;
             settings.tiktok = document.getElementById('setting-tk').value;
@@ -1218,7 +1225,7 @@
             document.getElementById('setting-color-text').value = e.target.value.toUpperCase();
         });
 
-        function handlePasswordChange(e) {
+        async function handlePasswordChange(e) {
             e.preventDefault();
             const p1 = document.getElementById('new-admin-password').value;
             const p2 = document.getElementById('confirm-admin-password').value;
@@ -1230,9 +1237,9 @@
                 alert("La contraseña debe tener al menos 4 caracteres.");
                 return;
             }
-            adminPassword = p1;
-            localStorage.setItem('bp_admin_pass', adminPassword);
-            alert("¡Contraseña de administrador actualizada con éxito!");
+            settings.adminPassword = p1;
+            await saveCloudState();
+            alert("¡Contraseña de administrador actualizada y sincronizada en la nube con éxito!");
             document.getElementById('new-admin-password').value = '';
             document.getElementById('confirm-admin-password').value = '';
         }
@@ -1292,6 +1299,7 @@
                                 instagram: parsed.settings.instagram !== undefined ? parsed.settings.instagram : defaultSettings.instagram,
                                 facebook: parsed.settings.facebook !== undefined ? parsed.settings.facebook : defaultSettings.facebook,
                                 tiktok: parsed.settings.tiktok !== undefined ? parsed.settings.tiktok : defaultSettings.tiktok,
+                                adminPassword: parsed.settings.adminPassword || defaultSettings.adminPassword,
                                 sections: Array.isArray(parsed.settings.sections) ? parsed.settings.sections : defaultSettings.sections
                             };
                         }
