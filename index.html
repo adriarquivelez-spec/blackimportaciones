@@ -166,7 +166,7 @@
         </div>
         
         <!-- Protected Admin Trigger Button at bottom LEFT -->
-        <button onclick="openAdminAuth()" class="absolute bottom-4 left-4 text-[10px] tracking-widest uppercase text-zinc-600 hover:text-gold transition-colors flex items-center gap-1.5 p-2 bg-zinc-900/60 rounded-lg border border-zinc-800">
+        <button onclick="openAdminAuth()" class="absolute bottom-4 left-4 text-[10px] tracking-widest uppercase text-zinc-600 hover:text-gold transition-colors flex items-center gap-1.5 p-2 bg-zinc-900/60 rounded-lg border border-zinc-800 shadow-md">
             <i class="fa-solid fa-lock text-xs"></i> Admin
         </button>
     </footer>
@@ -267,10 +267,10 @@
                 <div class="flex justify-between items-center pb-6 border-b border-zinc-800 mb-6">
                     <div>
                         <h2 class="font-serif-custom font-bold text-2xl text-gold">Panel de Administración CMS</h2>
-                        <p class="text-sm text-zinc-400">Control total sobre productos, secciones, respaldo y estadísticas en tiempo real.</p>
+                        <p class="text-sm text-zinc-400">Control total sobre productos, secciones, respaldo y estadísticas reales.</p>
                     </div>
                     <div class="flex items-center gap-4">
-                        <!-- Live Visitor Counter Widget -->
+                        <!-- Real Firebase Visitor Counter Widget -->
                         <div class="bg-zinc-950 border border-gold/30 px-4 py-2 rounded-xl flex items-center gap-3 shadow-inner">
                             <span class="relative flex h-3 w-3">
                               <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
@@ -293,8 +293,9 @@
                     <button onclick="switchAdminTab('apariencia')" id="tab-btn-apariencia" class="admin-tab-btn px-4 py-2 rounded-xl text-sm font-semibold bg-zinc-800 text-zinc-300 hover:text-zinc-100 transition-all">Logo & Estilos</button>
                     <button onclick="switchAdminTab('textos')" id="tab-btn-textos" class="admin-tab-btn px-4 py-2 rounded-xl text-sm font-semibold bg-zinc-800 text-zinc-300 hover:text-zinc-100 transition-all">Textos</button>
                     <button onclick="switchAdminTab('bloques')" id="tab-btn-bloques" class="admin-tab-btn px-4 py-2 rounded-xl text-sm font-semibold bg-zinc-800 text-zinc-300 hover:text-zinc-100 transition-all">Secciones</button>
-                    <button onclick="switchAdminTab('respaldo')" id="tab-btn-respaldo" class="admin-tab-btn px-4 py-2 rounded-xl text-sm font-semibold bg-zinc-800 text-zinc-300 hover:text-zinc-100 transition-all"><i class="fa-solid fa-database"></i> Respaldo / Backup</button>
+                    <button onclick="switchAdminTab('respaldo')" id="tab-btn-respaldo" class="admin-tab-btn px-4 py-2 rounded-xl text-sm font-semibold bg-zinc-800 text-zinc-300 hover:text-zinc-100 transition-all"><i class="fa-solid fa-database"></i> Respaldo</button>
                     <button onclick="switchAdminTab('redes')" id="tab-btn-redes" class="admin-tab-btn px-4 py-2 rounded-xl text-sm font-semibold bg-zinc-800 text-zinc-300 hover:text-zinc-100 transition-all">Redes</button>
+                    <button onclick="switchAdminTab('seguridad')" id="tab-btn-seguridad" class="admin-tab-btn px-4 py-2 rounded-xl text-sm font-semibold bg-zinc-800 text-zinc-300 hover:text-zinc-100 transition-all"><i class="fa-solid fa-key"></i> Contraseña</button>
                 </div>
 
                 <!-- Tab 1: Products -->
@@ -404,7 +405,7 @@
                     <button onclick="saveSiteSettings()" class="w-full bg-gold hover:bg-gold-light text-zinc-950 font-bold py-3 rounded-xl transition-all shadow-lg shadow-gold/20 sticky bottom-0">Guardar Todas las Secciones</button>
                 </div>
 
-                <!-- Tab 6: Backup / Respaldo with flexible import handling -->
+                <!-- Tab 6: Backup / Respaldo -->
                 <div id="admin-tab-respaldo" class="admin-tab-content space-y-6 hidden">
                     <h3 class="text-sm font-semibold uppercase tracking-wider text-zinc-400"><i class="fa-solid fa-database text-gold"></i> Respaldo de Base de Datos (Backup)</h3>
                     <p class="text-xs text-zinc-400 leading-relaxed">
@@ -453,6 +454,27 @@
                     </div>
                 </div>
 
+                <!-- Tab 8: Security & Password Change -->
+                <div id="admin-tab-seguridad" class="admin-tab-content space-y-4 hidden">
+                    <h3 class="text-sm font-semibold uppercase tracking-wider text-zinc-400"><i class="fa-solid fa-key text-gold"></i> Cambiar Contraseña de Administrador</h3>
+                    <p class="text-xs text-zinc-400 leading-relaxed">
+                        Modificá la clave para proteger tu panel de administración. Por defecto es <span class="font-mono bg-zinc-800 px-1 rounded text-gold">admin123</span>.
+                    </p>
+                    <form onsubmit="handlePasswordChange(event)" class="space-y-4 max-w-md">
+                        <div>
+                            <label class="block text-xs font-medium text-zinc-400 mb-1">Nueva Contraseña</label>
+                            <input type="password" id="new-admin-password" required placeholder="Ingresá la nueva clave..." class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3 text-sm focus:border-gold outline-none text-zinc-100">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-zinc-400 mb-1">Confirmar Nueva Contraseña</label>
+                            <input type="password" id="confirm-admin-password" required placeholder="Repetila..." class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3 text-sm focus:border-gold outline-none text-zinc-100">
+                        </div>
+                        <button type="submit" class="w-full bg-gold hover:bg-gold-light text-zinc-950 font-bold py-3.5 rounded-xl transition-all shadow-lg shadow-gold/20">
+                            Actualizar Contraseña
+                        </button>
+                    </form>
+                </div>
+
             </div>
         </div>
     </div>
@@ -497,13 +519,18 @@
         </div>
     </div>
 
-    <script>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, doc, setDoc, onSnapshot, collection, query } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
         const defaultProducts = [
             { id: 1, name: "Lattafa Eclaire", category: "Perfumes Árabes", price: 78000, notes: "Caramelo, leche, miel y vainilla", image: "https://placehold.co/400x400/18181b/D4AF37?text=Lattafa+Eclaire" },
             { id: 2, name: "Armaf Club de Nuit Untold", category: "Perfumes Árabes", price: 87000, notes: "Azafrán, jazmín y ámbar gris", image: "https://placehold.co/400x400/18181b/D4AF37?text=Club+de+Nuit" },
             { id: 3, name: "Victoria's Secret Velvet Petals", category: "Victoria's Secret", price: 42000, notes: "Flores exuberantes y almendras azucaradas", image: "https://placehold.co/400x400/18181b/D4AF37?text=Velvet+Petals" }
         ];
 
+        // Default Business Logo as requested
         const defaultLogoSVG = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%23111' stroke='%23D4AF37' stroke-width='4'/><text x='50' y='57' font-family='serif' font-size='22' font-weight='bold' fill='%23D4AF37' text-anchor='middle'>BLACK</text></svg>";
 
         let defaultSettings = {
@@ -577,23 +604,76 @@
         let currentSort = 'relevancia';
         let tempSections = [];
         let tempLogoBase64 = "";
+        let adminPassword = localStorage.getItem('bp_admin_pass') || 'admin123';
 
+        // Initialize App on Window Load
         window.onload = function() {
             renderSite();
-            initVisitorCounter();
+            initRealTimeVisitors();
         };
 
-        function initVisitorCounter() {
-            let baseCount = Math.floor(Math.random() * 5) + 2;
-            const counterEl = document.getElementById('live-visitors-count');
-            if (counterEl) counterEl.innerText = baseCount;
-            
-            setInterval(() => {
-                const fluctuation = Math.floor(Math.random() * 3) - 1;
-                baseCount = Math.max(1, baseCount + fluctuation);
-                const el = document.getElementById('live-visitors-count');
-                if (el) el.innerText = baseCount;
-            }, 6000);
+        // Real-Time Visitor Counter using Firebase Firestore presence heartbeat
+        async function initRealTimeVisitors() {
+            try {
+                if (typeof __firebase_config === 'undefined') return;
+                const firebaseConfig = JSON.parse(__firebase_config);
+                const app = initializeApp(firebaseConfig);
+                const db = getFirestore(app);
+                const auth = getAuth(app);
+
+                if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                    await signInWithCustomToken(auth, __initial_auth_token);
+                } else {
+                    await signInAnonymously(auth);
+                }
+
+                const appId = typeof __app_id !== 'undefined' ? __app_id : 'black-perfumes-default';
+                
+                // Generate a unique device session ID so multiple tabs from the exact same browser/device count as 1 visitor
+                let visitorSessionId = sessionStorage.getItem('bp_device_session');
+                if (!visitorSessionId) {
+                    visitorSessionId = 'device_' + Math.random().toString(36).substring(2) + Date.now();
+                    sessionStorage.setItem('bp_device_session', visitorSessionId);
+                }
+
+                const visitorRef = doc(db, 'artifacts', appId, 'public', 'data', 'active_visitors', visitorSessionId);
+
+                // Send heartbeat every 15 seconds
+                const sendHeartbeat = async () => {
+                    try {
+                        await setDoc(visitorRef, {
+                            lastSeen: Date.now(),
+                            userAgent: navigator.userAgent.substring(0, 50)
+                        });
+                    } catch (e) {
+                        console.debug("Heartbeat error", e);
+                    }
+                };
+
+                await sendHeartbeat();
+                setInterval(sendHeartbeat, 15000);
+
+                // Listen to all active visitors in real time
+                const visitorsCol = collection(db, 'artifacts', appId, 'public', 'data', 'active_visitors');
+                onSnapshot(query(visitorsCol), (snapshot) => {
+                    const now = Date.now();
+                    let activeCount = 0;
+                    snapshot.forEach(docSnap => {
+                        const data = docSnap.data();
+                        // If seen within the last 45 seconds, count as active
+                        if (data.lastSeen && (now - data.lastSeen < 45000)) {
+                            activeCount++;
+                        }
+                    });
+                    const countEl = document.getElementById('live-visitors-count');
+                    if (countEl) countEl.innerText = Math.max(1, activeCount);
+                }, (err) => {
+                    console.debug("Visitors snapshot error", err);
+                });
+
+            } catch (e) {
+                console.debug("Firebase visitors init fallback", e);
+            }
         }
 
         function applyDesignSettings() {
@@ -768,7 +848,7 @@
                 item.qty += delta;
                 if (item.qty <= 0) cart = cart.filter(i => i.id !== productId);
             }
-            saveCart(); updateCartUI();
+            saveCart(); updateQtyUI();
         }
 
         function saveCart() { localStorage.setItem('bp_cart_v7', JSON.stringify(cart)); }
@@ -888,7 +968,7 @@
         function closeAdminAuth() { document.getElementById('admin-auth-modal').classList.add('hidden'); }
         function handleAdminLogin(e) {
             e.preventDefault();
-            if (document.getElementById('admin-password-input').value === 'admin123') {
+            if (document.getElementById('admin-password-input').value === adminPassword) {
                 closeAdminAuth(); toggleAdminPanel();
             } else document.getElementById('auth-error-msg').classList.remove('hidden');
         }
@@ -1086,7 +1166,7 @@
             settings.heroTitle = document.getElementById('setting-hero-title').value;
             settings.heroSub = document.getElementById('setting-hero-sub').value;
             settings.primaryColor = document.getElementById('setting-color').value;
-            settings.logoImage = tempLogoBase64;
+            settings.logoImage = tempLogoBase64 || defaultLogoSVG;
             settings.instagram = document.getElementById('setting-ig').value;
             settings.facebook = document.getElementById('setting-fb').value;
             settings.tiktok = document.getElementById('setting-tk').value;
@@ -1101,6 +1181,25 @@
         document.getElementById('setting-color').addEventListener('input', (e) => {
             document.getElementById('setting-color-text').value = e.target.value.toUpperCase();
         });
+
+        function handlePasswordChange(e) {
+            e.preventDefault();
+            const p1 = document.getElementById('new-admin-password').value;
+            const p2 = document.getElementById('confirm-admin-password').value;
+            if (p1 !== p2) {
+                alert("Las contraseñas no coinciden.");
+                return;
+            }
+            if (p1.length < 4) {
+                alert("La contraseña debe tener al menos 4 caracteres.");
+                return;
+            }
+            adminPassword = p1;
+            localStorage.setItem('bp_admin_pass', adminPassword);
+            alert("¡Contraseña de administrador actualizada con éxito!");
+            document.getElementById('new-admin-password').value = '';
+            document.getElementById('confirm-admin-password').value = '';
+        }
 
         function exportBackupJSON() {
             const backupData = {
@@ -1117,7 +1216,6 @@
             downloadAnchor.remove();
         }
 
-        // Extremely flexible and robust JSON import handler
         function importBackupJSON(e) {
             const file = e.target.files[0];
             if (!file) return;
@@ -1130,17 +1228,13 @@
                     const rawContent = event.target.result;
                     const parsed = JSON.parse(rawContent);
 
-                    // If the uploaded file is a raw array of products directly
                     if (Array.isArray(parsed)) {
                         products = parsed;
-                    } 
-                    // Standard wrapper object
-                    else if (typeof parsed === 'object' && parsed !== null) {
+                    } else if (typeof parsed === 'object' && parsed !== null) {
                         if (Array.isArray(parsed.products)) {
                             products = parsed.products;
                         }
                         if (typeof parsed.settings === 'object' && parsed.settings !== null) {
-                            // Merge settings safely, falling back to defaults for any missing keys
                             settings = {
                                 brandName: parsed.settings.brandName || defaultSettings.brandName,
                                 logoImage: parsed.settings.logoImage || defaultSettings.logoImage,
@@ -1158,18 +1252,13 @@
                         throw new Error("Estructura JSON no reconocida.");
                     }
 
-                    // Save safely into localStorage
                     localStorage.setItem('bp_products_v7', JSON.stringify(products));
                     localStorage.setItem('bp_settings_v7', JSON.stringify(settings));
 
                     alert("¡Respaldo importado con éxito! Todos tus productos y configuraciones han sido restaurados.");
-                    
-                    // Refresh app states and UI immediately
                     renderSite();
                     renderAdminProducts();
                     loadSettingsForm();
-
-                    // Clear file input
                     e.target.value = '';
 
                 } catch (err) {
@@ -1183,7 +1272,36 @@
             };
         }
 
-        function resetDefaultData() {
+        window.filterCategory = filterCategory;
+        window.handleSearch = handleSearch;
+        window.handleSort = handleSort;
+        window.addToCart = addToCart;
+        window.updateQty = updateQty;
+        window.checkoutWhatsApp = checkoutWhatsApp;
+        window.toggleCart = toggleCart;
+        window.toggleAIChat = toggleAIChat;
+        window.handleAIChatSubmit = handleAIChatSubmit;
+        window.openAdminAuth = openAdminAuth;
+        window.closeAdminAuth = closeAdminAuth;
+        window.handleAdminLogin = handleAdminLogin;
+        window.toggleAdminPanel = toggleAdminPanel;
+        window.switchAdminTab = switchAdminTab;
+        window.handleAddNewProduct = handleAddNewProduct;
+        window.openEditModal = openEditModal;
+        window.closeEditModal = closeEditModal;
+        window.handleSaveEditedProduct = handleSaveEditedProduct;
+        window.deleteProduct = deleteProduct;
+        window.handleLogoUpload = handleLogoUpload;
+        window.removeLogo = removeLogo;
+        window.addAdminSection = addAdminSection;
+        window.removeAdminSection = removeAdminSection;
+        window.addAdminCard = addAdminCard;
+        window.removeAdminCard = removeAdminCard;
+        window.saveSiteSettings = saveSiteSettings;
+        window.exportBackupJSON = exportBackupJSON;
+        window.importBackupJSON = importBackupJSON;
+        window.handlePasswordChange = handlePasswordChange;
+        window.resetDefaultData = function() {
             if (confirm("¿Restaurar todos los productos y configuraciones originales de fábrica?")) {
                 localStorage.removeItem('bp_products_v7');
                 localStorage.removeItem('bp_settings_v7');
@@ -1191,7 +1309,7 @@
                 settings = defaultSettings;
                 renderSite(); renderAdminProducts(); loadSettingsForm();
             }
-        }
+        };
     </script>
 </body>
 </html>
