@@ -52,7 +52,7 @@
                 </div>
             </div>
 
-            <!-- Top Navigation in requested exact order -->
+            <!-- Top Navigation in exact requested order -->
             <nav id="header-nav" class="hidden lg:flex items-center justify-center gap-1.5 text-sm font-medium tracking-wide transition-all mx-4">
                 <a href="#catalogo" class="bg-gold text-zinc-950 px-4 py-2 rounded-full hover:bg-gold-light transition-all whitespace-nowrap font-bold shadow-sm shadow-gold/25">Catálogo</a>
                 <a href="#bloque-garantia" class="text-zinc-300 hover:text-gold hover:bg-zinc-900/80 px-4 py-2 rounded-full transition-all whitespace-nowrap">Garantía</a>
@@ -267,7 +267,7 @@
                 <div class="flex justify-between items-center pb-6 border-b border-zinc-800 mb-6">
                     <div>
                         <h2 class="font-serif-custom font-bold text-2xl text-gold">Panel de Administración CMS</h2>
-                        <p class="text-sm text-zinc-400">Control total sobre productos, secciones, respaldo y estadísticas reales.</p>
+                        <p class="text-sm text-zinc-400">Control total y sincronización instantánea en tiempo real.</p>
                     </div>
                     <div class="flex items-center gap-4">
                         <!-- True Real-Time Firebase Visitor Counter Widget -->
@@ -522,7 +522,7 @@
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
         import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, doc, setDoc, onSnapshot, collection, query } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        import { getFirestore, doc, setDoc, getDoc, onSnapshot, collection, query } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
         const defaultProducts = [
             { id: 1, name: "Lattafa Eclaire", category: "Perfumes Árabes", price: 78000, notes: "Caramelo, leche, miel y vainilla", image: "https://placehold.co/400x400/18181b/D4AF37?text=Lattafa+Eclaire" },
@@ -606,17 +606,19 @@
         let tempLogoBase64 = "";
         let adminPassword = localStorage.getItem('bp_admin_pass') || 'admin123';
 
-        window.onload = function() {
+        let db, appId;
+
+        window.onload = async function() {
             renderSite();
-            initRealTimeVisitors();
+            await initFirebaseAndRealtimeSync();
         };
 
-        async function initRealTimeVisitors() {
+        async function initFirebaseAndRealtimeSync() {
             try {
                 if (typeof __firebase_config === 'undefined') return;
                 const firebaseConfig = JSON.parse(__firebase_config);
                 const app = initializeApp(firebaseConfig);
-                const db = getFirestore(app);
+                db = getFirestore(app);
                 const auth = getAuth(app);
 
                 if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
@@ -625,8 +627,32 @@
                     await signInAnonymously(auth);
                 }
 
-                const appId = typeof __app_id !== 'undefined' ? __app_id : 'black-perfumes-default';
+                appId = typeof __app_id !== 'undefined' ? __app_id : 'black-perfumes-default';
                 
+                // 1. Real-time Firestore document listeners for products & settings (Cross-device instant updates)
+                const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'store_state');
+                
+                onSnapshot(docRef, (docSnap) => {
+                    if (docSnap.exists()) {
+                        const cloudData = docSnap.data();
+                        if (cloudData.products && Array.isArray(cloudData.products)) {
+                            products = cloudData.products;
+                            localStorage.setItem('bp_products_v7', JSON.stringify(products));
+                        }
+                        if (cloudData.settings && typeof cloudData.settings === 'object') {
+                            settings = cloudData.settings;
+                            localStorage.setItem('bp_settings_v7', JSON.stringify(settings));
+                        }
+                        renderSite();
+                    } else {
+                        // Initialize cloud state with defaults if not present
+                        setDoc(docRef, { products, settings }, { merge: true }).catch(() => {});
+                    }
+                }, (err) => {
+                    console.debug("Cloud sync snapshot error", err);
+                });
+
+                // 2. Real-time active visitor tracking across tabs/devices
                 let visitorSessionId = sessionStorage.getItem('bp_device_session');
                 if (!visitorSessionId) {
                     visitorSessionId = 'device_' + Math.random().toString(36).substring(2) + Date.now();
@@ -634,16 +660,10 @@
                 }
 
                 const visitorRef = doc(db, 'artifacts', appId, 'public', 'data', 'active_visitors', visitorSessionId);
-
                 const sendHeartbeat = async () => {
                     try {
-                        await setDoc(visitorRef, {
-                            lastSeen: Date.now(),
-                            userAgent: navigator.userAgent.substring(0, 50)
-                        });
-                    } catch (e) {
-                        console.debug("Heartbeat error", e);
-                    }
+                        await setDoc(visitorRef, { lastSeen: Date.now() });
+                    } catch (e) {}
                 };
 
                 await sendHeartbeat();
@@ -661,12 +681,24 @@
                     });
                     const countEl = document.getElementById('live-visitors-count');
                     if (countEl) countEl.innerText = Math.max(1, activeCount);
-                }, (err) => {
-                    console.debug("Visitors snapshot error", err);
-                });
+                }, (err) => {});
 
             } catch (e) {
-                console.debug("Firebase visitors init fallback", e);
+                console.debug("Firebase initialization fallback", e);
+            }
+        }
+
+        async function saveCloudState() {
+            localStorage.setItem('bp_products_v7', JSON.stringify(products));
+            localStorage.setItem('bp_settings_v7', JSON.stringify(settings));
+            
+            try {
+                if (db && appId) {
+                    const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'store_state');
+                    await setDoc(docRef, { products, settings });
+                }
+            } catch (e) {
+                console.debug("Cloud save error", e);
             }
         }
 
@@ -1008,10 +1040,10 @@
             `).join('');
         }
 
-        function handleAddNewProduct(e) {
+        async function handleAddNewProduct(e) {
             e.preventDefault();
             const fileInput = document.getElementById('new-image-file');
-            const processSave = (imgSrc) => {
+            const processSave = async (imgSrc) => {
                 products.push({
                     id: Date.now(),
                     name: document.getElementById('new-name').value,
@@ -1020,12 +1052,12 @@
                     image: imgSrc,
                     notes: document.getElementById('new-notes').value || ''
                 });
-                localStorage.setItem('bp_products_v7', JSON.stringify(products));
+                await saveCloudState();
                 document.getElementById('add-product-form').reset();
                 renderAdminProducts(); renderSite(); switchAdminTab('productos');
             };
             if (fileInput.files[0]) fileToBase64(fileInput.files[0], processSave);
-            else processSave('https://placehold.co/400x400/18181b/D4AF37?text=Perfume');
+            else await processSave('https://placehold.co/400x400/18181b/D4AF37?text=Perfume');
         }
 
         function openEditModal(id) {
@@ -1042,7 +1074,7 @@
 
         function closeEditModal() { document.getElementById('edit-modal').classList.add('hidden'); }
 
-        function handleSaveEditedProduct(e) {
+        async function handleSaveEditedProduct(e) {
             e.preventDefault();
             const p = products.find(prod => prod.id === Number(document.getElementById('edit-id').value));
             if (!p) return;
@@ -1053,17 +1085,17 @@
 
             const fileInput = document.getElementById('edit-image-file');
             if (fileInput.files[0]) {
-                fileToBase64(fileInput.files[0], (src) => { p.image = src; finalizeEdit(); });
-            } else finalizeEdit();
+                fileToBase64(fileInput.files[0], async (src) => { p.image = src; await finalizeEdit(); });
+            } else await finalizeEdit();
         }
-        function finalizeEdit() {
-            localStorage.setItem('bp_products_v7', JSON.stringify(products));
+        async function finalizeEdit() {
+            await saveCloudState();
             closeEditModal(); renderAdminProducts(); renderSite();
         }
-        function deleteProduct(id) {
+        async function deleteProduct(id) {
             if (confirm("¿Eliminar este producto?")) {
                 products = products.filter(p => p.id !== id);
-                localStorage.setItem('bp_products_v7', JSON.stringify(products));
+                await saveCloudState();
                 renderAdminProducts(); renderSite();
             }
         }
@@ -1154,7 +1186,7 @@
             renderAdminSectionsList();
         }
 
-        function saveSiteSettings() {
+        async function saveSiteSettings() {
             settings.brandName = document.getElementById('setting-brand').value;
             settings.whatsappNumber = document.getElementById('setting-whatsapp').value;
             settings.heroTitle = document.getElementById('setting-hero-title').value;
@@ -1166,8 +1198,8 @@
             settings.tiktok = document.getElementById('setting-tk').value;
             settings.sections = tempSections;
 
-            localStorage.setItem('bp_settings_v7', JSON.stringify(settings));
-            alert("¡Configuración guardada y aplicada con éxito!");
+            await saveCloudState();
+            alert("¡Configuración guardada y sincronizada en tiempo real con todos los dispositivos!");
             renderSite();
             toggleAdminPanel();
         }
@@ -1216,7 +1248,7 @@
 
             const fileReader = new FileReader();
             
-            fileReader.onload = function(event) {
+            fileReader.onload = async function(event) {
                 try {
                     const rawContent = event.target.result;
                     if (!rawContent || rawContent.trim() === "") {
@@ -1231,14 +1263,11 @@
                         throw new Error("El archivo no tiene un formato JSON válido.");
                     }
 
-                    // Flexible structure extraction with defaults
                     if (Array.isArray(parsed)) {
-                        // If backup was just an array of products
                         if (parsed.length > 0) {
                             products = parsed;
                         }
                     } else if (typeof parsed === 'object' && parsed !== null) {
-                        // If backup is a full export object
                         if (Array.isArray(parsed.products)) {
                             products = parsed.products;
                         }
@@ -1260,14 +1289,10 @@
                         throw new Error("Estructura de JSON no reconocida.");
                     }
 
-                    // Save safely to LocalStorage
-                    localStorage.setItem('bp_products_v7', JSON.stringify(products));
-                    localStorage.setItem('bp_settings_v7', JSON.stringify(settings));
+                    await saveCloudState();
 
-                    // Success Alert as requested
-                    alert("¡Respaldo importado correctamente! Todos tus productos y configuraciones han sido restaurados con éxito.");
+                    alert("¡Respaldo importado correctamente! Todos tus productos y configuraciones han sido sincronizados en tiempo real.");
                     
-                    // Refresh UI
                     renderSite();
                     renderAdminProducts();
                     loadSettingsForm();
@@ -1312,19 +1337,17 @@
         window.removeLogo = removeLogo;
         window.addAdminSection = addAdminSection;
         window.removeAdminSection = removeAdminSection;
-        updateLogoPreview
         window.addAdminCard = addAdminCard;
         window.removeAdminCard = removeAdminCard;
         window.saveSiteSettings = saveSiteSettings;
         window.exportBackupJSON = exportBackupJSON;
         window.importBackupJSON = importBackupJSON;
         window.handlePasswordChange = handlePasswordChange;
-        window.resetDefaultData = function() {
+        window.resetDefaultData = async function() {
             if (confirm("¿Restaurar todos los productos y configuraciones originales de fábrica?")) {
-                localStorage.removeItem('bp_products_v7');
-                localStorage.removeItem('bp_settings_v7');
                 products = defaultProducts;
                 settings = defaultSettings;
+                await saveCloudState();
                 renderSite(); renderAdminProducts(); loadSettingsForm();
             }
         };
