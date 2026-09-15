@@ -52,7 +52,7 @@
                 </div>
             </div>
 
-            <!-- Top Navigation in exact requested order -->
+            <!-- Top Navigation in requested order -->
             <nav id="header-nav" class="hidden lg:flex items-center justify-center gap-1.5 text-sm font-medium tracking-wide transition-all mx-4">
                 <a href="#catalogo" class="bg-gold text-zinc-950 px-4 py-2 rounded-full hover:bg-gold-light transition-all whitespace-nowrap font-bold shadow-sm shadow-gold/25">Catálogo</a>
                 <a href="#bloque-garantia" class="text-zinc-300 hover:text-gold hover:bg-zinc-900/80 px-4 py-2 rounded-full transition-all whitespace-nowrap">Garantía</a>
@@ -530,7 +530,6 @@
             { id: 3, name: "Victoria's Secret Velvet Petals", category: "Victoria's Secret", price: 42000, notes: "Flores exuberantes y almendras azucaradas", image: "https://placehold.co/400x400/18181b/D4AF37?text=Velvet+Petals" }
         ];
 
-        // Default Business Logo as requested
         const defaultLogoSVG = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%23111' stroke='%23D4AF37' stroke-width='4'/><text x='50' y='57' font-family='serif' font-size='22' font-weight='bold' fill='%23D4AF37' text-anchor='middle'>BLACK</text></svg>";
 
         let defaultSettings = {
@@ -606,13 +605,11 @@
         let tempLogoBase64 = "";
         let adminPassword = localStorage.getItem('bp_admin_pass') || 'admin123';
 
-        // Initialize App on Window Load
         window.onload = function() {
             renderSite();
             initRealTimeVisitors();
         };
 
-        // Real-Time Visitor Counter using Firebase Firestore presence heartbeat
         async function initRealTimeVisitors() {
             try {
                 if (typeof __firebase_config === 'undefined') return;
@@ -629,7 +626,6 @@
 
                 const appId = typeof __app_id !== 'undefined' ? __app_id : 'black-perfumes-default';
                 
-                // Generate a unique device session ID so multiple tabs from the exact same browser/device count as 1 visitor
                 let visitorSessionId = sessionStorage.getItem('bp_device_session');
                 if (!visitorSessionId) {
                     visitorSessionId = 'device_' + Math.random().toString(36).substring(2) + Date.now();
@@ -638,7 +634,6 @@
 
                 const visitorRef = doc(db, 'artifacts', appId, 'public', 'data', 'active_visitors', visitorSessionId);
 
-                // Send heartbeat every 15 seconds
                 const sendHeartbeat = async () => {
                     try {
                         await setDoc(visitorRef, {
@@ -653,14 +648,12 @@
                 await sendHeartbeat();
                 setInterval(sendHeartbeat, 15000);
 
-                // Listen to all active visitors in real time
                 const visitorsCol = collection(db, 'artifacts', appId, 'public', 'data', 'active_visitors');
                 onSnapshot(query(visitorsCol), (snapshot) => {
                     const now = Date.now();
                     let activeCount = 0;
                     snapshot.forEach(docSnap => {
                         const data = docSnap.data();
-                        // If seen within the last 45 seconds, count as active
                         if (data.lastSeen && (now - data.lastSeen < 45000)) {
                             activeCount++;
                         }
@@ -848,7 +841,7 @@
                 item.qty += delta;
                 if (item.qty <= 0) cart = cart.filter(i => i.id !== productId);
             }
-            saveCart(); updateQtyUI();
+            saveCart(); updateCartUI();
         }
 
         function saveCart() { localStorage.setItem('bp_cart_v7', JSON.stringify(cart)); }
@@ -1216,6 +1209,7 @@
             downloadAnchor.remove();
         }
 
+        // FULLY FLEXIBLE AND ROBUST IMPORT HANDLER
         function importBackupJSON(e) {
             const file = e.target.files[0];
             if (!file) return;
