@@ -160,15 +160,15 @@
     </section>
 
     <footer class="bg-zinc-950 border-t border-gold/20 py-8 text-center text-sm text-zinc-500 relative">
+        <!-- Protected Admin Trigger Button at bottom LEFT -->
+        <button onclick="openAdminAuth()" class="absolute bottom-4 left-4 text-[10px] tracking-widest uppercase text-zinc-600 hover:text-gold transition-colors flex items-center gap-1.5 p-2 bg-zinc-900/60 rounded-lg border border-zinc-800 shadow-md z-30">
+            <i class="fa-solid fa-lock text-xs"></i> Admin
+        </button>
+
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
             <p>&copy; <span id="footer-year">2026</span> <span id="footer-brand">Black Perfumes</span>. Todos los derechos reservados.</p>
             <p class="text-gold">Ventas Mayoristas y Minoristas por WhatsApp</p>
         </div>
-        
-        <!-- Protected Admin Trigger Button at bottom LEFT -->
-        <button onclick="openAdminAuth()" class="absolute bottom-4 left-4 text-[10px] tracking-widest uppercase text-zinc-600 hover:text-gold transition-colors flex items-center gap-1.5 p-2 bg-zinc-900/60 rounded-lg border border-zinc-800 shadow-md">
-            <i class="fa-solid fa-lock text-xs"></i> Admin
-        </button>
     </footer>
 
     <div id="cart-drawer" class="fixed inset-0 z-50 overflow-hidden hidden">
@@ -247,7 +247,7 @@
                     <div>
                         <label class="block text-xs font-medium text-zinc-400 mb-1">Contraseña de Administrador</label>
                         <input type="password" id="admin-password-input" required placeholder="Ingresá la clave..." class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3 text-sm focus:border-gold outline-none text-zinc-100">
-                        <p id="auth-error-msg" class="text-red-400 text-xs mt-1 hidden">Contraseña incorrecta. (Clave por defecto: <span class="font-mono bg-zinc-800 px-1 rounded">admin123</span>)</p>
+                        <p id="auth-error-msg" class="text-red-400 text-xs mt-1 hidden">Contraseña incorrecta.</p>
                     </div>
                     <div class="pt-2">
                         <button type="submit" class="w-full bg-gold hover:bg-gold-light text-zinc-950 font-bold py-3.5 rounded-xl transition-all shadow-lg shadow-gold/20">
@@ -530,6 +530,7 @@
             { id: 3, name: "Victoria's Secret Velvet Petals", category: "Victoria's Secret", price: 42000, notes: "Flores exuberantes y almendras azucaradas", image: "https://placehold.co/400x400/18181b/D4AF37?text=Velvet+Petals" }
         ];
 
+        // Default business globe logo SVG
         const defaultLogoSVG = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%23111' stroke='%23D4AF37' stroke-width='4'/><text x='50' y='57' font-family='serif' font-size='22' font-weight='bold' fill='%23D4AF37' text-anchor='middle'>BLACK</text></svg>";
 
         let defaultSettings = {
@@ -1209,7 +1210,7 @@
             downloadAnchor.remove();
         }
 
-        // FULLY FLEXIBLE AND ROBUST IMPORT HANDLER
+        // ULTRA-FLEXIBLE AND BULLETPROOF JSON IMPORT HANDLER
         function importBackupJSON(e) {
             const file = e.target.files[0];
             if (!file) return;
@@ -1220,12 +1221,21 @@
             fileReader.onload = function(event) {
                 try {
                     const rawContent = event.target.result;
+                    if (!rawContent || rawContent.trim() === "") {
+                        throw new Error("El archivo está vacío.");
+                    }
+
                     const parsed = JSON.parse(rawContent);
 
+                    // Case A: The JSON is a raw array of products
                     if (Array.isArray(parsed)) {
-                        products = parsed;
-                    } else if (typeof parsed === 'object' && parsed !== null) {
-                        if (Array.isArray(parsed.products)) {
+                        if (parsed.length > 0) {
+                            products = parsed;
+                        }
+                    } 
+                    // Case B: The JSON is an object containing products and/or settings
+                    else if (typeof parsed === 'object' && parsed !== null) {
+                        if (Array.isArray(parsed.products) && parsed.products.length > 0) {
                             products = parsed.products;
                         }
                         if (typeof parsed.settings === 'object' && parsed.settings !== null) {
@@ -1243,13 +1253,16 @@
                             };
                         }
                     } else {
-                        throw new Error("Estructura JSON no reconocida.");
+                        throw new Error("Estructura de datos no válida.");
                     }
 
+                    // Save to local storage
                     localStorage.setItem('bp_products_v7', JSON.stringify(products));
                     localStorage.setItem('bp_settings_v7', JSON.stringify(settings));
 
                     alert("¡Respaldo importado con éxito! Todos tus productos y configuraciones han sido restaurados.");
+                    
+                    // Refresh view
                     renderSite();
                     renderAdminProducts();
                     loadSettingsForm();
@@ -1258,11 +1271,13 @@
                 } catch (err) {
                     console.error("Error parsing backup JSON:", err);
                     alert("No se pudo leer el archivo JSON. Asegurate de que el archivo tenga formato JSON válido.");
+                    e.target.value = '';
                 }
             };
 
             fileReader.onerror = function() {
                 alert("Error al intentar leer el archivo desde el dispositivo.");
+                e.target.value = '';
             };
         }
 
