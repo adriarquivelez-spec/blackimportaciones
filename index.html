@@ -61,7 +61,7 @@
             </nav>
 
             <div id="header-right" class="flex items-center space-x-4 transition-all shrink-0">
-                <button onclick="toggleCart()" class="relative bg-gold hover:bg-gold-light text-zinc-950 px-5 py-2.5 rounded-xl font-bold transition-all flex items-center gap-2.5 shadow-lg shadow-gold/20">
+                <button onclick="toggleCart()" class="relative bg-gold hover:bg-gold-light text-zinc-950 px-5 py-2.5 rounded-xl font-bold transition-all flex items-center gap-2.5 shadow-lg shadow-gold/20 cursor-pointer">
                     <i class="fa-solid fa-bag-shopping"></i>
                     <span class="hidden sm:inline">Carrito</span>
                     <span id="cart-counter" class="absolute -top-2 -right-2 bg-zinc-100 text-zinc-950 text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center border border-gold">0</span>
@@ -136,12 +136,11 @@
         <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"></div>
     </main>
 
-    <!-- LARGE ENLARGED PRODUCT DETAIL MODAL -->
     <div id="product-detail-modal" class="fixed inset-0 z-50 overflow-y-auto hidden">
         <div class="fixed inset-0 bg-zinc-950/85 backdrop-blur-md transition-opacity" onclick="closeProductDetail()"></div>
         <div class="min-h-screen px-4 text-center flex items-center justify-center">
             <div class="inline-block w-full max-w-5xl p-6 sm:p-10 my-8 text-left align-middle transition-all transform bg-zinc-900 border border-gold/40 rounded-3xl shadow-2xl relative">
-                <button onclick="closeProductDetail()" class="absolute top-6 right-6 text-zinc-400 hover:text-zinc-100 bg-zinc-800 p-3 rounded-xl z-10 hover:bg-zinc-700 transition-all">
+                <button onclick="closeProductDetail()" class="absolute top-6 right-6 text-zinc-400 hover:text-zinc-100 bg-zinc-800 p-3 rounded-xl z-10 hover:bg-zinc-700 transition-all cursor-pointer">
                     <i class="fa-solid fa-xmark text-xl"></i>
                 </button>
                 <div id="product-detail-content" class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center"></div>
@@ -181,7 +180,7 @@
                     <h2 class="font-serif-custom font-bold text-xl text-zinc-100 flex items-center gap-2">
                         <i class="fa-solid fa-bag-shopping text-gold"></i> Tu Carrito
                     </h2>
-                    <button onclick="toggleCart()" class="text-zinc-400 hover:text-zinc-100 text-xl p-2"><i class="fa-solid fa-xmark"></i></button>
+                    <button onclick="toggleCart()" class="text-zinc-400 hover:text-zinc-100 text-xl p-2 cursor-pointer"><i class="fa-solid fa-xmark"></i></button>
                 </div>
                 <div id="cart-items-container" class="flex-grow overflow-y-auto p-6 space-y-4 divide-y divide-zinc-800/60"></div>
                 <div class="p-6 border-t border-zinc-800 bg-zinc-950 space-y-4">
@@ -198,19 +197,17 @@
         </div>
     </div>
 
-    <!-- Floating WhatsApp Button -->
     <a id="floating-whatsapp-btn" href="#" target="_blank" class="fixed bottom-6 right-6 z-40 bg-green-500 hover:bg-green-600 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-2xl shadow-green-500/30 transition-transform transform hover:scale-110" title="Contactar por WhatsApp">
         <i class="fa-brands fa-whatsapp text-3xl"></i>
     </a>
 
-    <!-- Admin Authentication Modal -->
     <div id="admin-auth-modal" class="fixed inset-0 z-50 overflow-y-auto hidden">
         <div class="fixed inset-0 bg-zinc-950/85 backdrop-blur-md transition-opacity" onclick="closeAdminAuth()"></div>
         <div class="min-h-screen px-4 text-center flex items-center justify-center">
             <div class="inline-block w-full max-w-md p-6 sm:p-8 my-8 text-left align-middle transition-all transform bg-zinc-900 border border-gold/40 rounded-3xl shadow-2xl relative">
                 <div class="flex justify-between items-center pb-4 border-b border-zinc-800 mb-6">
                     <h3 class="font-serif-custom font-bold text-xl text-gold flex items-center gap-2"><i class="fa-solid fa-lock"></i> Acceso Administrador</h3>
-                    <button onclick="closeAdminAuth()" class="text-zinc-400 hover:text-zinc-100 bg-zinc-800 p-2 rounded-xl"><i class="fa-solid fa-xmark"></i></button>
+                    <button onclick="closeAdminAuth()" class="text-zinc-400 hover:text-zinc-100 bg-zinc-800 p-2 rounded-xl cursor-pointer"><i class="fa-solid fa-xmark"></i></button>
                 </div>
                 <form onsubmit="handleAdminLogin(event)" class="space-y-4">
                     <div>
@@ -219,14 +216,13 @@
                         <p id="auth-error-msg" class="text-red-400 text-xs mt-1 hidden">Contraseña incorrecta.</p>
                     </div>
                     <div class="pt-2">
-                        <button type="submit" class="w-full bg-gold hover:bg-gold-light text-zinc-950 font-bold py-3.5 rounded-xl transition-all shadow-lg shadow-gold/20">Ingresar al Panel</button>
+                        <button type="submit" class="w-full bg-gold hover:bg-gold-light text-zinc-950 font-bold py-3.5 rounded-xl transition-all shadow-lg shadow-gold/20 cursor-pointer">Ingresar al Panel</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 
-    <!-- Admin Panel Modal -->
     <div id="admin-modal" class="fixed inset-0 z-50 overflow-y-auto hidden">
         <div class="fixed inset-0 bg-zinc-950/85 backdrop-blur-md transition-opacity" onclick="toggleAdminPanel()"></div>
         <div class="min-h-screen px-4 text-center flex items-center justify-center">
@@ -247,25 +243,25 @@
                                 <span id="live-visitors-count" class="font-bold text-gold text-base">1</span>
                             </div>
                         </div>
-                        <button onclick="toggleAdminPanel()" class="text-zinc-400 hover:text-zinc-100 bg-zinc-800 p-2.5 rounded-xl transition-all"><i class="fa-solid fa-xmark text-lg"></i></button>
+                        <button onclick="toggleAdminPanel()" class="text-zinc-400 hover:text-zinc-100 bg-zinc-800 p-2.5 rounded-xl transition-all cursor-pointer"><i class="fa-solid fa-xmark text-lg"></i></button>
                     </div>
                 </div>
 
                 <div class="flex flex-wrap gap-2 mb-6 border-b border-zinc-800 pb-4">
-                    <button onclick="switchAdminTab('productos')" id="tab-btn-productos" class="admin-tab-btn px-4 py-2 rounded-xl text-sm font-semibold bg-gold text-zinc-950 transition-all">Productos</button>
-                    <button onclick="switchAdminTab('nuevo')" id="tab-btn-nuevo" class="admin-tab-btn px-4 py-2 rounded-xl text-sm font-semibold bg-zinc-800 text-zinc-300 hover:text-zinc-100 transition-all">Nuevo Prod.</button>
-                    <button onclick="switchAdminTab('apariencia')" id="tab-btn-apariencia" class="admin-tab-btn px-4 py-2 rounded-xl text-sm font-semibold bg-zinc-800 text-zinc-300 hover:text-zinc-100 transition-all">Logo & Estilos</button>
-                    <button onclick="switchAdminTab('textos')" id="tab-btn-textos" class="admin-tab-btn px-4 py-2 rounded-xl text-sm font-semibold bg-zinc-800 text-zinc-300 hover:text-zinc-100 transition-all">Textos</button>
-                    <button onclick="switchAdminTab('bloques')" id="tab-btn-bloques" class="admin-tab-btn px-4 py-2 rounded-xl text-sm font-semibold bg-zinc-800 text-zinc-300 hover:text-zinc-100 transition-all">Secciones</button>
-                    <button onclick="switchAdminTab('respaldo')" id="tab-btn-respaldo" class="admin-tab-btn px-4 py-2 rounded-xl text-sm font-semibold bg-zinc-800 text-zinc-300 hover:text-zinc-100 transition-all"><i class="fa-solid fa-database"></i> Respaldo</button>
-                    <button onclick="switchAdminTab('redes')" id="tab-btn-redes" class="admin-tab-btn px-4 py-2 rounded-xl text-sm font-semibold bg-zinc-800 text-zinc-300 hover:text-zinc-100 transition-all">Redes</button>
-                    <button onclick="switchAdminTab('seguridad')" id="tab-btn-seguridad" class="admin-tab-btn px-4 py-2 rounded-xl text-sm font-semibold bg-zinc-800 text-zinc-300 hover:text-zinc-100 transition-all"><i class="fa-solid fa-key"></i> Contraseña</button>
+                    <button onclick="switchAdminTab('productos')" id="tab-btn-productos" class="admin-tab-btn px-4 py-2 rounded-xl text-sm font-semibold bg-gold text-zinc-950 transition-all cursor-pointer">Productos</button>
+                    <button onclick="switchAdminTab('nuevo')" id="tab-btn-nuevo" class="admin-tab-btn px-4 py-2 rounded-xl text-sm font-semibold bg-zinc-800 text-zinc-300 hover:text-zinc-100 transition-all cursor-pointer">Nuevo Prod.</button>
+                    <button onclick="switchAdminTab('apariencia')" id="tab-btn-apariencia" class="admin-tab-btn px-4 py-2 rounded-xl text-sm font-semibold bg-zinc-800 text-zinc-300 hover:text-zinc-100 transition-all cursor-pointer">Logo & Estilos</button>
+                    <button onclick="switchAdminTab('textos')" id="tab-btn-textos" class="admin-tab-btn px-4 py-2 rounded-xl text-sm font-semibold bg-zinc-800 text-zinc-300 hover:text-zinc-100 transition-all cursor-pointer">Textos</button>
+                    <button onclick="switchAdminTab('bloques')" id="tab-btn-bloques" class="admin-tab-btn px-4 py-2 rounded-xl text-sm font-semibold bg-zinc-800 text-zinc-300 hover:text-zinc-100 transition-all cursor-pointer">Secciones</button>
+                    <button onclick="switchAdminTab('respaldo')" id="tab-btn-respaldo" class="admin-tab-btn px-4 py-2 rounded-xl text-sm font-semibold bg-zinc-800 text-zinc-300 hover:text-zinc-100 transition-all cursor-pointer"><i class="fa-solid fa-database"></i> Respaldo</button>
+                    <button onclick="switchAdminTab('redes')" id="tab-btn-redes" class="admin-tab-btn px-4 py-2 rounded-xl text-sm font-semibold bg-zinc-800 text-zinc-300 hover:text-zinc-100 transition-all cursor-pointer">Redes</button>
+                    <button onclick="switchAdminTab('seguridad')" id="tab-btn-seguridad" class="admin-tab-btn px-4 py-2 rounded-xl text-sm font-semibold bg-zinc-800 text-zinc-300 hover:text-zinc-100 transition-all cursor-pointer"><i class="fa-solid fa-key"></i> Contraseña</button>
                 </div>
 
                 <div id="admin-tab-productos" class="admin-tab-content space-y-4 max-h-[60vh] overflow-y-auto pr-2">
                     <div class="flex justify-between items-center">
                         <h3 class="text-sm font-semibold uppercase tracking-wider text-zinc-400">Lista actual de productos</h3>
-                        <button onclick="resetDefaultData()" class="text-xs text-red-400 hover:underline"><i class="fa-solid fa-rotate-right"></i> Restaurar fábrica</button>
+                        <button onclick="resetDefaultData()" class="text-xs text-red-400 hover:underline cursor-pointer"><i class="fa-solid fa-rotate-right"></i> Restaurar fábrica</button>
                     </div>
                     <div id="admin-product-list" class="space-y-3"></div>
                 </div>
@@ -298,7 +294,7 @@
                             <input type="text" id="new-notes" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-2.5 text-sm focus:border-gold outline-none text-zinc-100">
                         </div>
                         <div class="sm:col-span-2 pt-2">
-                            <button type="submit" class="w-full bg-gold hover:bg-gold-light text-zinc-950 font-bold py-3 rounded-xl transition-all shadow-lg shadow-gold/20">Guardar y Publicar</button>
+                            <button type="submit" class="w-full bg-gold hover:bg-gold-light text-zinc-950 font-bold py-3 rounded-xl transition-all shadow-lg shadow-gold/20 cursor-pointer">Guardar y Publicar</button>
                         </div>
                     </form>
                 </div>
@@ -312,7 +308,7 @@
                                 <input type="file" id="setting-logo-file" accept="image/*" onchange="handleLogoUpload(event)" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-2 text-xs text-zinc-400 focus:border-gold outline-none file:mr-4 file:py-1 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-zinc-800 file:text-white cursor-pointer">
                                 <div class="mt-3 flex items-center gap-4">
                                     <img id="admin-logo-preview" src="" class="h-12 w-12 object-cover rounded-full hidden bg-zinc-900 p-1 border border-zinc-800">
-                                    <button type="button" onclick="removeLogo()" id="admin-logo-remove" class="text-red-400 text-xs hidden hover:underline"><i class="fa-solid fa-trash"></i> Quitar logo</button>
+                                    <button type="button" onclick="removeLogo()" id="admin-logo-remove" class="text-red-400 text-xs hidden hover:underline cursor-pointer"><i class="fa-solid fa-trash"></i> Quitar logo</button>
                                 </div>
                             </div>
                         </div>
@@ -326,7 +322,7 @@
                             </div>
                         </div>
                     </div>
-                    <button onclick="saveSiteSettings()" class="w-full bg-gold hover:bg-gold-light text-zinc-950 font-bold py-3 rounded-xl transition-all shadow-lg shadow-gold/20">Guardar Apariencia</button>
+                    <button onclick="saveSiteSettings()" class="w-full bg-gold hover:bg-gold-light text-zinc-950 font-bold py-3 rounded-xl transition-all shadow-lg shadow-gold/20 cursor-pointer">Guardar Apariencia</button>
                 </div>
 
                 <div id="admin-tab-textos" class="admin-tab-content space-y-4 hidden">
@@ -349,18 +345,18 @@
                             <input type="text" id="setting-hero-sub" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-2.5 text-sm text-zinc-100 focus:border-gold outline-none">
                         </div>
                     </div>
-                    <button onclick="saveSiteSettings()" class="w-full bg-gold hover:bg-gold-light text-zinc-950 font-bold py-3 rounded-xl transition-all shadow-lg shadow-gold/20">Guardar Textos</button>
+                    <button onclick="saveSiteSettings()" class="w-full bg-gold hover:bg-gold-light text-zinc-950 font-bold py-3 rounded-xl transition-all shadow-lg shadow-gold/20 cursor-pointer">Guardar Textos</button>
                 </div>
 
                 <div id="admin-tab-bloques" class="admin-tab-content space-y-6 max-h-[65vh] overflow-y-auto pr-2 hidden">
                     <div class="bg-zinc-950/50 p-6 rounded-2xl border border-zinc-800">
                         <div class="flex justify-between items-center mb-4">
                             <h3 class="text-sm font-semibold uppercase tracking-wider text-zinc-400">Secciones y Tarjetas Estilo Grilla</h3>
-                            <button type="button" onclick="addAdminSection()" class="text-xs bg-zinc-800 hover:bg-zinc-700 px-3 py-1.5 rounded-lg text-zinc-200"><i class="fa-solid fa-plus"></i> Añadir Sección</button>
+                            <button type="button" onclick="addAdminSection()" class="text-xs bg-zinc-800 hover:bg-zinc-700 px-3 py-1.5 rounded-lg text-zinc-200 cursor-pointer"><i class="fa-solid fa-plus"></i> Añadir Sección</button>
                         </div>
                         <div id="admin-sections-list" class="space-y-6"></div>
                     </div>
-                    <button onclick="saveSiteSettings()" class="w-full bg-gold hover:bg-gold-light text-zinc-950 font-bold py-3 rounded-xl transition-all shadow-lg shadow-gold/20 sticky bottom-0">Guardar Todas las Secciones</button>
+                    <button onclick="saveSiteSettings()" class="w-full bg-gold hover:bg-gold-light text-zinc-950 font-bold py-3 rounded-xl transition-all shadow-lg shadow-gold/20 sticky bottom-0 cursor-pointer">Guardar Todas las Secciones</button>
                 </div>
 
                 <div id="admin-tab-respaldo" class="admin-tab-content space-y-6 hidden">
@@ -370,7 +366,7 @@
                             <h4 class="font-bold text-zinc-100 text-sm">Exportar Respaldo Actual</h4>
                             <p class="text-xs text-zinc-500">Descarga un archivo JSON con tu stock y configuraciones.</p>
                         </div>
-                        <button onclick="exportBackupJSON()" class="bg-gold hover:bg-gold-light text-zinc-950 font-bold px-6 py-3 rounded-xl text-xs transition-all flex items-center gap-2 shadow-md"><i class="fa-solid fa-download"></i> Descargar JSON</button>
+                        <button onclick="exportBackupJSON()" class="bg-gold hover:bg-gold-light text-zinc-950 font-bold px-6 py-3 rounded-xl text-xs transition-all flex items-center gap-2 shadow-md cursor-pointer"><i class="fa-solid fa-download"></i> Descargar JSON</button>
                     </div>
                     <div class="bg-zinc-950 p-6 rounded-2xl border border-zinc-800 flex flex-col sm:flex-row gap-4 items-center justify-between">
                         <div>
@@ -399,7 +395,7 @@
                             <input type="url" id="setting-tk" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-2.5 text-sm text-zinc-100 focus:border-gold outline-none">
                         </div>
                     </div>
-                    <div class="pt-4"><button onclick="saveSiteSettings()" class="w-full bg-gold hover:bg-gold-light text-zinc-950 font-bold py-3 rounded-xl transition-all shadow-lg shadow-gold/20">Guardar Redes</button></div>
+                    <div class="pt-4"><button onclick="saveSiteSettings()" class="w-full bg-gold hover:bg-gold-light text-zinc-950 font-bold py-3 rounded-xl transition-all shadow-lg shadow-gold/20 cursor-pointer">Guardar Redes</button></div>
                 </div>
 
                 <div id="admin-tab-seguridad" class="admin-tab-content space-y-4 hidden">
@@ -413,21 +409,20 @@
                             <label class="block text-xs font-medium text-zinc-400 mb-1">Confirmar Nueva Contraseña</label>
                             <input type="password" id="confirm-admin-password" required placeholder="Repetila..." class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3 text-sm focus:border-gold outline-none text-zinc-100">
                         </div>
-                        <button type="submit" class="w-full bg-gold hover:bg-gold-light text-zinc-950 font-bold py-3.5 rounded-xl transition-all shadow-lg shadow-gold/20">Actualizar Contraseña</button>
+                        <button type="submit" class="w-full bg-gold hover:bg-gold-light text-zinc-950 font-bold py-3.5 rounded-xl transition-all shadow-lg shadow-gold/20 cursor-pointer">Actualizar Contraseña</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Edit Product Modal -->
     <div id="edit-modal" class="fixed inset-0 z-50 overflow-y-auto hidden">
         <div class="fixed inset-0 bg-zinc-950/85 backdrop-blur-md transition-opacity" onclick="closeEditModal()"></div>
         <div class="min-h-screen px-4 text-center flex items-center justify-center">
             <div class="inline-block w-full max-w-xl p-6 sm:p-8 my-8 text-left align-middle transition-all transform bg-zinc-900 border border-gold/40 rounded-3xl shadow-2xl relative">
                 <div class="flex justify-between items-center pb-4 border-b border-zinc-800 mb-6">
                     <h3 class="font-serif-custom font-bold text-xl text-gold">Modificar Producto</h3>
-                    <button onclick="closeEditModal()" class="text-zinc-400 hover:text-zinc-100 bg-zinc-800 p-2 rounded-xl"><i class="fa-solid fa-xmark"></i></button>
+                    <button onclick="closeEditModal()" class="text-zinc-400 hover:text-zinc-100 bg-zinc-800 p-2 rounded-xl cursor-pointer"><i class="fa-solid fa-xmark"></i></button>
                 </div>
                 <form id="edit-product-form" onsubmit="handleSaveEditedProduct(event)" class="space-y-4 max-h-[65vh] overflow-y-auto pr-2">
                     <input type="hidden" id="edit-id">
@@ -460,7 +455,7 @@
                         <input type="text" id="edit-notes" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-2 text-sm focus:border-gold outline-none text-zinc-100">
                     </div>
                     <div class="pt-4">
-                        <button type="submit" class="w-full bg-gold hover:bg-gold-light text-zinc-950 font-bold py-3 rounded-xl transition-all shadow-lg shadow-gold/20">Guardar Cambios</button>
+                        <button type="submit" class="w-full bg-gold hover:bg-gold-light text-zinc-950 font-bold py-3 rounded-xl transition-all shadow-lg shadow-gold/20 cursor-pointer">Guardar Cambios</button>
                     </div>
                 </form>
             </div>
@@ -483,10 +478,582 @@
         };
 
         const defaultProducts = [
-            { id: 1, name: "Lattafa Eclaire", category: "Perfumes Árabes", price: 78000, notes: "Caramelo, leche, miel y vainilla", image: "https://placehold.co/400x400/18181b/D4AF37?text=Lattafa+Eclaire", images: [] },
-            { id: 2, name: "Armaf Club de Nuit Untold", category: "Perfumes Árabes", price: 87000, notes: "Azafrán, jazmín y ámbar gris", image: "https://placehold.co/400x400/18181b/D4AF37?text=Club+de+Nuit", images: [] },
-            { id: 3, name: "Victoria's Secret Velvet Petals", category: "Victoria's Secret", price: 42000, notes: "Flores exuberantes y almendras azucaradas", image: "https://placehold.co/400x400/18181b/D4AF37?text=Velvet+Petals", images: [] }
-        ];
+    // --- PERFUMES ÁRABES DE HOMBRE ---
+    {
+        id: 1740000001,
+        name: "Gold Edition Al Haramain 120ml",
+        category: "Perfumes Árabes de Hombre",
+        price: 90000,
+        notes: "Salida: Bergamota y notas verdes. Corazón: Melón, piña y notas dulces gourmand. Fondo: Almizcle blanco, vainilla y ámbar.",
+        image: "https://placehold.co/600x600/18181b/D4AF37?text=Gold+Edition\nAl+Haramain"
+    },
+    {
+        id: 1740000002,
+        name: "Dubai Night Al Haramain 100ml",
+        category: "Perfumes Árabes de Hombre",
+        price: 90000,
+        notes: "Salida: Azafrán, bergamota y elemí. Corazón: Rosa de Bulgaria, madera de oud y lirio de los valles. Fondo: Haba tonka, ámbar y almizcle.",
+        image: "https://placehold.co/600x600/18181b/D4AF37?text=Dubai+Night\nAl+Haramain"
+    },
+    {
+        id: 1740000003,
+        name: "Asad Elixir Lattafa 100ml",
+        category: "Perfumes Árabes de Hombre",
+        price: 60000,
+        notes: "Salida: Pimienta negra, piña y notas especiadas. Corazón: Café, pachulí y maderas intensas. Fondo: Vainilla bourbon, ámbar y ládano.",
+        image: "https://placehold.co/600x600/18181b/D4AF37?text=Asad+Elixir\nLattafa"
+    },
+    {
+        id: 1740000004,
+        name: "Bharara King 100ml",
+        category: "Perfumes Árabes de Hombre",
+        price: 100000,
+        notes: "Salida: Naranja dulce, limón y bergamota. Corazón: Frutas tropicales y acordes dulces. Fondo: Almizcle blanco, ámbar y vainilla.",
+        image: "https://placehold.co/600x600/18181b/D4AF37?text=Bharara\nKing"
+    },
+    {
+        id: 1740000005,
+        name: "9pm Black Afnan 100ml",
+        category: "Perfumes Árabes de Hombre",
+        price: 50000,
+        notes: "Salida: Manzana silvestre, canela y lavanda. Corazón: Flor de azahar del naranjo y lirio. Fondo: Vainilla oscura, haba tonka y pachulí.",
+        image: "https://placehold.co/600x600/18181b/D4AF37?text=9pm+Black\nAfnan"
+    },
+    {
+        id: 1740000006,
+        name: "Hawas For Him Rasasi 100ml",
+        category: "Perfumes Árabes de Hombre",
+        price: 50000,
+        notes: "Salida: Manzana, bergamota, canela y limón. Corazón: Notas acuáticas, cardamomo y ciruela. Fondo: Ámbar gris, almizcle y cedro.",
+        image: "https://placehold.co/600x600/18181b/D4AF37?text=Hawas\nRasasi"
+    },
+    {
+        id: 1740000007,
+        name: "Hawas Ice Rasasi 100ml",
+        category: "Perfumes Árabes de Hombre",
+        price: 70000,
+        notes: "Salida: Menta helada, limón y manzana verde. Corazón: Azahar, ciruela y cardamomo aromático. Fondo: Musgo de roble, almizcle y ámbar gris.",
+        image: "https://placehold.co/600x600/18181b/D4AF37?text=Hawas+Ice\nRasasi"
+    },
+    {
+        id: 1740000008,
+        name: "Intense Man Club de Nuit Armaf 105ml",
+        category: "Perfumes Árabes de Hombre",
+        price: 60000,
+        notes: "Salida: Limón, piña, bergamota y grosellas negras. Corazón: Abedul, jazmín y rosa. Fondo: Almizcle, ámbar gris, pachulí y vainilla.",
+        image: "https://placehold.co/600x600/18181b/D4AF37?text=Intense+Man\nClub+De+Nuit"
+    },
+    {
+        id: 1740000009,
+        name: "Mandarin Sky Odyssey Armaf 100ml",
+        category: "Perfumes Árabes de Hombre",
+        price: 50000,
+        notes: "Salida: Mandarina jugosa, naranja y azafrán. Corazón: Caramelo fundido y haba tonka. Fondo: Ambroxan, cedro y maderas claras.",
+        image: "https://placehold.co/600x600/18181b/D4AF37?text=Mandarin+Sky\nArmaf"
+    },
+    {
+        id: 1740000010,
+        name: "Dubai Chocolat Odyssey Armaf 100ml",
+        category: "Perfumes Árabes de Hombre",
+        price: 30000,
+        notes: "Salida: Cacao tostado y avellanas. Corazón: Chocolate con leche, acordes gourmand. Fondo: Vainilla cremosa y almizcle cálido.",
+        image: "https://placehold.co/600x600/18181b/D4AF37?text=Dubai+Chocolat\nArmaf"
+    },
+    {
+        id: 1740000011,
+        name: "Honor And Glory (White) Lattafa 100ml",
+        category: "Perfumes Árabes de Hombre",
+        price: 50000,
+        notes: "Salida: Piña y crème brûlée dulce. Corazón: Canela, benjuí y pimienta negra. Fondo: Vainilla suave, sándalo y madera de cachemira.",
+        image: "https://placehold.co/600x600/18181b/D4AF37?text=Honor+%26+Glory\nLattafa"
+    },
+    {
+        id: 1740000012,
+        name: "Khamrah (Black) Lattafa 100ml",
+        category: "Perfumes Árabes de Hombre",
+        price: 50000,
+        notes: "Salida: Canela intensa, nuez moscada y bergamota. Corazón: Dátiles dulces, praliné y flores blancas. Fondo: Vainilla, haba tonka y mirra.",
+        image: "https://placehold.co/600x600/18181b/D4AF37?text=Khamrah+Black\nLattafa"
+    },
+    {
+        id: 1740000013,
+        name: "Asad Bourbon Lattafa 100ml",
+        category: "Perfumes Árabes de Hombre",
+        price: 60000,
+        notes: "Salida: Acordes de bourbon, pimienta y especias cálidas. Corazón: Hojas de tabaco, iris y café tostado. Fondo: Vainilla oscura y maderas ambarinas.",
+        image: "https://placehold.co/600x600/18181b/D4AF37?text=Asad+Bourbon\nLattafa"
+    },
+    {
+        id: 1740000014,
+        name: "Vulcan Feu French Avenue 100ml",
+        category: "Perfumes Árabes de Hombre",
+        price: 70000,
+        notes: "Salida: Mango maduro, limón, jengibre y ruibarbo. Corazón: Pimienta rosa, jazmín y praliné. Fondo: Haba tonka, cedro y ámbar gris.",
+        image: "https://placehold.co/600x600/18181b/D4AF37?text=Vulcan+Feu\nFrench+Avenue"
+    },
+    {
+        id: 1740000015,
+        name: "Precieux I Club de Nuit Armaf",
+        category: "Perfumes Árabes de Hombre",
+        price: 90000,
+        notes: "Salida: Bergamota, limón cítrico, piña y pimienta rosa. Corazón: Notas amaderadas intensas y jazmín. Fondo: Ambroxan, cedro, almizcle y cuero.",
+        image: "https://placehold.co/600x600/18181b/D4AF37?text=Precieux+I\nClub+De+Nuit"
+    },
+    {
+        id: 1740000016,
+        name: "Hawas Malibu Rasasi 100ml",
+        category: "Perfumes Árabes de Hombre",
+        price: 70000,
+        notes: "Salida: Cítricos veraniegos vibrantes y agua de coco. Corazón: Frutas tropicales y brisa marina. Fondo: Almizcle y ámbar claro.",
+        image: "https://placehold.co/600x600/18181b/D4AF37?text=Hawas+Malibu\nRasasi"
+    },
+    {
+        id: 1740000017,
+        name: "Hawas Verde Rasasi 100ml",
+        category: "Perfumes Árabes de Hombre",
+        price: 80000,
+        notes: "Salida: Notas verdes, manzana crisp y lima fresca. Corazón: Cardamomo y acordes acuáticos. Fondo: Madera de cedro, almizcle y musgo.",
+        image: "https://placehold.co/600x600/18181b/D4AF37?text=Hawas+Verde\nRasasi"
+    },
+    {
+        id: 1740000018,
+        name: "Hawas Tropical Rasasi 100ml",
+        category: "Perfumes Árabes de Hombre",
+        price: 70000,
+        notes: "Salida: Maracuyá, piña jugosa y cítricos. Corazón: Flores exóticas, crema de coco. Fondo: Almizcle blanco y maderas tropicales.",
+        image: "https://placehold.co/600x600/18181b/D4AF37?text=Hawas+Tropical\nRasasi"
+    },
+    {
+        id: 1740000019,
+        name: "Hawas Kobra Rasasi 100ml",
+        category: "Perfumes Árabes de Hombre",
+        price: 75000,
+        notes: "Salida: Especias orientales picantes, bergamota y menta. Corazón: Cuero, flor de iris y lavanda. Fondo: Sándalo profundo, haba tonka y ámbar oscuro.",
+        image: "https://placehold.co/600x600/18181b/D4AF37?text=Hawas+Kobra\nRasasi"
+    },
+    {
+        id: 1740000020,
+        name: "Fakhar Platin Lattafa 100ml",
+        category: "Perfumes Árabes de Hombre",
+        price: 45000,
+        notes: "Salida: Manzana, bergamota y jengibre chispeante. Corazón: Lavanda aromática, salvia y enebro. Fondo: Haba tonka, ámbar, cedro y vetiver.",
+        image: "https://placehold.co/600x600/18181b/D4AF37?text=Fakhar+Platin\nLattafa"
+    },
+    {
+        id: 1740000021,
+        name: "Bahamas Odyssey Armaf 100ml",
+        category: "Perfumes Árabes de Hombre",
+        price: 50000,
+        notes: "Salida: Cóctel de frutas tropicales, ananá y lima. Corazón: Notas oceánicas y coco dulce. Fondo: Almizcle y maderas claras secas.",
+        image: "https://placehold.co/600x600/18181b/D4AF37?text=Odyssey+Bahamas\nArmaf"
+    },
+    {
+        id: 1740000022,
+        name: "The Kingdom Blanco Lattafa 100ml",
+        category: "Perfumes Árabes de Hombre",
+        price: 55000,
+        notes: "Salida: Lavanda limpia y hojas de menta. Corazón: Iris empolvado, vainilla dulce y tonka. Fondo: Maderas ambarinas y cedro blanco.",
+        image: "https://placehold.co/600x600/18181b/D4AF37?text=The+Kingdom\nBlanco"
+    },
+    {
+        id: 1740000023,
+        name: "Khamrah Qahwa Lattafa 100ml",
+        category: "Perfumes Árabes de Hombre",
+        price: 50000,
+        notes: "Salida: Canela, cardamomo y jengibre. Corazón: Café arábigo tostado, dátiles y praliné. Fondo: Vainilla intensa, haba tonka y almizcle.",
+        image: "https://placehold.co/600x600/18181b/D4AF37?text=Khamrah+Qahwa\nLattafa"
+    },
+    {
+        id: 1740000024,
+        name: "Urban Man Elixir Club de Nuit Armaf 105ml",
+        category: "Perfumes Árabes de Hombre",
+        price: 65000,
+        notes: "Salida: Bergamota, pimienta negra y elemí. Corazón: Lavanda silvestre, geranio y especias. Fondo: Ambroxan, cedro y pachulí oscuro.",
+        image: "https://placehold.co/600x600/18181b/D4AF37?text=Urban+Man\nElixir"
+    },
+    {
+        id: 1740000025,
+        name: "Liquid Brun French Avenue 100ml",
+        category: "Perfumes Árabes de Hombre",
+        price: 80000,
+        notes: "Salida: Canela, cardamomo y flor de naranjo. Corazón: Vainilla bourbon rica y resinas. Fondo: Almizcle suave, praliné y sándalo.",
+        image: "https://placehold.co/600x600/18181b/D4AF37?text=Liquid+Brun\nFrench+Avenue"
+    },
+    {
+        id: 1740000026,
+        name: "Salvo Elixir Maison Alhambra 60ml",
+        category: "Perfumes Árabes de Hombre",
+        price: 40000,
+        notes: "Salida: Nuez moscada, canela picante y pomelo. Corazón: Lavanda silvestre de gran intensidad. Fondo: Regaliz, sándalo, ámbar y vetiver haitiano.",
+        image: "https://placehold.co/600x600/18181b/D4AF37?text=Salvo+Elixir\nMaison+Alhambra"
+    },
+    {
+        id: 1740000027,
+        name: "9pm Rebel Afnan 100ml",
+        category: "Perfumes Árabes de Hombre",
+        price: 70000,
+        notes: "Salida: Manzana verde ácida, bergamota y mandarina. Corazón: Madera de cedro, iris y lavanda. Fondo: Vainilla cálida, haba tonka y ámbar gris.",
+        image: "https://placehold.co/600x600/18181b/D4AF37?text=9pm+Rebel\nAfnan"
+    },
+    {
+        id: 1740000028,
+        name: "Untold Club de Nuit Armaf 105ml",
+        category: "Perfumes Árabes de Hombre",
+        price: 70000,
+        notes: "Salida: Azafrán ardiente y jazmín egipcio. Corazón: Madera de ámbar y toques de ámbar gris. Fondo: Resina de abeto y madera de cedro profunda.",
+        image: "https://placehold.co/600x600/18181b/D4AF37?text=Club+De+Nuit\nUntold"
+    },
+    {
+        id: 1740000029,
+        name: "Philos Pura Maison Alhambra 100ml",
+        category: "Perfumes Árabes de Hombre",
+        price: 45000,
+        notes: "Salida: Naranja siciliana, bergamota de Calabria y limón. Corazón: Cesta de frutas dulces y jugosas. Fondo: Almizcle blanco, vainilla de Madagascar y ámbar.",
+        image: "https://placehold.co/600x600/18181b/D4AF37?text=Philos+Pura\nMaison+Alhambra"
+    },
+    {
+        id: 1740000030,
+        name: "Sceptre Malachite Maison Alhambra 100ml",
+        category: "Perfumes Árabes de Hombre",
+        price: 45000,
+        notes: "Salida: Notas verdes frescas, bergamota y mandarina. Corazón: Especias orientales aromáticas, cardamomo y jazmín. Fondo: Ámbar, vainilla cremosa y almizcle.",
+        image: "https://placehold.co/600x600/18181b/D4AF37?text=Sceptre+Malachite\nMaison+Alhambra"
+    },
+    {
+        id: 1740000031,
+        name: "Aqua Dubai Amber Oud Al Haramain 100ml",
+        category: "Perfumes Árabes de Hombre",
+        price: 90000,
+        notes: "Salida: Notas acuáticas marinas, bergamota y mandarina. Corazón: Frutas exóticas tropicales y jazmín. Fondo: Almizcle, ámbar gris terroso y maderas.",
+        image: "https://placehold.co/600x600/18181b/D4AF37?text=Aqua+Dubai\nAmber+Oud"
+    },
+    {
+        id: 1740000032,
+        name: "Mandarin Sky Elixir Odyssey Armaf 100ml",
+        category: "Perfumes Árabes de Hombre",
+        price: 80000,
+        notes: "Salida: Mandarina intensa, azafrán picante y naranja sanguina. Corazón: Caramelo fundido gourmand y haba tonka tostada. Fondo: Ambroxan, sándalo y maderas ambarinas.",
+        image: "https://placehold.co/600x600/18181b/D4AF37?text=Mandarin+Sky\nElixir"
+    },
+    {
+        id: 1740000033,
+        name: "Odyssey Aqua Armaf 100ml",
+        category: "Perfumes Árabes de Hombre",
+        price: 60000,
+        notes: "Salida: Notas marinas ozónicas, toronja y mandarina. Corazón: Hojas de violeta verdes y geranio. Fondo: Madera de guayaco, ámbar gris y musgo de roble.",
+        image: "https://placehold.co/600x600/18181b/D4AF37?text=Odyssey+Aqua\nArmaf"
+    },
+    {
+        id: 1740000034,
+        name: "9pm Night Out 9pm Afnan 100ml",
+        category: "Perfumes Árabes de Hombre",
+        price: 100000,
+        notes: "Salida: Canela intensa, manzana ácida y lavanda nocturna. Corazón: Flor de azahar dulce y cuero ahumado. Fondo: Vainilla oscura pura, haba tonka y ámbar seco.",
+        image: "https://placehold.co/600x600/18181b/D4AF37?text=9pm+Night+Out\nAfnan"
+    },
+    {
+        id: 1740000035,
+        name: "Asad Black Lattafa 100ml",
+        category: "Perfumes Árabes de Hombre",
+        price: 55000,
+        notes: "Salida: Pimienta negra audaz, piña madura y hojas de tabaco. Corazón: Granos de café tostados, pachulí e iris polvoso. Fondo: Ámbar profundo, vainilla y maderas oscuras.",
+        image: "https://placehold.co/600x600/18181b/D4AF37?text=Asad+Black\nLattafa"
+    },
+    {
+        id: 1740000036,
+        name: "Hawas Fire Rasasi 100ml",
+        category: "Perfumes Árabes de Hombre",
+        price: 60000,
+        notes: "Salida: Canela, pimienta negra ardiente y cítricos radiantes. Corazón: Lavanda limpia y azahar de naranjo. Fondo: Cuero intenso, ámbar resinoso y haba tonka.",
+        image: "https://placehold.co/600x600/18181b/D4AF37?text=Hawas+Fire\nRasasi"
+    },
+    {
+        id: 1740000037,
+        name: "Badee Al Oud For Glory Black Lattafa 100ml",
+        category: "Perfumes Árabes de Hombre",
+        price: 40000,
+        notes: "Salida: Azafrán puro, nuez moscada y lavanda aromática. Corazón: Madera de oud rica y pachulí terroso. Fondo: Almizcle denso, oud ahumado y pachulí oscuro.",
+        image: "https://placehold.co/600x600/18181b/D4AF37?text=For+Glory\nBadee+Al+Oud"
+    },
+    {
+        id: 1740000038,
+        name: "Beach Party Armaf 100ml",
+        category: "Perfumes Árabes de Hombre",
+        price: 65000,
+        notes: "Salida: Cítricos solares vibrantes, notas marinas saladas y coco. Corazón: Flores blancas luminosas y frutas exóticas. Fondo: Almizcle limpio y ámbar cálido de atardecer.",
+        image: "https://placehold.co/600x600/18181b/D4AF37?text=Beach+Party\nArmaf"
+    },
+
+    // --- PERFUMES DE DISEÑADOR DE HOMBRE ---
+    {
+        id: 1740000039,
+        name: "You EDT Armani 100ml",
+        category: "Perfumes de Diseñador de Hombre",
+        price: 150000,
+        notes: "Salida: Cardamomo especiado, pimienta rosa y hojas de violeta. Corazón: Salvia, melón jugoso y piña dulce. Fondo: Vainilla pura, castaña glaseada y madera de gaiac.",
+        image: "https://placehold.co/600x600/18181b/D4AF37?text=Stronger+With+You\nArmani"
+    },
+    {
+        id: 1740000040,
+        name: "Scandal JPG 100ml",
+        category: "Perfumes de Diseñador de Hombre",
+        price: 150000,
+        notes: "Salida: Esclarea herbácea y mandarina brillante. Corazón: Caramelo fundido gourmand y haba tonka cremosa. Fondo: Vetiver terroso y robusto.",
+        image: "https://placehold.co/600x600/18181b/D4AF37?text=Scandal+Hombre\nJPG"
+    },
+    {
+        id: 1740000041,
+        name: "Sauvage EDT Dior 100ml",
+        category: "Perfumes de Diseñador de Hombre",
+        price: 180000,
+        notes: "Salida: Bergamota de Calabria fresca y pimienta chispeante. Corazón: Pimienta de Sichuan, lavanda, pachulí, geranio y vetiver. Fondo: Ambroxan puro, cedro y ládano.",
+        image: "https://placehold.co/600x600/18181b/D4AF37?text=Sauvage+EDT\nDior"
+    },
+    {
+        id: 1740000042,
+        name: "The Most Wanted Parfum Azzaro 100ml",
+        category: "Perfumes de Diseñador de Hombre",
+        price: 150000,
+        notes: "Salida: Jengibre rojo ardiente y vibrante. Corazón: Notas amaderadas incandescentes y acordes fougère modernos. Fondo: Bourbon vainilla rica, oscura y envolvente.",
+        image: "https://placehold.co/600x600/18181b/D4AF37?text=The+Most+Wanted\nAzzaro"
+    },
+    {
+        id: 1740000043,
+        name: "You Intensely Armani 100ml",
+        category: "Perfumes de Diseñador de Hombre",
+        price: 175000,
+        notes: "Salida: Pimienta rosa picante, enebro de Virginia y violeta polvosa. Corazón: Tofe dulce, canela, lavanda y salvia. Fondo: Vainilla intensa, haba tonka, ámbar y gamuza suave.",
+        image: "https://placehold.co/600x600/18181b/D4AF37?text=You+Intensely\nArmani"
+    },
+    {
+        id: 1740000044,
+        name: "Sauvage EDP Dior 100ml",
+        category: "Perfumes de Diseñador de Hombre",
+        price: 220000,
+        notes: "Salida: Bergamota de Calabria intensa y jugosa. Corazón: Pimienta de Sichuan, lavanda pura, anís estrellado y nuez moscada. Fondo: Ambroxan y absoluto de vainilla de Papúa Nueva Guinea.",
+        image: "https://placehold.co/600x600/18181b/D4AF37?text=Sauvage+EDP\nDior"
+    },
+    {
+        id: 1740000045,
+        name: "One Million EDT Paco Rabanne 100ml",
+        category: "Perfumes de Diseñador de Hombre",
+        price: 120000,
+        notes: "Salida: Mandarina roja jugosa, toronja chispeante y menta fresca. Corazón: Canela especiada, extracto de rosa y notas de especias orientales. Fondo: Ámbar, cuero rubio y pachulí indio.",
+        image: "https://placehold.co/600x600/18181b/D4AF37?text=1+Million\nPaco+Rabanne"
+    },
+    {
+        id: 1740000046,
+        name: "Uomo Born in Roma EDT Valentino 100ml",
+        category: "Perfumes de Diseñador de Hombre",
+        price: 210000,
+        notes: "Salida: Notas minerales saladas, hojas de violeta absolutas y sal. Corazón: Jengibre fresco y esclarea aromática. Fondo: Notas amaderadas ahumadas y vetiver terroso vibrante.",
+        image: "https://placehold.co/600x600/18181b/D4AF37?text=Born+In+Roma\nValentino"
+    },
+    {
+        id: 1740000047,
+        name: "212 NYC Carolina Herrera 100ml",
+        category: "Perfumes de Diseñador de Hombre",
+        price: 130000,
+        notes: "Salida: Notas verdes de pasto cortado, toronja, bergamota y petit grain. Corazón: Jengibre especiado, gardenia, pimienta verde y salvia. Fondo: Almizcle transparente, sándalo, incienso y madera de gaiac.",
+        image: "https://placehold.co/600x600/18181b/D4AF37?text=212+NYC\nCarolina+Herrera"
+    },
+    {
+        id: 1740000048,
+        name: "Le Male Elixir Parfum Jean Paul Gaultier 125ml",
+        category: "Perfumes de Diseñador de Hombre",
+        price: 185000,
+        notes: "Salida: Lavanda intensa y menta refrescante de gran impacto. Corazón: Resina de benjuí y vainilla cálida. Fondo: Miel dorada, haba tonka cremosa y hoja de tabaco rubio.",
+        image: "https://placehold.co/600x600/18181b/D4AF37?text=Le+Male+Elixir\nJPG"
+    },
+    {
+        id: 1740000049,
+        name: "Light Blue Dolce Gabbana EDT 100ml",
+        category: "Perfumes de Diseñador de Hombre",
+        price: 115000,
+        notes: "Salida: Mandarina siciliana, enebro de Virginia, pomelo helado y bergamota. Corazón: Romero, madera de palo de rosa brasileño y pimienta de Sichuan. Fondo: Almizcle, incienso ahumado y musgo de roble.",
+        image: "https://placehold.co/600x600/18181b/D4AF37?text=Light+Blue\nDolce+%26+Gabbana"
+    },
+    {
+        id: 1740000050,
+        name: "Eros Versace EDT 100ml",
+        category: "Perfumes de Diseñador de Hombre",
+        price: 130000,
+        notes: "Salida: Aceite de menta, manzana verde italiana y limón vibrante. Corazón: Haba tonka venezolana, ambroxan sensual y flores de geranio. Fondo: Vainilla de Madagascar, cedro de Virginia y vetiver robusto.",
+        image: "https://placehold.co/600x600/18181b/D4AF37?text=Eros+EDT\nVersace"
+    },
+
+    // --- PERFUMES ÁRABES DE MUJER ---
+    {
+        id: 1740000051,
+        name: "Yara Rosa Lattafa 100ml",
+        category: "Perfumes Árabes de Mujer",
+        price: 50000,
+        notes: "Salida: Orquídea delicada, heliotropo y tangerina vibrante. Corazón: Acorde gourmand dulce y frutas tropicales jugosas. Fondo: Vainilla batida, almizcle blanco y sándalo cremoso.",
+        image: "https://placehold.co/600x600/18181b/D4AF37?text=Yara+Rosa\nLattafa"
+    },
+    {
+        id: 1740000052,
+        name: "Yum Yum Armaf 100ml",
+        category: "Perfumes Árabes de Mujer",
+        price: 75000,
+        notes: "Salida: Frutas rojas jugosas y cítricos confitados dulces. Corazón: Azúcar glass, malvavisco tostado y flores blancas suaves. Fondo: Vainilla cremosa batida, almizcle azucarado y sándalo.",
+        image: "https://placehold.co/600x600/18181b/D4AF37?text=Yum+Yum\nArmaf"
+    },
+    {
+        id: 1740000053,
+        name: "Noble Blush Rosa Lattafa 100ml",
+        category: "Perfumes Árabes de Mujer",
+        price: 45000,
+        notes: "Salida: Rosas frescas de rocío y notas frutales rosadas y chispeantes. Corazón: Peonía romántica, flor de jazmín y crema batida. Fondo: Vainilla suave empolvada y almizcle blanco brillante.",
+        image: "https://placehold.co/600x600/18181b/D4AF37?text=Noble+Blush\nLattafa"
+    },
+    {
+        id: 1740000054,
+        name: "Sublime Lattafa 100ml",
+        category: "Perfumes Árabes de Mujer",
+        price: 45000,
+        notes: "Salida: Manzana crujiente verde y lichi jugoso exótico. Corazón: Rosa aterciopelada y ciruela dulce y oscura. Fondo: Vainilla profunda, musgo de roble y pachulí seductor.",
+        image: "https://placehold.co/600x600/18181b/D4AF37?text=Badee+Al+Oud\nSublime"
+    },
+    {
+        id: 1740000055,
+        name: "Untold Club de Nuit Armaf 105ml",
+        category: "Perfumes Árabes de Mujer",
+        price: 70000,
+        notes: "Salida: Azafrán rojo radiante y jazmín egipcio de floración nocturna. Corazón: Madera de ámbar cálida y toques ricos de ámbar gris. Fondo: Resina de abeto pura y madera de cedro profunda.",
+        image: "https://placehold.co/600x600/18181b/D4AF37?text=Club+De+Nuit\nUntold+Mujer"
+    },
+    {
+        id: 1740000056,
+        name: "Eclaire Lattafa 100ml",
+        category: "Perfumes Árabes de Mujer",
+        price: 65000,
+        notes: "Salida: Caramelo líquido dorado, leche caliente y azúcar glas. Corazón: Miel silvestre dorada y delicadas flores blancas. Fondo: Vainilla bourbon, praliné crujiente y almizcle algodonoso.",
+        image: "https://placehold.co/600x600/18181b/D4AF37?text=Eclaire\nLattafa"
+    },
+    {
+        id: 1740000057,
+        name: "Mayar Cherry Intense Lattafa 100ml",
+        category: "Perfumes Árabes de Mujer",
+        price: 45000,
+        notes: "Salida: Cereza negra alicorada, frutos rojos explosivos y almendras amargas. Corazón: Jazmín sambac, rosa y orquídea negra. Fondo: Vainilla cálida, haba tonka, sándalo y almizcle sensual.",
+        image: "https://placehold.co/600x600/18181b/D4AF37?text=Mayar+Cherry\nIntense"
+    },
+    {
+        id: 1740000058,
+        name: "Mayar Rosa Lattafa 100ml",
+        category: "Perfumes Árabes de Mujer",
+        price: 40000,
+        notes: "Salida: Frutos rojos escarchados, frambuesa jugosa y lichi dulce. Corazón: Rosa damascena radiante y jazmín floral delicado. Fondo: Almizcle cremoso limpio y vainilla amaderada suave.",
+        image: "https://placehold.co/600x600/18181b/D4AF37?text=Mayar+Rosa\nLattafa"
+    },
+    {
+        id: 1740000059,
+        name: "Yara Elixir Lattafa 100ml",
+        category: "Perfumes Árabes de Mujer",
+        price: 55000,
+        notes: "Salida: Licor de frutas dulces, néctar de coco y ámbar brillante. Corazón: Flores blancas intensas luminosas y misteriosa orquídea negra. Fondo: Vainilla bourbon de Madagascar, almizcle y sándalo.",
+        image: "https://placehold.co/600x600/18181b/D4AF37?text=Yara+Elixir\nLattafa"
+    },
+    {
+        id: 1740000060,
+        name: "Maleka Club de Nuit 105ml",
+        category: "Perfumes Árabes de Mujer",
+        price: 65000,
+        notes: "Salida: Cítricos radiantes chispeantes y frutas jugosas exuberantes. Corazón: Rosa turca majestuosa, jazmín y flor de lirio. Fondo: Almizcle puro, vainilla en vaina y toques de ámbar gris.",
+        image: "https://placehold.co/600x600/18181b/D4AF37?text=Maleka\nClub+De+Nuit"
+    },
+    {
+        id: 1740000061,
+        name: "Angham Lattafa 100ml",
+        category: "Perfumes Árabes de Mujer",
+        price: 45000,
+        notes: "Salida: Pimienta rosa picante, jengibre fresco vibrante y mandarina dulce. Corazón: Praliné azucarado, lavanda moderna empolvada y cacao cálido. Fondo: Vainilla cremosa, ámbar dorado rico y sándalo envolvente.",
+        image: "https://placehold.co/600x600/18181b/D4AF37?text=Angham\nLattafa"
+    },
+    {
+        id: 1740000062,
+        name: "The Kingdom Fem Lattafa 100ml",
+        category: "Perfumes Árabes de Mujer",
+        price: 50000,
+        notes: "Salida: Bergamota italiana luminosa y jugosos frutos silvestres de bosque. Corazón: Jazmín sambac floral radiante, flor de azahar y exuberantes nardos. Fondo: Vainilla pura delicada, almizcle sedoso y cedro blanco.",
+        image: "https://placehold.co/600x600/18181b/D4AF37?text=The+Kingdom+Fem\nLattafa"
+    },
+    {
+        id: 1740000063,
+        name: "Candee Odyssey Armaf 100ml",
+        category: "Perfumes Árabes de Mujer",
+        price: 40000,
+        notes: "Salida: Dulces caramelos frutales de azúcar espolvoreado, frutas tropicales exóticas. Corazón: Flores blancas cremosas de textura mantecosa. Fondo: Vainilla esponjosa y rica, almizcle reconfortante y sándalo liso.",
+        image: "https://placehold.co/600x600/18181b/D4AF37?text=Candee+Odyssey\nArmaf"
+    },
+    {
+        id: 1740000064,
+        name: "Hawas Diva Rasasi 100ml",
+        category: "Perfumes Árabes de Mujer",
+        price: 65000,
+        notes: "Salida: Frutas de agua jugosas frescas, pera madura y mandarina alegre. Corazón: Flores blancas deslumbrantes como jazmín y rosa matutina. Fondo: Vainilla sensual, almizcle blanco elegante y trazas de ámbar suave.",
+        image: "https://placehold.co/600x600/18181b/D4AF37?text=Hawas+Diva\nRasasi"
+    },
+    {
+        id: 1740000065,
+        name: "Badee Al Oud Amethyst",
+        category: "Perfumes Árabes de Mujer",
+        price: 40000,
+        notes: "Salida: Pimienta rosa picante estimulante y bergamota vibrante radiante. Corazón: Rosa turca intensa, rosa de Bulgaria romántica y absoluto de jazmín. Fondo: Oud amaderado oriental exótico, ámbar dorado cálido y vainilla dulce.",
+        image: "https://placehold.co/600x600/18181b/D4AF37?text=Amethyst\nBadee+Al+Oud"
+    },
+
+    // --- BODY SPLASH Y CREMAS ---
+    {
+        id: 1740000066,
+        name: "Body Splash Victoria's Secret Velvet Petals 250ml",
+        category: "Body Splash y Cremas",
+        price: 32000,
+        notes: "Aroma: Floral cálido intenso. Mezcla perfecta de flores exuberantes aterciopeladas y glaseado suave de almendras azucaradas. Un toque frutal-floral gourmand altamente seductor.",
+        image: "https://placehold.co/600x600/18181b/D4AF37?text=Velvet+Petals\nVictoria%27s+Secret"
+    },
+    {
+        id: 1740000067,
+        name: "Body Splash Victoria's Secret Shimmer Velvet Petals 250ml",
+        category: "Body Splash y Cremas",
+        price: 32000,
+        notes: "Aroma: Floral cálido con destellos. Flores exuberantes y glaseado suave de almendras azucaradas combinadas con partículas iluminadoras de brillo para una piel perfumada y destellante.",
+        image: "https://placehold.co/600x600/18181b/D4AF37?text=Velvet+Petals+Shimmer\nVictoria%27s+Secret"
+    },
+    {
+        id: 1740000068,
+        name: "Body Splash Victoria's Secret Coconut Passion 250ml",
+        category: "Body Splash y Cremas",
+        price: 32000,
+        notes: "Aroma: Gourmand cálido e isleño. Una fusión irresistible de néctar de coco tropical rico y profundo con suave y reconfortante vainilla cálida pura. Relajante y deliciosamente playero.",
+        image: "https://placehold.co/600x600/18181b/D4AF37?text=Coconut+Passion\nVictoria%27s+Secret"
+    },
+    {
+        id: 1740000069,
+        name: "Body Splash Victoria's Secret Shimmer Coconut Passion 250ml",
+        category: "Body Splash y Cremas",
+        price: 32000,
+        notes: "Aroma: Gourmand luminoso e isleño. La icónica mezcla de néctar de coco rico y suave vainilla cálida, infundida de partículas brillantes para lograr una piel dorada espectacular a la vista.",
+        image: "https://placehold.co/600x600/18181b/D4AF37?text=Coconut+Passion+Shimmer\nVictoria%27s+Secret"
+    },
+    {
+        id: 1740000070,
+        name: "Body Splash Victoria's Secret Amber Romance 250ml",
+        category: "Body Splash y Cremas",
+        price: 32000,
+        notes: "Aroma: Gourmand cálido embriagador. Mezcla profunda de ámbar oriental oscuro sensual mezclado exquisitamente con toques deliciosos de crème anglaise sedosa, vainilla rica y cereza negra. Envolvente.",
+        image: "https://placehold.co/600x600/18181b/D4AF37?text=Amber+Romance\nVictoria%27s+Secret"
+    },
+    {
+        id: 1740000071,
+        name: "Crema Karseell 500ml",
+        category: "Body Splash y Cremas",
+        price: 20000,
+        notes: "Propiedades: Tratamiento capilar profesional reconstructor profundo formulado con una rica combinación de colágeno puro y nutritivo aceite de argán marroquí garantizando hidratación, suavidad y brillo extremo.",
+        image: "https://placehold.co/600x600/18181b/D4AF37?text=Maca+Power\nCrema+Karseell+500ml"
+    }
+];
 
         const defaultLogoSVG = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%23111' stroke='%23D4AF37' stroke-width='4'/><path d='M15 50h70M50 15v70M28 28c15 15 29 15 44 0M28 72c15-15 29-15 44 0' fill='none' stroke='%23444' stroke-width='1'/><text x='50' y='46' font-family='sans-serif' font-size='15' font-weight='bold' fill='%23FFF' text-anchor='middle'>Black</text><text x='50' y='65' font-family='sans-serif' font-size='16' font-weight='bold' fill='%23D4AF37' text-anchor='middle'>Import</text></svg>";
 
@@ -553,9 +1120,9 @@
             ]
         };
 
-        let settings = JSON.parse(localStorage.getItem('bp_settings_v8')) || defaultSettings;
-        let products = JSON.parse(localStorage.getItem('bp_products_v8')) || defaultProducts;
-        let cart = JSON.parse(localStorage.getItem('bp_cart_v8')) || [];
+        let settings = JSON.parse(localStorage.getItem('bp_settings_v9')) || defaultSettings;
+        let products = JSON.parse(localStorage.getItem('bp_products_v9')) || defaultProducts;
+        let cart = JSON.parse(localStorage.getItem('bp_cart_v9')) || [];
         let currentCategory = 'Todas';
         let currentSearch = '';
         let currentSort = 'relevancia';
@@ -585,12 +1152,12 @@
                         let updated = false;
                         if (cloudData.products && Array.isArray(cloudData.products)) {
                             products = cloudData.products;
-                            localStorage.setItem('bp_products_v8', JSON.stringify(products));
+                            localStorage.setItem('bp_products_v9', JSON.stringify(products));
                             updated = true;
                         }
                         if (cloudData.settings && typeof cloudData.settings === 'object') {
                             settings = { ...defaultSettings, ...cloudData.settings };
-                            localStorage.setItem('bp_settings_v8', JSON.stringify(settings));
+                            localStorage.setItem('bp_settings_v9', JSON.stringify(settings));
                             updated = true;
                         }
                         if (updated) {
@@ -633,8 +1200,8 @@
         }
 
         async function saveCloudState() {
-            localStorage.setItem('bp_products_v8', JSON.stringify(products));
-            localStorage.setItem('bp_settings_v8', JSON.stringify(settings));
+            localStorage.setItem('bp_products_v9', JSON.stringify(products));
+            localStorage.setItem('bp_settings_v9', JSON.stringify(settings));
             try {
                 if (db) {
                     const stateRef = doc(db, 'artifacts', appId, 'store_state', 'main');
@@ -723,7 +1290,7 @@
             if (!categoriesContainer) return;
             const categories = ['Todas', ...new Set(products.map(p => p.category))];
             categoriesContainer.innerHTML = categories.map(cat => `
-                <button onclick="filterCategory('${cat}')" class="px-4 py-2 rounded-xl text-xs font-semibold transition-all ${currentCategory === cat ? 'bg-gold text-zinc-950 shadow-md shadow-gold/20 font-bold' : 'bg-zinc-900 text-zinc-300 hover:bg-zinc-800'}">
+                <button onclick="filterCategory('${cat}')" class="px-4 py-2 rounded-xl text-xs font-semibold transition-all ${currentCategory === cat ? 'bg-gold text-zinc-950 shadow-md shadow-gold/20 font-bold' : 'bg-zinc-900 text-zinc-300 hover:bg-zinc-800'} cursor-pointer">
                     ${cat}
                 </button>
             `).join('');
@@ -779,7 +1346,7 @@
                         </div>
                         <div class="flex items-center justify-between pt-4 border-t border-zinc-800/80">
                             <span class="font-bold text-gold text-lg">$${p.price.toLocaleString('es-AR')}</span>
-                            <button onclick="event.stopPropagation(); addToCart(${p.id})" class="bg-gold hover:bg-gold-light text-zinc-950 px-4 py-2.5 rounded-xl text-xs font-bold transition-all flex items-center gap-2 shadow-md shadow-gold/20">
+                            <button onclick="event.stopPropagation(); addToCart(${p.id})" class="bg-gold hover:bg-gold-light text-zinc-950 px-4 py-2.5 rounded-xl text-xs font-bold transition-all flex items-center gap-2 shadow-md shadow-gold/20 cursor-pointer">
                                 <i class="fa-solid fa-cart-plus"></i> Agregar
                             </button>
                         </div>
@@ -788,7 +1355,6 @@
             }).join('');
         }
 
-        // LARGE ENLARGED PRODUCT DETAIL MODAL
         function openProductDetail(productId) {
             const p = products.find(prod => prod.id === productId);
             if (!p) return;
@@ -805,7 +1371,7 @@
                     ${allImages.length > 1 ? `
                         <div class="flex gap-3 overflow-x-auto pb-2 justify-center sm:justify-start">
                             ${allImages.map((imgUrl, idx) => `
-                                <button onclick="switchDetailImage('${imgUrl}')" class="w-20 h-20 sm:w-24 sm:h-24 bg-zinc-950 border-2 border-zinc-800 rounded-2xl overflow-hidden p-1.5 shrink-0 hover:border-gold transition-all shadow-md">
+                                <button onclick="switchDetailImage('${imgUrl}')" class="w-20 h-20 sm:w-24 sm:h-24 bg-zinc-950 border-2 border-zinc-800 rounded-2xl overflow-hidden p-1.5 shrink-0 hover:border-gold transition-all shadow-md cursor-pointer">
                                     <img src="${imgUrl}" class="w-full h-full object-contain">
                                 </button>
                             `).join('')}
@@ -824,7 +1390,7 @@
                     </div>
 
                     <div class="pt-2 flex flex-col sm:flex-row gap-4">
-                        <button onclick="addToCart(${p.id}); closeProductDetail(); toggleCart();" class="w-full bg-gold hover:bg-gold-light text-zinc-950 font-bold py-4 px-8 rounded-2xl transition-all shadow-xl shadow-gold/25 flex items-center justify-center gap-3 text-lg">
+                        <button onclick="addToCart(${p.id}); closeProductDetail(); toggleCart();" class="w-full bg-gold hover:bg-gold-light text-zinc-950 font-bold py-4 px-8 rounded-2xl transition-all shadow-xl shadow-gold/25 flex items-center justify-center gap-3 text-lg cursor-pointer">
                             <i class="fa-solid fa-bag-shopping text-xl"></i> Comprar Ahora
                         </button>
                     </div>
@@ -883,7 +1449,7 @@
             saveCart(); updateCartUI();
         }
 
-        function saveCart() { localStorage.setItem('bp_cart_v8', JSON.stringify(cart)); }
+        function saveCart() { localStorage.setItem('bp_cart_v9', JSON.stringify(cart)); }
 
         function updateCartUI() {
             const totalItems = cart.reduce((sum, i) => sum + i.qty, 0);
@@ -911,9 +1477,9 @@
                         </div>
                         <div class="flex items-center space-x-3">
                             <div class="flex items-center border border-zinc-700 rounded-lg bg-zinc-950">
-                                <button onclick="updateQty(${item.id}, -1)" class="px-2.5 py-1 text-zinc-400 hover:text-zinc-100">-</button>
+                                <button onclick="updateQty(${item.id}, -1)" class="px-2.5 py-1 text-zinc-400 hover:text-zinc-100 cursor-pointer">-</button>
                                 <span class="text-sm px-2 font-semibold">${item.qty}</span>
-                                <button onclick="updateQty(${item.id}, 1)" class="px-2.5 py-1 text-zinc-400 hover:text-zinc-100">+</button>
+                                <button onclick="updateQty(${item.id}, 1)" class="px-2.5 py-1 text-zinc-400 hover:text-zinc-100 cursor-pointer">+</button>
                             </div>
                         </div>
                     </div>`;
@@ -1000,8 +1566,8 @@
                         </div>
                     </div>
                     <div class="flex items-center space-x-2 w-full sm:w-auto justify-end">
-                        <button onclick="openEditModal(${p.id})" class="bg-gold/10 hover:bg-gold text-gold hover:text-zinc-950 px-3 py-1.5 rounded-xl text-xs font-semibold transition-all">Editar</button>
-                        <button onclick="deleteProduct(${p.id})" class="bg-red-500/10 hover:bg-red-500 text-red-400 hover:text-zinc-950 px-3 py-1.5 rounded-xl text-xs font-semibold transition-all">Borrar</button>
+                        <button onclick="openEditModal(${p.id})" class="bg-gold/10 hover:bg-gold text-gold hover:text-zinc-950 px-3 py-1.5 rounded-xl text-xs font-semibold transition-all cursor-pointer">Editar</button>
+                        <button onclick="deleteProduct(${p.id})" class="bg-red-500/10 hover:bg-red-500 text-red-400 hover:text-zinc-950 px-3 py-1.5 rounded-xl text-xs font-semibold transition-all cursor-pointer">Borrar</button>
                     </div>
                 </div>`;
             }).join('');
@@ -1057,17 +1623,22 @@
         }
 
         function renderEditExtraThumbs() {
-            const container = document.getElementById('edit-extra-thumbs');
+            const container = document.getElementById('edit-current-extra-preview');
             if (editCurrentExtraImages.length === 0) {
                 container.innerHTML = `<span class="text-xs text-zinc-500 italic">No hay fotos adicionales cargadas.</span>`;
                 return;
             }
-            container.innerHTML = editCurrentExtraImages.map((imgUrl, idx) => `
-                <div class="relative w-14 h-14 bg-zinc-950 border border-zinc-800 rounded-xl overflow-hidden p-1 group">
-                    <img src="${imgUrl}" class="w-full h-full object-contain">
-                    <button type="button" onclick="removeEditExtraImage(${idx})" class="absolute inset-0 bg-red-600/80 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity text-xs"><i class="fa-solid fa-trash"></i></button>
+            container.innerHTML = `
+                <label class="block text-xs font-medium text-zinc-400">Fotos actuales cargadas (podés eliminar alguna)</label>
+                <div id="edit-extra-thumbs" class="flex flex-wrap gap-2">
+                    ${editCurrentExtraImages.map((imgUrl, idx) => `
+                        <div class="relative w-14 h-14 bg-zinc-950 border border-zinc-800 rounded-xl overflow-hidden p-1 group">
+                            <img src="${imgUrl}" class="w-full h-full object-contain">
+                            <button type="button" onclick="removeEditExtraImage(${idx})" class="absolute inset-0 bg-red-600/80 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity text-xs cursor-pointer"><i class="fa-solid fa-trash"></i></button>
+                        </div>
+                    `).join('')}
                 </div>
-            `).join('');
+            `;
         }
 
         function removeEditExtraImage(idx) {
@@ -1156,7 +1727,7 @@
                     <div class="flex justify-between items-center border-b border-zinc-800 pb-3">
                         <span class="text-xs font-bold uppercase tracking-wider text-gold">Sección #${sIdx + 1} (${sec.id})</span>
                         <div class="flex items-center gap-2">
-                            <button type="button" onclick="removeAdminSection(${sIdx})" class="text-red-400 text-xs hover:underline"><i class="fa-solid fa-trash"></i> Eliminar Sección</button>
+                            <button type="button" onclick="removeAdminSection(${sIdx})" class="text-red-400 text-xs hover:underline cursor-pointer"><i class="fa-solid fa-trash"></i> Eliminar Sección</button>
                         </div>
                     </div>
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
@@ -1167,7 +1738,7 @@
                     <div class="space-y-3 pt-2">
                         <div class="flex justify-between items-center">
                             <span class="text-xs font-medium text-zinc-400">Tarjetas de la Grilla</span>
-                            <button type="button" onclick="addAdminCard(${sIdx})" class="text-[10px] bg-zinc-800 px-2 py-1 rounded text-zinc-300 hover:bg-zinc-700">+ Añadir Tarjeta</button>
+                            <button type="button" onclick="addAdminCard(${sIdx})" class="text-[10px] bg-zinc-800 px-2 py-1 rounded text-zinc-300 hover:bg-zinc-700 cursor-pointer">+ Añadir Tarjeta</button>
                         </div>
                         <div class="space-y-2">
                             ${sec.cards.map((card, cIdx) => `
@@ -1175,7 +1746,7 @@
                                     <div class="sm:col-span-3"><input type="text" value="${card.title}" placeholder="Título" onchange="tempSections[${sIdx}].cards[${cIdx}].title = this.value" class="w-full bg-zinc-900 border border-zinc-800 rounded px-2 py-1 text-xs text-zinc-100 outline-none"></div>
                                     <div class="sm:col-span-6"><input type="text" value="${card.text}" placeholder="Descripción" onchange="tempSections[${sIdx}].cards[${cIdx}].text = this.value" class="w-full bg-zinc-900 border border-zinc-800 rounded px-2 py-1 text-xs text-zinc-100 outline-none"></div>
                                     <div class="sm:col-span-2"><input type="text" value="${card.emoji || '✨'}" placeholder="Emoji" onchange="tempSections[${sIdx}].cards[${cIdx}].emoji = this.value" class="w-full bg-zinc-900 border border-zinc-800 rounded px-2 py-1 text-xs text-zinc-100 outline-none text-center"></div>
-                                    <div class="sm:col-span-1 text-right"><button type="button" onclick="removeAdminCard(${sIdx}, ${cIdx})" class="text-red-400 hover:text-red-300 text-xs"><i class="fa-solid fa-xmark"></i></button></div>
+                                    <div class="sm:col-span-1 text-right"><button type="button" onclick="removeAdminCard(${sIdx}, ${cIdx})" class="text-red-400 hover:text-red-300 text-xs cursor-pointer"><i class="fa-solid fa-xmark"></i></button></div>
                                 </div>
                             `).join('')}
                         </div>
