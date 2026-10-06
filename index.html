@@ -172,6 +172,7 @@
         </div>
     </footer>
 
+    <!-- Shopping Cart Drawer -->
     <div id="cart-drawer" class="fixed inset-0 z-50 overflow-hidden hidden">
         <div class="absolute inset-0 bg-zinc-950/80 backdrop-blur-sm transition-opacity" onclick="toggleCart()"></div>
         <div class="absolute inset-y-0 right-0 max-w-full flex pl-10">
@@ -197,6 +198,7 @@
         </div>
     </div>
 
+    <!-- Floating WhatsApp Button -->
     <a id="floating-whatsapp-btn" href="#" target="_blank" class="fixed bottom-6 right-6 z-40 bg-green-500 hover:bg-green-600 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-2xl shadow-green-500/30 transition-transform transform hover:scale-110" title="Contactar por WhatsApp">
         <i class="fa-brands fa-whatsapp text-3xl"></i>
     </a>
@@ -223,6 +225,7 @@
         </div>
     </div>
 
+    <!-- Admin Panel Modal -->
     <div id="admin-modal" class="fixed inset-0 z-50 overflow-y-auto hidden">
         <div class="fixed inset-0 bg-zinc-950/85 backdrop-blur-md transition-opacity" onclick="toggleAdminPanel()"></div>
         <div class="min-h-screen px-4 text-center flex items-center justify-center">
@@ -230,7 +233,7 @@
                 <div class="flex justify-between items-center pb-6 border-b border-zinc-800 mb-6">
                     <div>
                         <h2 class="font-serif-custom font-bold text-2xl text-gold">Panel de Administración CMS</h2>
-                        <p class="text-sm text-zinc-400">Control total con URLs de imágenes optimizadas para Firebase.</p>
+                        <p class="text-sm text-zinc-400">Control total y reordenamiento libre por arrastre.</p>
                     </div>
                     <div class="flex items-center gap-4">
                         <div class="bg-zinc-950 border border-gold/30 px-4 py-2 rounded-xl flex items-center gap-3 shadow-inner">
@@ -260,16 +263,20 @@
 
                 <!-- Admin Tab: Productos -->
                 <div id="admin-tab-productos" class="admin-tab-content space-y-4 max-h-[60vh] overflow-y-auto pr-2">
-                    <div class="flex justify-between items-center">
-                        <h3 class="text-sm font-semibold uppercase tracking-wider text-zinc-400">Lista actual de productos</h3>
-                        <button onclick="resetDefaultData()" class="text-xs text-red-400 hover:underline cursor-pointer"><i class="fa-solid fa-rotate-right"></i> Restaurar fábrica</button>
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 bg-zinc-950 p-4 rounded-2xl border border-zinc-800">
+                        <div class="relative flex-grow w-full sm:w-auto">
+                            <input type="text" id="admin-product-search" oninput="renderAdminProducts()" placeholder="Buscar producto por nombre en el panel..." class="w-full bg-zinc-900 border border-zinc-800 focus:border-gold text-zinc-100 px-4 py-2 pl-9 rounded-xl text-xs outline-none transition-all">
+                            <i class="fa-solid fa-magnifying-glass absolute left-3 top-2.5 text-zinc-500 text-xs"></i>
+                        </div>
+                        <button onclick="resetDefaultData()" class="text-xs text-red-400 hover:underline cursor-pointer shrink-0"><i class="fa-solid fa-rotate-right"></i> Restaurar fábrica</button>
                     </div>
+                    <p class="text-[11px] text-zinc-400 flex items-center gap-1.5"><i class="fa-solid fa-hand text-gold"></i> <span>Arrastrá los productos desde el ícono de agarre para reordenarlos libremente.</span></p>
                     <div id="admin-product-list" class="space-y-3"></div>
                 </div>
 
                 <!-- Admin Tab: Nuevo Producto -->
                 <div id="admin-tab-nuevo" class="admin-tab-content space-y-4 hidden max-h-[60vh] overflow-y-auto pr-2">
-                    <h3 class="text-sm font-semibold uppercase tracking-wider text-zinc-400">Crear nuevo producto (con conversión automática de archivo a URL)</h3>
+                    <h3 class="text-sm font-semibold uppercase tracking-wider text-zinc-400">Crear nuevo producto</h3>
                     <form id="add-product-form" onsubmit="handleAddNewProduct(event)" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
                             <label class="block text-xs font-medium text-zinc-400 mb-1">Nombre del Perfume</label>
@@ -358,7 +365,7 @@
                 <div id="admin-tab-bloques" class="admin-tab-content space-y-6 max-h-[65vh] overflow-y-auto pr-2 hidden">
                     <div class="bg-zinc-950/50 p-6 rounded-2xl border border-zinc-800">
                         <div class="flex justify-between items-center mb-4">
-                            <h3 class="text-sm font-semibold uppercase tracking-wider text-zinc-400">Secciones y Tarjetas Estilo Grilla</h3>
+                            <h3 class="text-sm font-semibold uppercase tracking-wider text-zinc-400">Secciones y Tarjetas (Ordenables)</h3>
                             <button type="button" onclick="addAdminSection()" class="text-xs bg-zinc-800 hover:bg-zinc-700 px-3 py-1.5 rounded-lg text-zinc-200 cursor-pointer"><i class="fa-solid fa-plus"></i> Añadir Sección</button>
                         </div>
                         <div id="admin-sections-list" class="space-y-6"></div>
@@ -426,6 +433,7 @@
         </div>
     </div>
 
+    <!-- Edit Product Modal -->
     <div id="edit-modal" class="fixed inset-0 z-50 overflow-y-auto hidden">
         <div class="fixed inset-0 bg-zinc-950/85 backdrop-blur-md transition-opacity" onclick="closeEditModal()"></div>
         <div class="min-h-screen px-4 text-center flex items-center justify-center">
@@ -473,6 +481,7 @@
         </div>
     </div>
 
+    <!-- Custom Modal Dialogs -->
     <div id="custom-modal-overlay" class="fixed inset-0 z-[100] bg-zinc-950/85 backdrop-blur-md hidden items-center justify-center">
         <div class="bg-zinc-900 border border-gold/40 rounded-3xl p-6 sm:p-8 max-w-sm w-full mx-4 shadow-2xl text-center space-y-6">
             <p id="custom-modal-message" class="text-zinc-100 text-base sm:text-lg"></p>
@@ -624,14 +633,15 @@
             ]
         };
 
-        let settings = JSON.parse(localStorage.getItem('bp_settings_v10')) || defaultSettings;
-        let products = JSON.parse(localStorage.getItem('bp_products_v10')) || defaultProducts;
-        let cart = JSON.parse(localStorage.getItem('bp_cart_v10')) || [];
+        let settings = JSON.parse(localStorage.getItem('bp_settings_v11')) || defaultSettings;
+        let products = JSON.parse(localStorage.getItem('bp_products_v11')) || defaultProducts;
+        let cart = JSON.parse(localStorage.getItem('bp_cart_v11')) || [];
         let currentCategory = 'Todas';
         let currentSearch = '';
         let currentSort = 'relevancia';
         let tempSections = [];
         let tempLogoUrl = "";
+        let draggedProductId = null;
 
         let db = null;
         let appId = "black-perfumes-bd";
@@ -653,14 +663,15 @@
                     if (docSnap.exists()) {
                         const cloudData = docSnap.data();
                         let updated = false;
-                        if (cloudData.products && Array.isArray(cloudData.products)) {
+                        if (cloudData.products && Array.isArray(cloudData.products) && cloudData.products.length > 0) {
                             products = cloudData.products;
-                            localStorage.setItem('bp_products_v10', JSON.stringify(products));
+                            localStorage.setItem('bp_products_v11', JSON.stringify(products));
                             updated = true;
                         }
                         if (cloudData.settings && typeof cloudData.settings === 'object') {
                             settings = { ...defaultSettings, ...cloudData.settings };
-                            localStorage.setItem('bp_settings_v10', JSON.stringify(settings));
+                            if (!settings.adminPassword) settings.adminPassword = defaultSettings.adminPassword;
+                            localStorage.setItem('bp_settings_v11', JSON.stringify(settings));
                             updated = true;
                         }
                         if (updated) {
@@ -701,8 +712,8 @@
         }
 
         async function saveCloudState() {
-            localStorage.setItem('bp_products_v10', JSON.stringify(products));
-            localStorage.setItem('bp_settings_v10', JSON.stringify(settings));
+            localStorage.setItem('bp_products_v11', JSON.stringify(products));
+            localStorage.setItem('bp_settings_v11', JSON.stringify(settings));
             try {
                 if (db) {
                     const stateRef = doc(db, 'artifacts', appId, 'store_state', 'main');
@@ -851,7 +862,7 @@
                     </div>
                     ${allImages.length > 1 ? `
                         <div class="flex gap-3 overflow-x-auto pb-2">
-                            ${allImages.map((img, idx) => `
+                            ${allImages.map((img) => `
                                 <button onclick="document.getElementById('main-detail-img').src='${img}'" class="w-20 h-20 bg-zinc-950 border border-zinc-700 hover:border-gold rounded-xl overflow-hidden shrink-0 p-1 cursor-pointer transition-all">
                                     <img src="${img}" class="w-full h-full object-cover rounded-lg">
                                 </button>
@@ -919,7 +930,7 @@
             saveCart(); updateCartUI();
         }
 
-        function saveCart() { localStorage.setItem('bp_cart_v10', JSON.stringify(cart)); }
+        function saveCart() { localStorage.setItem('bp_cart_v11', JSON.stringify(cart)); }
 
         function updateCartUI() {
             const totalItems = cart.reduce((sum, i) => sum + i.qty, 0);
@@ -1003,7 +1014,6 @@
             });
         };
 
-        // File-to-ObjectURL converter to generate clean lightweight URLs without touching Base64
         window.handleNewImageFile = function(e) {
             const file = e.target.files[0];
             if (file) {
@@ -1078,6 +1088,9 @@
         }
 
         function switchAdminTab(tabName) {
+            if (tabName === 'bloques') {
+                syncUIValuesToTempSections();
+            }
             document.querySelectorAll('.admin-tab-content').forEach(el => el.classList.add('hidden'));
             document.querySelectorAll('.admin-tab-btn').forEach(el => {
                 el.classList.remove('bg-gold', 'text-zinc-950'); el.classList.add('bg-zinc-800', 'text-zinc-300');
@@ -1085,20 +1098,47 @@
             document.getElementById(`admin-tab-${tabName}`).classList.remove('hidden');
             const btn = document.getElementById(`tab-btn-${tabName}`);
             btn.classList.remove('bg-zinc-800', 'text-zinc-300'); btn.classList.add('bg-gold', 'text-zinc-950');
+            if (tabName === 'bloques') {
+                renderAdminSectionsList();
+            }
         }
 
         function renderAdminProducts() {
             const list = document.getElementById('admin-product-list');
-            list.innerHTML = products.map(p => {
+            if (!list) return;
+
+            const searchInput = document.getElementById('admin-product-search');
+            const query = searchInput ? searchInput.value.toLowerCase().trim() : '';
+
+            let filtered = products.filter(p => p.name.toLowerCase().includes(query) || (p.category && p.category.toLowerCase().includes(query)));
+
+            if (filtered.length === 0) {
+                list.innerHTML = `<div class="py-8 text-center text-zinc-500 text-xs"><i class="fa-solid fa-magnifying-glass text-xl mb-2 text-zinc-700 block"></i>No se encontraron productos que coincidan con "${query}".</div>`;
+                return;
+            }
+
+            list.innerHTML = filtered.map((p) => {
                 const totalImgs = 1 + (p.images ? p.images.length : 0);
                 return `
-                <div class="bg-zinc-950 border border-zinc-800 p-4 rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div 
+                    draggable="true"
+                    ondragstart="handleAdminDragStart(event, ${p.id})"
+                    ondragover="handleAdminDragOver(event)"
+                    ondragenter="handleAdminDragEnter(event)"
+                    ondragleave="handleAdminDragLeave(event)"
+                    ondrop="handleAdminDrop(event, ${p.id})"
+                    ondragend="handleAdminDragEnd(event)"
+                    class="bg-zinc-950 border border-zinc-800 p-4 rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-4 transition-all hover:border-zinc-700 select-none"
+                >
                     <div class="flex items-center space-x-3 w-full sm:w-auto">
-                        <img src="${p.image}" class="w-12 h-12 object-contain rounded-xl bg-zinc-900" alt="">
+                        <div class="text-zinc-500 hover:text-gold p-2 cursor-grab active:cursor-grabbing rounded-lg hover:bg-zinc-900 transition-colors shrink-0" title="Arrastrá para cambiar el orden">
+                            <i class="fa-solid fa-grip-vertical text-lg"></i>
+                        </div>
+                        <img src="${p.image}" class="w-12 h-12 object-contain rounded-xl bg-zinc-900 border border-zinc-800 shrink-0" alt="">
                         <div>
                             <h4 class="font-serif-custom font-bold text-sm text-zinc-100">${p.name}</h4>
                             <p class="text-xs text-gold">${p.category} — $${p.price.toLocaleString('es-AR')}</p>
-                            <p class="text-[10px] text-zinc-500 mt-0.5"><i class="fa-solid fa-images"></i> ${totalImgs} fotos en total</p>
+                            <p class="text-[10px] text-zinc-500 mt-0.5"><i class="fa-solid fa-images"></i> ${totalImgs} foto${totalImgs > 1 ? 's' : ''}</p>
                         </div>
                     </div>
                     <div class="flex items-center space-x-2 w-full sm:w-auto justify-end shrink-0">
@@ -1108,6 +1148,50 @@
                 </div>
                 `;
             }).join('');
+        }
+
+        /* Drag and Drop event handlers */
+        function handleAdminDragStart(e, id) {
+            draggedProductId = id;
+            e.dataTransfer.effectAllowed = 'move';
+            e.currentTarget.classList.add('opacity-40', 'border-gold');
+        }
+
+        function handleAdminDragOver(e) {
+            e.preventDefault();
+            e.dataTransfer.dropEffect = 'move';
+        }
+
+        function handleAdminDragEnter(e) {
+            e.preventDefault();
+            e.currentTarget.classList.add('border-gold', 'bg-zinc-900');
+        }
+
+        function handleAdminDragLeave(e) {
+            e.currentTarget.classList.remove('border-gold', 'bg-zinc-900');
+        }
+
+        async function handleAdminDrop(e, targetId) {
+            e.preventDefault();
+            e.currentTarget.classList.remove('border-gold', 'bg-zinc-900');
+            if (draggedProductId === null || draggedProductId === targetId) return;
+
+            const fromIndex = products.findIndex(p => p.id === draggedProductId);
+            const toIndex = products.findIndex(p => p.id === targetId);
+
+            if (fromIndex !== -1 && toIndex !== -1) {
+                const [movedProduct] = products.splice(fromIndex, 1);
+                products.splice(toIndex, 0, movedProduct);
+                await saveCloudState();
+                renderAdminProducts();
+                renderSite();
+            }
+            draggedProductId = null;
+        }
+
+        function handleAdminDragEnd(e) {
+            e.currentTarget.classList.remove('opacity-40', 'border-gold');
+            draggedProductId = null;
         }
 
         async function handleAddNewProduct(e) {
@@ -1238,30 +1322,66 @@
             }
         }
 
+        function syncUIValuesToTempSections() {
+            const listContainer = document.getElementById('admin-sections-list');
+            if (!listContainer) return;
+            const secBlocks = listContainer.querySelectorAll('.admin-sec-block');
+            secBlocks.forEach((secBlock, sIdx) => {
+                if (tempSections[sIdx]) {
+                    const idInput = secBlock.querySelector('.sec-id-input');
+                    const titleInput = secBlock.querySelector('.sec-title-input');
+                    const subInput = secBlock.querySelector('.sec-sub-input');
+                    if (idInput) tempSections[sIdx].id = idInput.value;
+                    if (titleInput) tempSections[sIdx].title = titleInput.value;
+                    if (subInput) tempSections[sIdx].subtitle = subInput.value;
+
+                    const cardRows = secBlock.querySelectorAll('.admin-card-row');
+                    const newCards = [];
+                    cardRows.forEach((cardRow) => {
+                        const cTitle = cardRow.querySelector('.card-title-input').value;
+                        const cText = cardRow.querySelector('.card-text-input').value;
+                        const cEmoji = cardRow.querySelector('.card-emoji-input').value;
+                        newCards.push({ title: cTitle, text: cText, emoji: cEmoji });
+                    });
+                    tempSections[sIdx].cards = newCards;
+                }
+            });
+        }
+
         function renderAdminSectionsList() {
             const list = document.getElementById('admin-sections-list');
             list.innerHTML = tempSections.map((sec, sIdx) => `
-                <div class="bg-zinc-900 p-5 rounded-2xl border border-zinc-800 space-y-4">
+                <div class="admin-sec-block bg-zinc-900 p-5 rounded-2xl border border-zinc-800 space-y-4">
                     <div class="flex justify-between items-center border-b border-zinc-800 pb-3">
-                        <span class="text-xs font-bold uppercase tracking-wider text-gold">Sección #${sIdx + 1}</span>
+                        <div class="flex items-center gap-2">
+                            <span class="text-xs font-bold uppercase tracking-wider text-gold">Sección #${sIdx + 1}</span>
+                            <div class="flex items-center gap-1 bg-zinc-950 px-2 py-0.5 rounded border border-zinc-800">
+                                <button type="button" onclick="moveSection(${sIdx}, -1)" ${sIdx === 0 ? 'disabled class="text-zinc-700 cursor-not-allowed"' : 'class="text-zinc-300 hover:text-gold cursor-pointer"'}><i class="fa-solid fa-arrow-up text-[10px]"></i></button>
+                                <button type="button" onclick="moveSection(${sIdx}, 1)" ${sIdx === tempSections.length - 1 ? 'disabled class="text-zinc-700 cursor-not-allowed"' : 'class="text-zinc-300 hover:text-gold cursor-pointer"'}><i class="fa-solid fa-arrow-down text-[10px]"></i></button>
+                            </div>
+                        </div>
                         <button type="button" onclick="removeAdminSection(${sIdx})" class="text-red-400 text-xs hover:underline cursor-pointer"><i class="fa-solid fa-trash"></i> Eliminar Sección</button>
                     </div>
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                        <div><label class="text-[10px] text-zinc-400">ID (ej: garantia)</label><input type="text" value="${sec.id}" onchange="tempSections[${sIdx}].id = this.value" class="w-full bg-zinc-950 border border-zinc-800 rounded px-3 py-1.5 text-xs text-zinc-100 outline-none"></div>
-                        <div><label class="text-[10px] text-zinc-400">Título Principal</label><input type="text" value="${sec.title}" onchange="tempSections[${sIdx}].title = this.value" class="w-full bg-zinc-950 border border-zinc-800 rounded px-3 py-1.5 text-xs text-zinc-100 outline-none"></div>
-                        <div><label class="text-[10px] text-zinc-400">Badge Superior</label><input type="text" value="${sec.subtitle || ''}" onchange="tempSections[${sIdx}].subtitle = this.value" class="w-full bg-zinc-950 border border-zinc-800 rounded px-3 py-1.5 text-xs text-zinc-100 outline-none"></div>
+                        <div><label class="text-[10px] text-zinc-400">ID (ej: garantia)</label><input type="text" value="${sec.id}" class="sec-id-input w-full bg-zinc-950 border border-zinc-800 rounded px-3 py-1.5 text-xs text-zinc-100 outline-none"></div>
+                        <div><label class="text-[10px] text-zinc-400">Título Principal</label><input type="text" value="${sec.title}" class="sec-title-input w-full bg-zinc-950 border border-zinc-800 rounded px-3 py-1.5 text-xs text-zinc-100 outline-none"></div>
+                        <div><label class="text-[10px] text-zinc-400">Badge Superior</label><input type="text" value="${sec.subtitle || ''}" class="sec-sub-input w-full bg-zinc-950 border border-zinc-800 rounded px-3 py-1.5 text-xs text-zinc-100 outline-none"></div>
                     </div>
                     <div class="space-y-3 pt-2">
                         <div class="flex justify-between items-center">
-                            <span class="text-xs font-medium text-zinc-400">Tarjetas de la Grilla</span>
+                            <span class="text-xs font-medium text-zinc-400">Tarjetas de la Grilla (Ordenables)</span>
                             <button type="button" onclick="addAdminCard(${sIdx})" class="text-[10px] bg-zinc-800 px-2 py-1 rounded text-zinc-300 hover:bg-zinc-700 cursor-pointer">+ Añadir Tarjeta</button>
                         </div>
                         <div class="space-y-2">
                             ${sec.cards.map((card, cIdx) => `
-                                <div class="bg-zinc-950 p-3 rounded-xl border border-zinc-800 grid grid-cols-1 sm:grid-cols-12 gap-2 items-center">
-                                    <div class="sm:col-span-3"><input type="text" value="${card.title}" placeholder="Título" onchange="tempSections[${sIdx}].cards[${cIdx}].title = this.value" class="w-full bg-zinc-900 border border-zinc-800 rounded px-2 py-1 text-xs text-zinc-100 outline-none"></div>
-                                    <div class="sm:col-span-6"><input type="text" value="${card.text}" placeholder="Descripción" onchange="tempSections[${sIdx}].cards[${cIdx}].text = this.value" class="w-full bg-zinc-900 border border-zinc-800 rounded px-2 py-1 text-xs text-zinc-100 outline-none"></div>
-                                    <div class="sm:col-span-2"><input type="text" value="${card.emoji || '✨'}" placeholder="Emoji" onchange="tempSections[${sIdx}].cards[${cIdx}].emoji = this.value" class="w-full bg-zinc-900 border border-zinc-800 rounded px-2 py-1 text-xs text-zinc-100 outline-none text-center"></div>
+                                <div class="admin-card-row bg-zinc-950 p-3 rounded-xl border border-zinc-800 grid grid-cols-1 sm:grid-cols-12 gap-2 items-center">
+                                    <div class="sm:col-span-1 flex items-center justify-center gap-1 bg-zinc-900 p-1 rounded border border-zinc-800">
+                                        <button type="button" onclick="moveCard(${sIdx}, ${cIdx}, -1)" ${cIdx === 0 ? 'disabled class="text-zinc-700 cursor-not-allowed"' : 'class="text-zinc-300 hover:text-gold cursor-pointer"'}><i class="fa-solid fa-chevron-up text-[9px]"></i></button>
+                                        <button type="button" onclick="moveCard(${sIdx}, ${cIdx}, 1)" ${cIdx === sec.cards.length - 1 ? 'disabled class="text-zinc-700 cursor-not-allowed"' : 'class="text-zinc-300 hover:text-gold cursor-pointer"'}><i class="fa-solid fa-chevron-down text-[9px]"></i></button>
+                                    </div>
+                                    <div class="sm:col-span-3"><input type="text" value="${card.title}" placeholder="Título" class="card-title-input w-full bg-zinc-900 border border-zinc-800 rounded px-2 py-1 text-xs text-zinc-100 outline-none"></div>
+                                    <div class="sm:col-span-5"><input type="text" value="${card.text}" placeholder="Descripción" class="card-text-input w-full bg-zinc-900 border border-zinc-800 rounded px-2 py-1 text-xs text-zinc-100 outline-none"></div>
+                                    <div class="sm:col-span-2"><input type="text" value="${card.emoji || '✨'}" placeholder="Emoji" class="card-emoji-input w-full bg-zinc-900 border border-zinc-800 rounded px-2 py-1 text-xs text-zinc-100 outline-none text-center"></div>
                                     <div class="sm:col-span-1 text-right"><button type="button" onclick="removeAdminCard(${sIdx}, ${cIdx})" class="text-red-400 hover:text-red-300 text-xs cursor-pointer"><i class="fa-solid fa-xmark"></i></button></div>
                                 </div>
                             `).join('')}
@@ -1271,22 +1391,49 @@
             `).join('');
         }
 
+        function moveSection(sIdx, direction) {
+            syncUIValuesToTempSections();
+            const target = sIdx + direction;
+            if (target < 0 || target >= tempSections.length) return;
+            const tmp = tempSections[sIdx];
+            tempSections[sIdx] = tempSections[target];
+            tempSections[target] = tmp;
+            renderAdminSectionsList();
+        }
+
+        function moveCard(sIdx, cIdx, direction) {
+            syncUIValuesToTempSections();
+            const target = cIdx + direction;
+            if (target < 0 || target >= tempSections[sIdx].cards.length) return;
+            const tmp = tempSections[sIdx].cards[cIdx];
+            tempSections[sIdx].cards[cIdx] = tempSections[sIdx].cards[target];
+            tempSections[sIdx].cards[target] = tmp;
+            renderAdminSectionsList();
+        }
+
         function addAdminSection() {
+            syncUIValuesToTempSections();
             tempSections.push({ id: "nueva-seccion", title: "Título de Sección", subtitle: "Badge", cards: [{ title: "Tarjeta 1", text: "Descripción...", emoji: "✨" }] });
             renderAdminSectionsList();
         }
         function removeAdminSection(index) {
-            tempSections.splice(index, 1); renderAdminSectionsList();
+            syncUIValuesToTempSections();
+            tempSections.splice(index, 1); 
+            renderAdminSectionsList();
         }
         function addAdminCard(sIdx) {
+            syncUIValuesToTempSections();
             tempSections[sIdx].cards.push({ title: "Nueva Tarjeta", text: "Descripción...", emoji: "⭐" });
             renderAdminSectionsList();
         }
         function removeAdminCard(sIdx, cIdx) {
-            tempSections[sIdx].cards.splice(cIdx, 1); renderAdminSectionsList();
+            syncUIValuesToTempSections();
+            tempSections[sIdx].cards.splice(cIdx, 1); 
+            renderAdminSectionsList();
         }
 
         async function saveSiteSettings() {
+            syncUIValuesToTempSections();
             settings.brandName = document.getElementById('setting-brand').value;
             settings.whatsappNumber = document.getElementById('setting-whatsapp').value;
             settings.heroTitle = document.getElementById('setting-hero-title').value;
@@ -1380,12 +1527,21 @@
         window.closeEditModal = closeEditModal;
         window.handleSaveEditedProduct = handleSaveEditedProduct;
         window.deleteProduct = deleteProduct;
+        window.handleAdminDragStart = handleAdminDragStart;
+        window.handleAdminDragOver = handleAdminDragOver;
+        window.handleAdminDragEnter = handleAdminDragEnter;
+        window.handleAdminDragLeave = handleAdminDragLeave;
+        window.handleAdminDrop = handleAdminDrop;
+        window.handleAdminDragEnd = handleAdminDragEnd;
+        window.renderAdminProducts = renderAdminProducts;
         window.handleLogoUpload = handleLogoUpload;
         window.removeLogo = removeLogo;
         window.addAdminSection = addAdminSection;
         window.removeAdminSection = removeAdminSection;
+        window.moveSection = moveSection;
         window.addAdminCard = addAdminCard;
         window.removeAdminCard = removeAdminCard;
+        window.moveCard = moveCard;
         window.saveSiteSettings = saveSiteSettings;
         window.exportBackupJSON = exportBackupJSON;
         window.importBackupJSON = importBackupJSON;
